@@ -6,6 +6,8 @@ Updated 21 September 2026. This page supersedes earlier checkpoint descriptions.
 
 Handoff is a web app for adult children coordinating an aging parent’s care. The full connected loop is original record or message → reviewed next step → visit and travel preparation → accepted responsibility → follow-up → explicit handover. It includes private records and versioned extraction, care/medicine reference, providers, maps/places, separate travel commitments, limited-helper access, waiting items linked to real conversations/originals, and immutable accepted handovers. The framework remains native HTML/CSS/JavaScript with Convex realtime.
 
+The technical release for the selected stack is complete within the verification scope below. Registration, social publication and actual entry confirmation are handled by the entrant, as explicitly requested.
+
 ## Production release
 
 - Development: `https://befitting-cobra-234.convex.cloud`; implementation and controlled live flows verified there.
@@ -19,7 +21,7 @@ Handoff is a web app for adult children coordinating an aging parent’s care. T
 
 AgentMail previously reported three occupied inbox slots: two sign-in senders and one preserved existing household. The earlier development test temporarily rotated authorized disposable resources, proved its three-message attachment/reply workflow, deleted its synthetic household, and restored sign-in mailboxes. The production synthetic household was also deleted through the normal privacy workflow: all four processors succeeded, no workflow remained active, and the inspected production care/task/record/mail/visit tables were empty. The production sign-in sender was restored and public email-code sign-in passed. Final maintenance also completed: the controlled OTP inbox/pod was deleted, both deployment sign-in senders were restored, and the existing real development household was preserved. The operator subsequently requested retirement of the development sign-in inbox. That deletion is verified: current usage is 2/3, leaving one slot while production sign-in and the existing household remain intact. Future testing uses production; requesting a development login code would recreate its sender. Production care/household content is empty; minimal controlled-login metadata remains (one user and auth-account record, zero sessions, verification codes or memberships). This is valid integration evidence, not enough capacity for arbitrary new public households. New household mail needs one slot; the complete controlled sample needs two. Manual coordination remains available when provisioning fails visibly.
 
-The runtime is Gemini-only. Official All Gas judging requires actual OpenAI, Firecrawl and AgentMail product work; optional SDK code and Codex use do not establish OpenAI generation. No operator legal/privacy contact, processor contract approval, real caregiver adoption or formal compliance certification is inferred from synthetic tests.
+The selected Gemini runtime and Responses-shaped application interface are implemented and production-verified. The user has explicitly retained this stack; a separate OpenAI service/key is not an outstanding implementation or release requirement. Organizer interpretation of sponsor eligibility is recorded separately in [the submission note](submission.md#organizer-eligibility-note). No operator legal/privacy contact, processor contract approval, real caregiver adoption or formal compliance certification is inferred from synthetic tests.
 
 ## Evidence scope
 

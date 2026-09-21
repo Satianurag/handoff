@@ -1,6 +1,6 @@
 # Generation interface
 
-Runtime: Gemini 3.8 Flash through Vertex model inference with deployment-specific workload federation. Google Cloud is used only for inference and its necessary token exchange. No Google sign-in or other Google application service is used.
+Selected and verified runtime: Gemini 3.8 Flash through Vertex model inference with deployment-specific workload federation. The application keeps the requested OpenAI-like Responses call shape; no separate OpenAI service, account or funded key is required for this stack. Google Cloud is used only for inference and its necessary token exchange.
 
 `convex/model/responses.ts` exposes the deliberately narrow Responses API contract used by this product: `generationClient.responses.create({model, input, instructions, store:false, text:{format:{type:"json_schema",name,schema,strict:true}}})`. Results have `id`, `object`, `status`, `model`, `output_text`, `usage`, `refusal`, and an explicit `provider`. This is an application adapter, not a claim of complete OpenAI HTTP compatibility or actual OpenAI usage.
 
@@ -33,9 +33,9 @@ Default deployment allowance: 1,000,000 input tokens and 100,000 output tokens p
 
 The prior v1 partial report is retained separately; it is not a completed benchmark. The current 40 synthetic evaluation fixtures are in `convex/fixtures/extraction.ts`. `node scripts/evaluate-extraction.mjs` runs real deployed Gemini calls through restricted internal evaluation functions and writes `docs/extraction-evaluation.json`. Optional fixture indices rerun selected cases; intermediate reports are explicitly incomplete. HTTP 429/transient failures get bounded retries respecting `Retry-After`, with truncated exponential backoff and jitter. Product jobs persist the next allowed retry time. [Official model retry guidance](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/retry-strategy). Production content is never sent to the evaluator.
 
-## Explicit OpenAI switch for source-text actions
+## Inactive alternative provider branch
 
-The official OpenAI SDK branch exists but has not been exercised because no OpenAI credit/key was supplied. Set `OPENAI_API_KEY`, select `OPENAI_MODEL`, explicitly set `GENERATION_PROVIDER=openai`, and record the documented full model output capacity in the enabled `verifiedOpenAiOutputCapacity` operator setting. Rerun the fixtures and end-to-end checks before declaring that runtime verified. Existing application action names, request arguments and result handling remain unchanged. Adding a key alone does not silently change the provider. This switch covers the source-text adapter; the document extraction path remains Gemini-specific until separately implemented and verified. Do not describe the entire product as OpenAI-powered after changing only one adapter.
+The code also retains an inactive official OpenAI SDK branch for source-text actions. It is not selected, verified or required for the user’s chosen release. Merely installing that SDK or using the application’s Responses-shaped contract does not make Gemini requests calls to the OpenAI service. Document media extraction is implemented for Gemini. Future provider changes would require explicit authorization, configuration and revalidation; none are planned for this release.
 
 `store:false` is forwarded to OpenAI; it does not mean zero provider retention. Gemini uses direct Vertex generation and no explicit response store or context cache. Provider contractual retention and health-data suitability require separate verification before real care-data release.
 

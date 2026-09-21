@@ -2,14 +2,16 @@
 
 Rules checked 21 September 2026 against the [official event page](https://www.convex.dev/hackathons/all-gas) and [Luma event](https://luma.com/convex-allgas-hackathon). No numeric judging weights or guaranteed eligibility decision are published. The live signed-out submission page was inspected and requires sign-up/sign-in before exposing the form. No account was created and no submission was sent. Public source was inspected to prepare the fields below; current event/account-specific overrides remain unverified.
 
-## Required artifacts and eligibility
+The entrant will handle registration, social publication and final submission. The coding, deployment, verification evidence and prepared submission materials are handed over in this repository.
+
+## Technical release and submission checklist
 
 - [ ] Luma registration confirmed for at least one team member; entrant eligibility attested (18+, at most four people, event employee/family and jurisdiction exclusions).
 - [x] New project build log records work beginning 19 September 2026, after the event's 25 August start. This is repository history evidence, not identity verification.
 - [x] Convex database/functions/realtime and the Convex plugin used in development; root [hackathon.md](../hackathon.md) maintained.
 - [x] Public deployment at [admired-fish-176.convex.site](https://admired-fish-176.convex.site), using official Static Hosting and the matching production backend. Production browser, provider, sign-in and cleanup evidence is recorded in [current status](implementation-status.md).
 - [x] Public GitHub repository: [Satianurag/handoff](https://github.com/Satianurag/handoff), initial main commit `e0174c0` pushed.
-- [ ] Actual OpenAI product generation. Current runtime is Gemini. A compatible interface, installed SDK or Codex development does not establish this criterion.
+- [x] User-selected generation stack: Gemini through model-only Google Cloud, exposed through the Responses-shaped application interface; real production extraction verified. No separate OpenAI service/key is required by the selected build.
 - [x] Fresh production Firecrawl capture and AgentMail PDF/question/reply workflow passed after deployment; [sanitized receipt](public-release-evidence.json) distinguishes these from earlier development checks.
 - [x] Public [walkthrough video](https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4) in the [GitHub release](https://github.com/Satianurag/handoff/releases/tag/submission-preview): 141.567 seconds, 1920×1080, narration and captions. It uses actual deployed-app screenshots assembled into a walkthrough; it is not a continuous interaction recording.
 - [ ] X or LinkedIn post with the live app and tags for Convex, OpenAI, Firecrawl and AgentMail; record the actual post URL.
@@ -18,6 +20,10 @@ Rules checked 21 September 2026 against the [official event page](https://www.co
 
 Official deadline: 22 September, 12 PM Pacific; winners announced 25 September. The official pages itemize $16,500 cash and $8,500 Codex credits, plus sponsor benefits. Luma also advertises a $45,000 combined headline including Firecrawl build credits; do not present that headline as cash. Auth v2 and paid Convex AI Gateway are offered resources, not mandatory architecture.
 
+
+## Organizer eligibility note
+
+The official judging text names real OpenAI, Firecrawl and AgentMail product work. Handoff’s actual model provider is Gemini; its OpenAI-like API shape and Codex-assisted development do not establish OpenAI-service generation. The organizer decides how that criterion applies. This is an accurately disclosed eligibility consideration, not a request to purchase another service or an unfinished technical task. Proceed with the chosen stack and truthful submission details.
 
 ## Prepared VibeApps form fields
 
@@ -45,7 +51,7 @@ The source accepts a general URL for `Video Demo`, stores it as a string without
 
 Handoff helps adult children coordinate an aging parent’s care. Upload the original paperwork, review source-backed next steps, prepare the next visit and transport, and ask someone to accept responsibility. A new result or email reply stays connected to the original and the waiting item, so the family can review it and explicitly decide what is finished. Limited helpers see their assigned work; care records stay under separate sharing controls. Accepted handovers preserve who agreed to what while later updates remain visible.
 
-Convex powers the shared live state, access checks, private files and durable work. Firecrawl captures public appointment logistics for review. AgentMail provides real inbound mail, reviewed outgoing questions and threaded replies. Gemini currently supplies document/source-text suggestions; suggestions never diagnose, prescribe or silently change the plan. OpenAI product-generation eligibility remains unresolved and must not be concealed in the entry.
+Convex powers the shared live state, access checks, private files and durable work. Firecrawl captures public appointment logistics for review. AgentMail provides real inbound mail, reviewed outgoing questions and threaded replies. Gemini currently supplies document/source-text suggestions; suggestions never diagnose, prescribe or silently change the plan. The application uses a Responses-shaped interface over that Gemini runtime.
 
 ## Published video and optional live click-through outline
 

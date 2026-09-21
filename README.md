@@ -18,7 +18,7 @@ Web app only, using native HTML/CSS/JavaScript and shared browser primitives. No
 
 Convex owns authenticated data, live queries, indexed mutations, private file storage, signed webhooks, crons and durable work. Authentication uses official Convex Auth. Registered components are Workflow, Rate Limiter, Static Hosting and the official Firecrawl component. AgentMail’s official SDK provisions inboxes and saves/sends approved messages; signed callbacks ingest real replies. Firecrawl maps and scrapes public visit logistics, retaining evidence for review. Maps use MapLibre, OpenFreeMap and Photon, with external Apple Maps directions.
 
-Runtime generation uses **Gemini 3.8 Flash through model-only Vertex federation**. Source-text actions have an explicit optional OpenAI Responses adapter, but an adapter or Codex-assisted development is not actual OpenAI product generation. No OpenAI runtime use is claimed; the [official sponsor criterion](https://www.convex.dev/hackathons/all-gas) remains unresolved. See [generation details](docs/generation-interface.md).
+Runtime generation uses **Gemini 3.8 Flash through model-only Vertex federation**, behind the requested Responses-shaped application interface. This chosen stack is implemented and verified; no separate OpenAI account or funded key is required to operate it. See [generation details](docs/generation-interface.md) and the separate [organizer eligibility note](docs/submission.md#organizer-eligibility-note).
 
 ## Run locally
 

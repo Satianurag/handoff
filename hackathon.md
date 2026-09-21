@@ -12,7 +12,7 @@
 - **Auth:** Convex Auth
 - **AI models:** Gemini 3.8 Flash with HIGH thinking; 40/40 synthetic v2 fixtures passed; no OpenAI runtime usage
 - **Started:** 2026-09-19T10:28:59Z
-- **Last updated:** 2026-09-21T05:20:51Z
+- **Last updated:** 2026-09-21T05:51:38Z
 
 Current release and missing artifacts are recorded in [submission status](docs/submission.md). Entries below are chronological evidence: statements such as “not implemented” or “not deployed” describe that entry’s checkpoint, not the latest state. Runtime provider disclosure remains explicit.
 
@@ -228,3 +228,11 @@ Verified the live VibeApps submission page requires authentication, then inspect
 
 ### 2026-09-21 - working tree: retire development sign-in inbox
 At the operator’s explicit request, deleted only the identified development sign-in inbox. Fresh provider listing confirmed 2/3 inbox slots occupied, with the production sign-in sender and existing household intact. One mailbox slot is available; further testing uses production. No provider messages were sent and no runtime code changed.
+
+
+### 2026-09-21 - working tree: selected model interface clarified
+The user confirmed the existing model-only Google Cloud runtime behind an OpenAI-like application interface. The deployed `generationClient.responses.create` adapter and actual Gemini provider fulfill that selected architecture; adding or funding a separate OpenAI service is not a remaining build requirement. No runtime code or provider was changed. Documentation now separates the completed technical release from registration/social/submission steps and organizer sponsor-eligibility adjudication. No new submission confirmation is claimed.
+
+
+### 2026-09-21 - working tree: final coding and documentation handover
+Reconfirmed the selected production Google Cloud model; the existing Responses-shaped application interface remains unchanged: a production-credential request returned HTTP 200 and the expected response. No runtime rewrite, separate OpenAI account, mailbox provisioning or new sample data was needed. Refreshed maintained docs and sanitized evidence; the entrant explicitly takes ownership of registration, social publication and final submission.

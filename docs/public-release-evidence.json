@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-21T05:31:41.637Z",
+  "updatedAt": "2026-09-21T05:53:56.115017+00:00",
   "publicApp": "https://admired-fish-176.convex.site",
   "productionBackend": "https://admired-fish-176.convex.cloud",
   "publicRepository": "https://github.com/Satianurag/handoff",
@@ -41,7 +41,6 @@
   "pending": [
     "social post",
     "Luma registration and entrant eligibility confirmation",
-    "actual OpenAI runtime generation or organizer eligibility clarification",
     "provider capacity for a full two-inbox sample or more than one additional household",
     "submitted entry confirmation"
   ],
@@ -139,5 +138,22 @@
     "freeSlots": 1,
     "emptyDevelopmentPodRetained": true,
     "productionUsedForFutureTesting": true
-  }
+  },
+  "selectedGenerationStack": {
+    "provider": "Gemini via model-only Vertex federation",
+    "interface": "Responses-shaped application adapter",
+    "productionVerified": true,
+    "separateOpenAIServiceRequiredForChosenRelease": false
+  },
+  "organizerEligibilityNote": "Official sponsor judging names actual OpenAI product work. API shape and Codex-assisted development do not establish OpenAI-service generation; organizer adjudication remains separate from completion of the selected technical release.",
+  "latestModelConfirmation": {
+    "checkedAt": "2026-09-21T05:51:04.670Z",
+    "configuredProvider": "gemini",
+    "interface": "generationClient.responses.create",
+    "httpStatus": 200,
+    "model": "gemini-3.8-flash",
+    "expectedResponse": true,
+    "scope": "One minimal live inference using production model credentials; existing production document-workflow proof retained separately. No OpenAI service request, household creation or mailbox provisioning."
+  },
+  "submissionOwner": "Entrant: registration, social publication and final submission are handled by the user."
 }

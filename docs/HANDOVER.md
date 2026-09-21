@@ -24,4 +24,8 @@ Controlled samples from the final development and production provider journeys w
 
 Run `npm ci`, configure `.env.local` from `.env.example`, then `npx convex dev --once` and `npm run dev:web`. Local default is `http://localhost:4173/`; a port override is supported. Development uses `befitting-cobra-234`; production uses `admired-fish-176`. See [operations](operations.md) for deployment and [submission](submission.md) for missing public artifacts.
 
-Generation currently uses Gemini; actual OpenAI product use is not established. Before accepting real health information, the operator must supply actual privacy/contact and processor arrangements. The public evaluation must keep synthetic labeling and must not claim clinical advice, healthcare certification, invented testimonials or measured outcomes.
+The selected runtime uses Gemini behind the requested Responses-shaped application interface. It is verified and needs no separate OpenAI service/key. Organizer eligibility is a separate [submission consideration](submission.md#organizer-eligibility-note). Before accepting real health information, the operator must supply actual privacy/contact and processor arrangements. The public evaluation must keep synthetic labeling and must not claim clinical advice, healthcare certification, invented testimonials or measured outcomes.
+
+## Final ownership
+
+Coding and maintained documentation are complete for the user-selected Google Cloud generation stack and Responses-shaped interface. A fresh production-credential model request on 21 September 2026 returned HTTP 200 and the expected result. The entrant handles registration, social publication and the final submission using [the prepared fields](submission.md). Published source, app and video URLs are recorded there.

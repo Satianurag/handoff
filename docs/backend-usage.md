@@ -93,7 +93,7 @@ const introductionJob = await client.action(api.generate.introduceHandover, {
 
 Read each result with `jobs.get`. Read proposals with `proposals.list`, the editable question with `drafts.get`, and the introduction plus complete deterministic list with `handovers.get`. `visits.get` returns `{visit,ride,returnRide,companion,watches}`, not the visit document directly.
 
-Generation never confirms a proposal, sends a question, publishes/accepts a handover, or transfers responsibility. The named domain mutations perform those separate explicit actions. See `generation-interface.md` for the adapter, date validation, budgets, and future OpenAI switch.
+Generation never confirms a proposal, sends a question, publishes/accepts a handover, or transfers responsibility. The named domain mutations perform those separate explicit actions. See `generation-interface.md` for the selected Responses-shaped Gemini adapter, date validation and budgets.
 
 ## Operator calls
 
