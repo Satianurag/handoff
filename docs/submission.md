@@ -1,6 +1,6 @@
 # Convex All Gas submission checklist
 
-Rules checked 21 September 2026 against the [official event page](https://www.convex.dev/hackathons/all-gas) and [Luma event](https://luma.com/convex-allgas-hackathon). No numeric judging weights or guaranteed eligibility decision are published. The submission form is a client-rendered page; its account-specific fields have not been verified.
+Rules checked 21 September 2026 against the [official event page](https://www.convex.dev/hackathons/all-gas) and [Luma event](https://luma.com/convex-allgas-hackathon). No numeric judging weights or guaranteed eligibility decision are published. The live signed-out submission page was inspected and requires sign-up/sign-in before exposing the form. No account was created and no submission was sent. Public source was inspected to prepare the fields below; current event/account-specific overrides remain unverified.
 
 ## Required artifacts and eligibility
 
@@ -17,6 +17,29 @@ Rules checked 21 September 2026 against the [official event page](https://www.co
 - [x] Runtime reference-site bitmaps and masks replaced by original Handoff SVG artwork; open font notices retained. Private design-reference and raw provider evidence paths are excluded from public Git publication.
 
 Official deadline: 22 September, 12 PM Pacific; winners announced 25 September. The official pages itemize $16,500 cash and $8,500 Codex credits, plus sponsor benefits. Luma also advertises a $45,000 combined headline including Firecrawl build credits; do not present that headline as cash. Auth v2 and paid Convex AI Gateway are offered resources, not mandatory architecture.
+
+
+## Prepared VibeApps form fields
+
+Read-only source check: [VibeApps form](https://github.com/waynesutton/vibeapps/blob/7f17164d1b2be39afa991bfde0a23a8654690f28/src/pages/JudgingGroupSubmitPage.tsx), [submission mutation](https://github.com/waynesutton/vibeapps/blob/7f17164d1b2be39afa991bfde0a23a8654690f28/convex/stories.ts), and [video rendering](https://github.com/waynesutton/vibeapps/blob/7f17164d1b2be39afa991bfde0a23a8654690f28/src/components/StoryDetail.tsx), checked 21 September 2026. These are source-level findings; the live service's deployed commit and event configuration are not established by the public repository.
+
+| Field | Prepared value / action |
+| --- | --- |
+| App Title | Handoff |
+| App/Project Tagline | Keep your parent’s records, visits and family responsibilities connected, with explicit handovers. |
+| Description | Use the honest project description below, including actual model disclosure and evaluation limits. |
+| App Website Link | `https://admired-fish-176.convex.site` |
+| GitHub Repo URL | `https://github.com/Satianurag/handoff` |
+| Video Demo | `https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4` |
+| Screenshot or Image | [Fictional Handoff records screenshot](../web/assets/product-records.png); upload the actual image file. |
+| Your Name / Email | Actual entrant identity/contact from the authenticated account; not invented or prefilled here. |
+| Team information | Actual entrant/team information only; official event maximum is four people. |
+| Tags | Preserve the event's automatically applied tag; choose relevant available care/family/product tags if requested. Exact choices are dynamic. |
+| Additional links / custom questions | Supply the actual social URL only after publication, and accurate answers to fields exposed after sign-in. No fabricated social link or sponsor claim. |
+
+The generic form defaults require title, tagline, app URL, screenshot, submitter name and tags. The tagline is capped at 140 characters. Event administrators can override required/visible fields and add custom questions, so this is not a claim that those defaults are the complete All Gas form. Official All Gas rules separately require public repo and video even where the generic form marks them optional. At most four additional images are accepted by the server; its client has a conflicting five-image message, so use four or fewer.
+
+The source accepts a general URL for `Video Demo`, stores it as a string without a YouTube/Vimeo-only restriction, and explicitly renders direct `.mp4` URLs using a video element. The published GitHub MP4 therefore matches the source's supported format and its download was verified. Actual playback inside the authenticated live VibeApps page remains unverified; a public download is not proof of a completed submission or organizer acceptance of the screenshot-based presentation.
 
 ## Honest project description
 
