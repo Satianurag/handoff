@@ -28,41 +28,25 @@ This is a browser-based web app. The public evaluation uses fictional care infor
 
 ```mermaid
 flowchart TB
-    Family["Family and invited helpers"]
-    Browser["Web app · HTML, CSS and JavaScript"]
+    Browser["Family web app<br/>Served by Convex Static Hosting"]
+    Maps["MapLibre + OpenFreeMap<br/>Saved care locations"]
 
     subgraph Convex["Convex backend"]
-        Hosting["Static Hosting"]
-        Auth["Convex Auth · email codes"]
-        API["Queries, mutations and actions<br/>Membership and record access checks"]
-        DB[("Database<br/>Care, visits, work and receipts")]
-        Files[("Private file storage")]
-        Jobs["Workflow + Rate Limiter<br/>Crons, retries and recovery"]
-        Hooks["Signed AgentMail webhook"]
+        API["Convex Auth + queries and mutations<br/>Membership and record access checks"]
+        Data[("Database + private file storage<br/>Records, visits, work and receipts")]
+        Jobs["Server actions + Workflow<br/>Rate Limiter, crons and recovery"]
+        API <--> Data
+        API --> Jobs
+        Jobs -->|Persist results| Data
     end
 
-    Mail["AgentMail<br/>Inboxes, approved sends and replies"]
-    Crawl["Firecrawl component<br/>Public logistics pages"]
-    Model["Gemini on Google Cloud<br/>Source-backed suggestions"]
-    Maps["MapLibre + OpenFreeMap<br/>Photon place search"]
-
-    Family --> Browser
-    Hosting -->|Serves assets| Browser
-    Browser --> Auth
     Browser <-->|Live subscriptions and commands| API
-    API <--> DB
-    API <--> Files
-    API --> Jobs
-    Jobs <--> Mail
-    Jobs <--> Crawl
-    Jobs <--> Model
-    Jobs -->|Persist results| DB
-    Auth -->|Sign-in delivery| Mail
-    Mail -->|Inbound mail and delivery events| Hooks
-    Hooks --> Jobs
-    Browser -->|Map tiles| Maps
-    API -->|Place search| Maps
+    Browser --> Maps
+    Jobs <-->|Approved sends and signed events| Mail["AgentMail<br/>Inboxes and replies"]
+    Jobs <-->|Public source capture| Crawl["Firecrawl component<br/>Appointment logistics"]
+    Jobs <-->|Source-backed suggestions| Model["Gemini on Google Cloud<br/>Model inference only"]
 ```
+
 
 Provider calls run in server actions. Their results return through mutations, and Convex subscriptions update the connected screens. Originals remain in private storage; record downloads recheck access. Suggestions, accepted responsibilities and handover receipts are distinct records, so new evidence cannot silently rewrite a person’s commitment.
 
