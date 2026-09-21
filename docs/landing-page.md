@@ -16,4 +16,4 @@ Craft/Mobbin/reference captures and the older screenshot-recreation evidence rem
 
 ## Build and verification
 
-`npm run build:web` creates `dist/` with the selected public Convex backend URL; `npm run preview:web` serves that exact built config. `npm run deploy` publishes through official Convex Static Hosting. The current deployment contains the original SVG replacements; post-deployment browser verification and exact scope are recorded in [release status](implementation-status.md). A local screenshot or build alone does not prove public behavior.
+`npm run build:web` creates `dist/` with the selected public Convex backend URL (`VITE_CONVEX_URL`, then process `CONVEX_URL`, then `.env.local`’s `CONVEX_URL`); `npm run preview:web` serves that exact built config. `npm run deploy` publishes through official Convex Static Hosting. The current deployment contains the original SVG replacements; post-deployment browser verification and exact scope are recorded in [release status](implementation-status.md). A local screenshot or build alone does not prove public behavior.

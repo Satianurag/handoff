@@ -1,6 +1,6 @@
 # Handoff handover
 
-The family-care implementation and controlled development verification are complete. The current frontend/backend are now deployed at [the public app](https://admired-fish-176.convex.site). Post-deployment verification is tracked separately in [current status](implementation-status.md).
+The family-care implementation and controlled development verification are complete. The current frontend/backend are now deployed at [the public app](https://admired-fish-176.convex.site). Post-deployment browser, provider, production sign-in and synthetic-household cleanup checks passed; their precise scope is in [current status](implementation-status.md).
 
 ## Product
 
@@ -10,13 +10,15 @@ Implemented: PDF/JPEG/PNG records and immutable versions; evidence-based extract
 
 Care access is separate from ordinary coordination. Record/pack links recheck current grants; downgrading a member revokes prior medical access. Later information appears beside accepted handovers without rewriting their receipts. Source changes, messages and AI output never silently change a confirmed plan or close unresolved work.
 
+Public repository: [Satianurag/handoff](https://github.com/Satianurag/handoff). Fresh production core and three-message mail verification passed. The [public narrated walkthrough](https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4) shows actual deployed-app screenshots and is explicitly a frame-based video, not continuous screen capture. [Current status](implementation-status.md) records remaining provider capacity and submission gaps.
+
 ## Verification and final fixes
 
 The controlled live attachment workflow used real provider inboxes and signed webhooks: incoming PDF → private original → reviewed question → delivery → threaded reply → new-information review → explicit resolution. A duplicate-byte import defect was fixed by retaining each actual email attachment origin in `recordMailOrigins`. The original file remains deduplicated; permission-aware association/export/deletion retains provenance.
 
 Scoped live checks also cover first-use record/visit/task paths, original exports and deletion, real Gemini extraction, task/helper acceptance, provider-backed visit packs, saved errand destinations, rescheduling/reacceptance, care handover indicators and share authorization. Full-size 1920×1080 browser evidence was inspected; the latest scoped browser console was clean. These are bounded observations, not a guarantee that no defect can ever occur. [Verification summary](evidence-summary.md) states the limits.
 
-All controlled sample resources from the final provider journey were deleted through the tracked privacy workflow; provider, storage, workflow and database stages succeeded. Stable sign-in mailboxes were restored and the existing real household was preserved. Mailbox capacity remains a release constraint, not an unfinished provider implementation.
+Controlled samples from the final development and production provider journeys were deleted through the tracked privacy workflow; provider, storage, workflow and database stages succeeded. Stable sign-in mailboxes were restored and the existing real household was preserved. The temporary production OTP recipient was also removed after successful public sign-in/sign-out, and both deployment sign-in senders were restored. Production care/household content is empty; minimal inactive authentication metadata is retained. Mailbox capacity remains a release constraint, not an unfinished provider implementation.
 
 ## Operate and release
 

@@ -4,7 +4,7 @@
 - **Event:** Convex All Gas Hackathon
 - **What it does:** Connects an aging parent’s private records, reviewed next steps, visits, accepted family responsibilities and unresolved follow-ups.
 - **Live app:** https://admired-fish-176.convex.site
-- **Repo:** none
+- **Repo:** https://github.com/Satianurag/handoff
 - **Frontend:** Convex static hosting
 - **Convex deployment:** https://admired-fish-176.convex.cloud
 - **Components:** @convex-dev/rate-limiter, @convex-dev/workflow (operations and generation instances), @convex-dev/static-hosting; official Firecrawl component also registered
@@ -12,7 +12,7 @@
 - **Auth:** Convex Auth
 - **AI models:** Gemini 3.8 Flash with HIGH thinking; 40/40 synthetic v2 fixtures passed; no OpenAI runtime usage
 - **Started:** 2026-09-19T10:28:59Z
-- **Last updated:** 2026-09-21T05:02:28Z
+- **Last updated:** 2026-09-21T05:20:51Z
 
 Current release and missing artifacts are recorded in [submission status](docs/submission.md). Entries below are chronological evidence: statements such as “not implemented” or “not deployed” describe that entry’s checkpoint, not the latest state. Runtime provider disclosure remains explicit.
 
@@ -208,3 +208,15 @@ Refreshed current documentation and the submission checklist against both offici
 Published the current backend and 86 frontend assets at https://admired-fish-176.convex.site through the official Static Hosting component. The production build targets the matching backend; supported deep links use the shared bootstrap while auth/webhook routes remain backend-owned. Replaced unlicensed reference-site decorative images and masks with original SVG artwork and retained open-font license notices.
 
 Post-deployment AgentMail and Firecrawl credential checks returned HTTP 200. Complete production browser/provider journeys are still being checked; deployment alone is not full acceptance. Public repository, video, social and entry confirmation remain unverified. No actual OpenAI runtime generation is claimed.
+
+
+### 2026-09-21 - e0174c0 and working tree: public source and production verification
+Published the public GitHub repository at https://github.com/Satianurag/handoff with initial main commit `e0174c0`. Fresh production checks passed original PDF round-trip, actual Gemini extraction, reviewed-task acceptance observed over authenticated realtime, immutable visit packs, limited-helper travel with medical-data denial, and actual Firecrawl capture.
+
+The full controlled production email journey passed three real messages: PDF arrival, reviewed app question sent/delivered, and threaded office reply. Signed webhooks ingested both incoming messages; attachment provenance/private access, independent unread state and explicit human resolution passed. Six provider/source jobs succeeded. A bounded 1,289-event production log review found zero unexpected errors and one deliberate helper-denial check. Final browser/sign-in checks, production sample cleanup, video/social and submission confirmation remain pending. See the sanitized public release evidence; raw provider/account identifiers remain excluded.
+
+
+### 2026-09-21 - working tree: public browser, sign-in, cleanup and video
+Verified the public record/AI/task/visit/inbox flows and real map address search, saved location and rendered tiles, with no observed browser console errors. A delivered production email code completed public-UI sign-in to empty onboarding; sign-out succeeded without creating another household. The production synthetic household was deleted through all four processors, with no active workflow and the inspected domain tables empty. Final temporary OTP mailbox/pod deletion and restoration of both stable deployment sign-in senders also completed; the unrelated existing development household was preserved. A later 782-event auth/cleanup log window contained zero errors. Production care/household content is empty; minimal inactive authentication metadata remains, so this is not an entire-database wipe.
+
+Published a 141.567-second, 1920×1080 narrated and captioned walkthrough in the GitHub submission-preview release. It is assembled from actual deployed-app screenshots, not a continuous screen recording: https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4. Public app, source and video now exist. Luma/entrant eligibility, actual OpenAI generation, additional mailbox capacity, social post and submitted-entry confirmation remain unresolved; no full submission-completion claim is made.

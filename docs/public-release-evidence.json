@@ -1,0 +1,132 @@
+{
+  "updatedAt": "2026-09-21T05:20:51.075487+00:00",
+  "publicApp": "https://admired-fish-176.convex.site",
+  "productionBackend": "https://admired-fish-176.convex.cloud",
+  "publicRepository": "https://github.com/Satianurag/handoff",
+  "initialPublicCommit": "e0174c0",
+  "productionCore": {
+    "completed": true,
+    "completedAt": "2026-09-21T05:05:35.781Z",
+    "outcomes": [
+      "PrivateOriginalUploadRoundTripAndExplicitReaderGrant",
+      "ActualGeminiPdfExtractionWithUnreviewedSourceQuotes",
+      "ReviewedTaskAcceptedAndObservedOverAuthenticatedRealtime",
+      "CareGrantVisitAndImmutableOriginalLinkedPack",
+      "LimitedHelperAcceptsTravelWithoutMedicalAccess",
+      "ActualFirecrawlPublicFixtureCapture"
+    ]
+  },
+  "productionMail": {
+    "completed": true,
+    "controlledMessages": 3,
+    "signedInboundWebhookMessages": 2,
+    "outcomes": [
+      "RealOfficePdfDeliveredAndIngested",
+      "WaitingAssociationPreservesVisitAndRequiresHumanResolution",
+      "ActualAttachmentImportDedupeProvenanceAndPrivateAcl",
+      "PerPersonUnreadRemainsIndependent",
+      "ReviewedAppDraftSentAndReceivedByControlledOffice",
+      "ActualThreadedReplyCreatesNewInformationWithoutAutoClosing",
+      "ExplicitHumanResolutionAfterRealReply"
+    ]
+  },
+  "productionLogWindow": {
+    "from": "2026-09-21T04:53:37.775Z",
+    "to": "2026-09-21T05:08:37.857Z",
+    "uniqueEvents": 1289,
+    "unexpectedErrors": 0,
+    "expectedAuthorizationDenials": 1,
+    "succeededProviderSourceJobs": 6
+  },
+  "pending": [
+    "social post",
+    "Luma registration and entrant eligibility confirmation",
+    "actual OpenAI runtime generation or organizer eligibility clarification",
+    "provider capacity for additional real household or full sample mail",
+    "submitted entry confirmation"
+  ],
+  "scope": "Controlled fictional scenarios and a bounded log window; no claim of exhaustive correctness, clinical accuracy, formal compliance or all-browser coverage.",
+  "productionCleanup": {
+    "completedAt": "2026-09-21T05:14:34.522Z",
+    "householdRemoved": true,
+    "processors": [
+      {
+        "name": "agentmail",
+        "state": "succeeded"
+      },
+      {
+        "name": "convex",
+        "state": "succeeded"
+      },
+      {
+        "name": "workflow",
+        "state": "succeeded"
+      },
+      {
+        "name": "storage",
+        "state": "succeeded"
+      }
+    ],
+    "workflowActive": false,
+    "inspectedDomainTableCounts": {
+      "careProfiles": 0,
+      "followUps": 0,
+      "households": 0,
+      "mailAccounts": 0,
+      "mailMessages": 0,
+      "mailThreads": 0,
+      "recordMailOrigins": 0,
+      "recordVersions": 0,
+      "records": 0,
+      "tasks": 0,
+      "visits": 0
+    }
+  },
+  "productionBrowser": {
+    "observedFlows": [
+      "Private record and extraction suggestions",
+      "Reviewed accepted source-linked task",
+      "Visit and inbox round-trip",
+      "Photon address search and saved place",
+      "OpenFreeMap tiles rendered",
+      "Delivered eight-digit email OTP verified through public sign-in",
+      "Authenticated empty onboarding",
+      "Explicit sign-out without new household creation"
+    ],
+    "consoleErrors": 0,
+    "scope": "One browser, controlled fictional scenarios"
+  },
+  "publicVideo": {
+    "releaseUrl": "https://github.com/Satianurag/handoff/releases/tag/submission-preview",
+    "downloadUrl": "https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4",
+    "durationSeconds": 141.567,
+    "width": 1920,
+    "height": 1080,
+    "narrated": true,
+    "captioned": true,
+    "formatDisclosure": "Assembled from actual public-deployment screenshots; not a continuous screen recording.",
+    "downloadBytes": 4619205
+  },
+  "finalProviderMaintenance": {
+    "completed": true,
+    "controlledOtpInboxAndPodDeleted": true,
+    "developmentAndProductionAuthSendersRestored": true,
+    "existingDevelopmentHouseholdPreserved": true,
+    "inboxCount": 3,
+    "inboxLimit": 3
+  },
+  "retainedControlledAuthMetadata": {
+    "users": 1,
+    "authAccounts": 1,
+    "authSessions": 0,
+    "verificationCodes": 0,
+    "memberships": 0,
+    "reason": "No canonical account-deletion API; no broad direct database mutation performed. Production care/household content was removed."
+  },
+  "finalAuthCleanupLogWindow": {
+    "from": "2026-09-21T05:08:00Z",
+    "to": "2026-09-21T05:19:15Z",
+    "events": 782,
+    "errors": 0
+  }
+}

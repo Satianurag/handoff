@@ -7,11 +7,11 @@ Rules checked 21 September 2026 against the [official event page](https://www.co
 - [ ] Luma registration confirmed for at least one team member; entrant eligibility attested (18+, at most four people, event employee/family and jurisdiction exclusions).
 - [x] New project build log records work beginning 19 September 2026, after the event's 25 August start. This is repository history evidence, not identity verification.
 - [x] Convex database/functions/realtime and the Convex plugin used in development; root [hackathon.md](../hackathon.md) maintained.
-- [x] Public deployment at [admired-fish-176.convex.site](https://admired-fish-176.convex.site), using official Static Hosting and the matching production backend. Post-deployment browser/journey checks remain in [current status](implementation-status.md).
-- [ ] Public GitHub repository URL confirmed. No remote URL is currently established in this documentation.
+- [x] Public deployment at [admired-fish-176.convex.site](https://admired-fish-176.convex.site), using official Static Hosting and the matching production backend. Production browser, provider, sign-in and cleanup evidence is recorded in [current status](implementation-status.md).
+- [x] Public GitHub repository: [Satianurag/handoff](https://github.com/Satianurag/handoff), initial main commit `e0174c0` pushed.
 - [ ] Actual OpenAI product generation. Current runtime is Gemini. A compatible interface, installed SDK or Codex development does not establish this criterion.
-- [x] Firecrawl and AgentMail implemented and exercised in the product; fresh production validation is tracked separately from historical integration checks.
-- [ ] Demonstration video under three minutes, hosted at a public accessible URL.
+- [x] Fresh production Firecrawl capture and AgentMail PDF/question/reply workflow passed after deployment; [sanitized receipt](public-release-evidence.json) distinguishes these from earlier development checks.
+- [x] Public [walkthrough video](https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4) in the [GitHub release](https://github.com/Satianurag/handoff/releases/tag/submission-preview): 141.567 seconds, 1920×1080, narration and captions. It uses actual deployed-app screenshots assembled into a walkthrough; it is not a continuous interaction recording.
 - [ ] X or LinkedIn post with the live app and tags for Convex, OpenAI, Firecrawl and AgentMail; record the actual post URL.
 - [ ] Submit repo, live app and video through the [exact VibeApps submission form](https://vibeapps.dev/judging/convex-all-gas-hackathon-openai/submit), then retain its actual confirmation/link.
 - [x] Runtime reference-site bitmaps and masks replaced by original Handoff SVG artwork; open font notices retained. Private design-reference and raw provider evidence paths are excluded from public Git publication.
@@ -24,7 +24,7 @@ Handoff helps adult children coordinate an aging parent’s care. Upload the ori
 
 Convex powers the shared live state, access checks, private files and durable work. Firecrawl captures public appointment logistics for review. AgentMail provides real inbound mail, reviewed outgoing questions and threaded replies. Gemini currently supplies document/source-text suggestions; suggestions never diagnose, prescribe or silently change the plan. OpenAI product-generation eligibility remains unresolved and must not be concealed in the entry.
 
-## Video click-through outline
+## Published video and optional live click-through outline
 
 1. Open the public landing page: name the adult-child/aging-parent use case and enter the clearly labeled fictional sample.
 2. Upload the fictional care PDF; show its original, exact page evidence and one reviewed next step.
@@ -37,6 +37,6 @@ Use only actual visible product/provider outcomes. If capacity prevents a fresh 
 
 ## Social draft — not posted
 
-“Built Handoff for families coordinating an aging parent’s care: connect original paperwork, reviewed next steps, visits and explicitly accepted responsibilities. Replies stay linked to unresolved follow-ups. Built with Convex, with real Firecrawl capture and AgentMail messaging. Explore the fictional sample: [verified live URL]. @convex @OpenAI @firecrawl @agentmail #ConvexAllGas”
+“Built Handoff for families coordinating an aging parent’s care: connect original paperwork, reviewed next steps, visits and explicitly accepted responsibilities. Replies stay linked to unresolved follow-ups. Built with Convex, with real Firecrawl capture and AgentMail messaging. Explore the fictional sample: https://admired-fish-176.convex.site. @convex @OpenAI @firecrawl @agentmail #ConvexAllGas”
 
 The sponsor tags satisfy attribution, not an assertion that all sponsor product criteria are met. Include actual model disclosure in the linked project/build log. Publishing a social post and submitting the entry are separate actions; no publication is claimed here.

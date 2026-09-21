@@ -2,7 +2,7 @@
 
 A shared care workspace for adult children coordinating an aging parent’s care. Keep original documents, reviewed next steps, visits, transport and family responsibilities connected. A responsibility changes hands only when the next person accepts it; a reply adds new information without silently closing a follow-up.
 
-**Live app: [handoff on Convex](https://admired-fish-176.convex.site).** The current frontend and backend are deployed; post-deployment verification is in progress. [Current status](docs/implementation-status.md) is authoritative. [Submission requirements](docs/submission.md) include remaining public artifacts and sponsor eligibility.
+**Live app: [handoff on Convex](https://admired-fish-176.convex.site).** [Public source](https://github.com/Satianurag/handoff). The current frontend/backend are deployed; real production document, realtime, crawler and three-message email journeys passed. Production email-code sign-in, browser journeys and synthetic-household cleanup also passed. [Narrated walkthrough](https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4) (141.6 seconds; assembled from actual deployed-app screenshots, not a continuous screen recording). Remaining eligibility, capacity and submission gaps are tracked below. [Current status](docs/implementation-status.md) is authoritative. [Submission requirements](docs/submission.md) include remaining public artifacts and sponsor eligibility.
 
 ## What works
 
@@ -39,6 +39,6 @@ npm run build:web
 npm run preview:web
 ```
 
-`build:web` reads the target `CONVEX_URL` and includes only that public URL in browser configuration. Preview serves the built configuration. Never place provider secrets in `web/` or `dist/`. `npm run deploy` builds for the selected production backend and publishes through official Convex Static Hosting; `npm run deploy:backend` publishes backend code only. See [operations](docs/operations.md) for deployment safeguards and finite mailbox capacity.
+`build:web` uses `VITE_CONVEX_URL` first (supplied by the official hosting CLI), then process `CONVEX_URL`, then `.env.local`’s `CONVEX_URL` and includes only that public URL in browser configuration. Preview serves the built configuration. Never place provider secrets in `web/` or `dist/`. `npm run deploy` builds for the selected production backend and publishes through official Convex Static Hosting; `npm run deploy:backend` publishes backend code only. See [operations](docs/operations.md) for deployment safeguards and finite mailbox capacity.
 
 [Handover](docs/HANDOVER.md) · [Verification scope](docs/evidence-summary.md) · [API guide](docs/backend-usage.md) · [Build log](hackathon.md)
