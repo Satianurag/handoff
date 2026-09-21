@@ -1,0 +1,13 @@
+import {cronJobs} from "convex/server";
+import {internal} from "./_generated/api";
+const crons=cronJobs();
+crons.interval("due public source watches",{minutes:5},internal.maintenance.dueWatches,{});
+crons.interval("household local recurrence horizon",{minutes:15},internal.maintenance.recurrence,{});
+crons.interval("demo expiry and privacy cleanup",{minutes:5},internal.maintenance.privacy,{});
+crons.interval("generic opt-in notifications and reminders",{minutes:5},internal.notificationMaintenance.dispatch,{});
+crons.interval("resume consented sources and reconcile interrupted operations",{minutes:5},internal.recovery.run,{});
+crons.interval("retire expired source evidence",{minutes:5},internal.retention.sources,{});
+crons.interval("retire expired raw mail",{minutes:5},internal.retention.mail,{});
+for(const table of ["tasks","visits","coverage","events","handovers","handoverReceipts","webhookEvents","deliveryReceipts"] as const)crons.interval(`retire operational ${table}`,{minutes:15},internal.retentionHistory.operational,{table});
+for(const table of ["requests","notifications","jobs","generationRuns","evaluationReservations","mailDrafts","sendIntents","mailThreads","sourceUses","invites","taskSeries"] as const)crons.interval(`retire auxiliary ${table}`,{minutes:15},internal.retentionHistory.auxiliary,{table});
+export default crons;

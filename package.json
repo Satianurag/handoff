@@ -1,0 +1,48 @@
+{
+  "name": "handoff",
+  "version": "1.0.0",
+  "description": "Handoff caregiver coordination backend",
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "static-hosting deploy --dist ./dist --component staticHosting --build-command \"npm run build:web\"",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "verify:auth": "node --env-file=.env.local scripts/verify-auth.mjs",
+    "dev:web": "node scripts/serve-web.mjs",
+    "build:web": "node scripts/build-web.mjs",
+    "preview:web": "node scripts/serve-web.mjs --dist",
+    "test:web": "node --test scripts/test-auth-client.mjs scripts/test-ui-foundation.mjs scripts/test-pagination.mjs scripts/test-time.mjs scripts/test-invitation-page.mjs",
+    "deploy:backend": "convex deploy"
+  },
+  "type": "module",
+  "dependencies": {
+    "@convex-dev/auth": "^0.0.95",
+    "@convex-dev/rate-limiter": "^0.4.0",
+    "@convex-dev/static-hosting": "^0.2.1",
+    "@convex-dev/workflow": "^0.4.8",
+    "@firecrawl/firecrawl-convex": "^0.1.1",
+    "@js-temporal/polyfill": "^0.5.1",
+    "@noble/hashes": "^2.4.0",
+    "agentmail": "^0.5.27",
+    "chrono-node": "^2.10.1",
+    "convex": "^1.46.0",
+    "convex-helpers": "^0.1.124",
+    "google-auth-library": "^11.1.0",
+    "ipaddr.js": "^2.5.0",
+    "jose": "^6.2.12",
+    "maplibre-gl": "^6.10.0",
+    "openai": "^7.19.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.3.289",
+    "svix": "^2.5.0",
+    "zod": "^4.6.5"
+  },
+  "private": true,
+  "devDependencies": {
+    "@edge-runtime/vm": "^5.0.0",
+    "@types/node": "^26.6.2",
+    "convex-test": "^0.0.59",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  }
+}

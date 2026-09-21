@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#faf8f6" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex" />
+    <title>Welcome — Handoff</title>
+    <link rel="icon" href="/assets/logo.svg?v=2" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/assets/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/source-serif.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/tokens.css" />
+    <link rel="stylesheet" href="/workspace.css" />
+    <link rel="stylesheet" href="/product.css" />
+    <link rel="stylesheet" href="/care.css" />
+    <link rel="stylesheet" href="/places.css" />
+    <script src="/lib/convex.js" defer></script>
+    <script src="/config.js" defer></script>
+    <script type="module" src="/workspace.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div id="app">
+      <main id="main" class="boot" aria-busy="true">
+        <span class="wordmark">Handoff</span>
+        <p role="status">Opening your space…</p>
+      </main>
+    </div>
+    <noscript
+      ><p class="boot">
+        Handoff needs JavaScript to sign in securely and keep your household up
+        to date.
+      </p></noscript
+    >
+    <div
+      id="announcement"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></div>
+  </body>
+</html>

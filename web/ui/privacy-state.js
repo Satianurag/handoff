@@ -1,0 +1,6 @@
+export const privacyKinds={export:'Household export',delete:'Household deletion',deleteThread:'Conversation deletion',deleteDraft:'Draft deletion'};
+export function privacyState(job,now=Date.now()){
+ const expired=job.kind==='export'&&job.expiresAt<=now;
+ const ready=!expired&&job.kind==='export'&&job.state==='succeeded';
+ return {expired,ready,retry:!expired&&job.state==='failed',label:expired?'Expired':({queued:'Queued',running:'In progress',succeeded:'Completed',failed:'Needs attention'}[job.state]||'Unavailable'),tone:expired?'neutral':job.state==='succeeded'?'success':job.state==='failed'?'error':'neutral',detail:expired?'This export expired. Request a new export from your household settings if you still have access.':job.state==='succeeded'?job.kind==='export'?'Your private export is ready. Download each part before it expires.':'The supported cleanup steps completed. External copies cannot be recalled.':job.state==='failed'?job.kind==='export'?'The export could not finish. Retry the same request to continue.':'Cleanup needs attention. Retry the same request to continue.':job.kind!=='export'&&job.stage==='stoppingEffects'?'Stopping existing processing before removing data. You can leave this page and return to this receipt.':'Your request is being processed. This receipt updates automatically.'};
+}

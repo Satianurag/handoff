@@ -1,0 +1,6 @@
+Handoff runtime assets
+
+cloud.svg, grain.svg, notebook.svg, black-paper.svg, sheet-mask.svg, torn-mask.svg, ridge-mask.svg and blob-mask.svg: original vector artwork authored for Handoff. No reference-site image pixels or traced paths are included.
+logo.svg: Handoff project mark.
+product-records.png and product-helper.png: screenshots of Handoff using fictional sample information.
+inter.woff2 and source-serif.woff2: see Inter-OFL.txt and SourceSerif4-OFL.txt for their open font licenses.

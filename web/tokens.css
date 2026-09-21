@@ -1,0 +1,32 @@
+/* Shared Handoff palette and type: landing, authentication and application. */
+@font-face {
+  font-family: Inter;
+  src: url("/assets/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/assets/source-serif.woff2") format("woff2");
+  font-weight: 200 900;
+  font-display: swap;
+}
+:root {
+  --ink: #171916;
+  --muted: #656460;
+  --page: #faf8f6;
+  --surface: #fff;
+  --blue: #afc3f5;
+  --green: #8bd39e;
+  --yellow: #ffe884;
+  --line: #dedfd9;
+  --control-border: #8c8d87;
+  --focus: #21689e;
+  --danger: #a53333;
+  --danger-bg: #fff1ef;
+  --success: #285f3e;
+  --radius: 28px;
+  --shadow: 0 24px 30px -18px #322c2830, 0 5px 10px #322c2808;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: Inter, Arial, sans-serif;
+}

@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f9f7f5" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex" />
+    <meta
+      name="description"
+      content="Coordinate your parent’s care together. Keep medical records, appointments, medicines and family responsibilities connected in Handoff."
+    />
+    <title>Handoff — Care for your parent, together.</title>
+    <link rel="icon" href="/assets/logo.svg?v=2" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/assets/source-serif.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <svg
+      class="icon-library"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="i-check" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="m8 12 3 3 5-6" />
+        </symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="16" rx="2" />
+          <path d="M7 2v6m10-6v6M3 10h18m-14 4h1m3 0h1m3 0h1m-9 4h1m3 0h1" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="m3 6 9 7 9-7" />
+        </symbol>
+        <symbol id="i-handoff" viewBox="0 0 24 24">
+          <path d="M4 8h14m-4-4 4 4-4 4M20 16H6m4-4-4 4 4 4" />
+        </symbol>
+        <symbol id="i-home" viewBox="0 0 24 24">
+          <path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7" />
+        </symbol>
+        <symbol id="i-note" viewBox="0 0 24 24">
+          <path d="M5 3h10l4 4v14H5zM15 3v5h4M8 12h8m-8 4h6" />
+        </symbol>
+        <symbol id="i-users" viewBox="0 0 24 24">
+          <circle cx="9" cy="7" r="3" />
+          <path
+            d="M3 21v-4a6 6 0 0 1 12 0v4m1-17a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v4"
+          />
+        </symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24">
+          <path
+            d="m10 3 2 6 6 2-6 2-2 6-2-6-6-2 6-2zm9 12 1 3 3 1-3 1-1 3-1-3-3-1 3-1z"
+          />
+        </symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24">
+          <rect x="4" y="10" width="16" height="11" rx="2" />
+          <path d="M7 10V7a5 5 0 0 1 10 0v3m-5 5v2" />
+        </symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24">
+          <circle cx="12" cy="13" r="8" />
+          <path d="M12 8v5l3 2M4 3 1 6m19-3 3 3" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M4 12h16m-6-6 6 6-6 6" />
+        </symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24">
+          <path d="M12 21 3 12C-2 5 7 0 12 7c5-7 14-2 9 5z" />
+        </symbol>
+        <symbol id="i-car" viewBox="0 0 24 24">
+          <path d="m3 10 3-6h12l3 6v8H3zm0 0h18M6 18v3m12-3v3M6 14h2m8 0h2" />
+        </symbol>
+        <symbol id="i-leaf" viewBox="0 0 24 24">
+          <path d="M20 3C7 2 0 8 6 16c8 6 15-1 14-13ZM3 21 16 8" />
+        </symbol>
+        <symbol id="i-book" viewBox="0 0 24 24">
+          <path
+            d="M12 5C8 2 4 3 2 4v16c3-2 7-2 10 0 3-2 7-2 10 0V4c-3-2-7-2-10 1zm0 0v15"
+          />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M6 18 18 6" />
+        </symbol>
+      </defs>
+    </svg>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-texture" aria-hidden="true"></div>
+        <img
+          class="cloud cloud-left"
+          src="/assets/cloud.svg"
+          alt=""
+          width="720"
+          height="430"
+          fetchpriority="high"
+        />
+        <img
+          class="cloud cloud-right"
+          src="/assets/cloud.svg"
+          alt=""
+          width="720"
+          height="430"
+        />
+        <div class="hero-outline" aria-hidden="true">together</div>
+        <header class="navigation">
+          <a class="wordmark" href="#" aria-label="Handoff home"
+            >Handoff</a
+          >
+          <nav aria-label="Main navigation" id="nav-links">
+            <a href="#how-it-works">Product</a
+            ><a href="#everyday">Everyday care</a
+            ><a href="#your-way">Your way</a><a href="#questions">Learn</a>
+          </nav>
+          <a class="button button-dark nav-cta" href="/sign-in">Sign in / Get started</a>
+          <button
+            class="menu-button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="nav-links"
+          >
+            <span></span><span></span>
+          </button>
+        </header>
+        <div class="hero-copy">
+          <h1 id="hero-title">
+            Care for your parent, <br /><em>together.</em>
+          </h1>
+          <p class="hero-description">For adult children coordinating an aging parent’s care. Keep records, appointments and family responsibilities connected, so everyone knows what happens next.</p><div class="hero-actions"><a class="button button-glass hero-cta" href="/sign-in">Create a care space</a><a class="hero-sample-link" href="/demo">Explore a sample family ↗</a></div><p class="release-note">Evaluation release · Use fictional care information. <a href="/consumer-health-privacy">Care data details</a></p>
+        </div>
+        <div class="paper-landscape" aria-hidden="true">
+          <div class="paper paper-white"></div>
+          <div class="paper paper-blue"></div>
+          <div class="paper paper-grey"></div>
+          <div class="paper paper-black"></div>
+          <div class="paper paper-yellow"></div>
+        </div>
+        <figure class="product-proof" aria-label="Actual Handoff records screen">
+          <a href="/assets/product-records.png" target="_blank" rel="noopener" aria-label="View the complete Handoff records screenshot">
+            <img src="/assets/product-records.png" width="1920" height="1080" alt="The actual Handoff web app: an original fictional visit summary beside its linked appointment and follow-up controls." />
+          </a>
+          <figcaption>Actual product · Fictional sample family and document <a href="/demo">Explore it yourself ↗</a></figcaption>
+        </figure>
+      </section>
+      <section class="intro section-wrap" id="how-it-works">
+        <h2>
+          From the latest report <br />to the <em>next thing to do.</em>
+        </h2>
+        <p class="care-story-intro">Start with the next appointment, or the paperwork that came home with your parent.</p>
+        <ol class="care-story-steps" aria-label="From paperwork to shared responsibility">
+          <li><span>01</span><h3>Keep the original</h3><p>Upload a report and choose who can read it.</p></li>
+          <li><span>02</span><h3>Review the next step</h3><p>Check suggestions against the source before creating work.</p></li>
+          <li><span>03</span><h3>Prepare together</h3><p>Connect questions, records, the location and the ride to a visit.</p></li>
+          <li><span>04</span><h3>Know who has it</h3><p>Someone explicitly accepts responsibility. Unfinished work stays visible.</p></li>
+        </ol>
+        <div class="feature-links">
+          <a href="#planning"
+            ><svg><use href="#i-check" /></svg><span>Responsibilities</span></a
+          ><a href="#planning"
+            ><svg><use href="#i-calendar" /></svg><span>Visits</span></a
+          ><a href="#connected"
+            ><svg><use href="#i-note" /></svg><span>Medical records</span></a
+          ><a href="#handover"
+            ><svg><use href="#i-handoff" /></svg><span>Handovers</span></a
+          ><a href="#your-way"
+            ><svg><use href="#i-home" /></svg><span>Your household</span></a
+          >
+        </div>
+      </section>
+      <section class="everyday" id="everyday">
+        <div class="section-title">
+          <h2>For the care your parent needs</h2>
+          <p>Appointments, paperwork, rides and the people who help.</p>
+        </div>
+        <div class="story-track" aria-label="Everyday care examples">
+          <article class="story">
+            <div class="story-art sky">
+              <div class="art-sun"></div>
+              <div class="art-note">
+                <span>MONDAY</span><strong>Call about the result.</strong
+                ><svg><use href="#i-heart" /></svg
+                ><small>Keep the next step visible.</small>
+              </div>
+              <span class="sticker">result pending</span>
+            </div>
+            <h3>THE RESULT YOU’RE WAITING FOR</h3>
+            <p>A named person, <br />a date to follow up</p>
+          </article>
+          <article class="story">
+            <div class="story-art mint">
+              <div class="paper-scrap"></div>
+              <div class="art-note">
+                <span>FOR DAD’S VISIT</span><strong>Report + questions</strong>
+                <svg><use href="#i-note" /></svg>
+                <small>Reviewed and ready to bring.</small>
+              </div>
+              <span class="sticker">ready to bring</span>
+            </div>
+            <h3>THE PAPERWORK TO BRING</h3>
+            <p>The report and questions, <br />ready for the appointment</p>
+          </article>
+          <article class="story">
+            <div class="story-art apricot">
+              <div class="art-calendar">
+                <span>SEPTEMBER</span><strong>22</strong
+                ><small>We’ll go together.</small>
+              </div>
+              <span class="sticker">ride covered</span>
+            </div>
+            <h3>THE NEXT APPOINTMENT</h3>
+            <p>A time, a place, <br />and someone by your side</p>
+          </article>
+          <article class="story">
+            <div class="story-art lilac">
+              <div class="art-handover">
+                <span class="big-avatar">M</span
+                ><svg><use href="#i-handoff" /></svg
+                ><span class="big-avatar">L</span
+                ><small>The ride and follow-up. <br />Choose what you can take.</small>
+              </div>
+              <span class="sticker">over to you</span>
+            </div>
+            <h3>WHEN YOUR SIBLING TAKES OVER</h3>
+            <p>Review the open work, <br />accept the next responsibility</p>
+          </article>
+          <article class="story">
+            <div class="story-art butter">
+              <div class="art-house">
+                <svg><use href="#i-home" /></svg
+                ><span>The right details <br />for each helper.</span>
+              </div>
+              <span class="sticker">in this together</span>
+            </div>
+            <h3>THE PERSON HELPING WITH THE RIDE</h3>
+            <p>Pickup time and entrance, <br />without private medical records</p>
+          </article>
+        </div>
+        <div class="story-controls">
+          <button
+            class="round-button"
+            data-story="-1"
+            aria-label="Previous care examples"
+          >
+            ←</button
+          ><button
+            class="round-button"
+            data-story="1"
+            aria-label="Next care examples"
+          >
+            →
+          </button>
+        </div>
+      </section>
+      <section
+        class="feature-panel blue-panel section-wrap reveal"
+        id="handover"
+      >
+        <div class="handover-art">
+          <div class="mini-window back-window">
+            <div class="mini-title">
+              <span class="tiny-dots">● ● ●</span
+              ><svg><use href="#i-home" /></svg> Today
+            </div>
+            <div class="mini-content">
+              <span class="checkline done">Bring the visit pack</span
+              ><span class="checkline done">Questions prepared</span
+              ><span class="checkline">Call about the result</span>
+            </div>
+          </div>
+          <div class="mini-window front-window">
+            <div class="mini-title">
+              <span class="tiny-dots">● ● ●</span
+              ><svg><use href="#i-handoff" /></svg> Your handover
+            </div>
+            <div class="mini-content">
+              <span class="eyebrow">MAYA → LEO</span>
+              <h3>Dad’s next steps, together.</h3>
+              <p>The visit is booked. The return ride still needs someone.</p>
+              <div class="handover-item">
+                <svg><use href="#i-check" /></svg
+                ><span>Call about the result<small>Today, before 5 pm</small></span>
+              </div>
+              <div class="handover-item">
+                <svg><use href="#i-car" /></svg
+                ><span
+                  >Take Dad to the visit<small
+                    >Tomorrow, 10:30 am</small
+                  ></span
+                >
+              </div>
+              <div class="note-slip">
+                One thing to know: the office confirmed the west entrance.
+              </div>
+              <button class="button button-dark" data-demo="handover">
+                Review the handover
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-copy">
+          <span class="eyebrow">HAND OVER, WITH CARE</span>
+          <h2>From “who’s doing it?” <br />to “I’ve got it.”</h2>
+          <p>
+            Your sibling is taking over after the appointment. Share the questions, open follow-ups and travel arrangements. They choose what to accept; the receipt keeps that decision clear.
+          </p>
+          <button class="button button-glass" data-demo="handover">
+            See how it works
+          </button>
+          <div class="panel-features">
+            <span
+              ><svg><use href="#i-note" /></svg>Clear context</span
+            ><span
+              ><svg><use href="#i-users" /></svg>Shared care</span
+            ><span
+              ><svg><use href="#i-check" /></svg>Explicit acceptance</span
+            ><span
+              ><svg><use href="#i-handoff" /></svg>Your pace</span
+            >
+          </div>
+        </div>
+      </section>
+      <div class="editorial-note section-wrap">
+        <span class="note-label"
+          ><i class="avatar peach"
+            ><svg><use href="#i-heart" /></svg></i
+          >A little less to carry<span class="line"></span
+        ></span>
+        <p>
+          The report, the appointment and the ride <br />belong in the same care plan.
+        </p>
+      </div>
+      <section
+        class="feature-panel green-panel section-wrap reveal"
+        id="connected"
+      >
+        <div class="panel-copy">
+          <span class="eyebrow">THE WHOLE PICTURE</span>
+          <h2>
+            Their records. <br />Your questions. <br />One clear place.
+          </h2>
+          <p>
+            Upload medical reports, prescriptions and discharge summaries. Keep the original, review suggested next steps, and choose who can see each record.
+          </p>
+          <button class="button button-glass" data-info="updates">
+            A closer look
+          </button>
+        </div>
+        <div class="connected-art">
+          <div class="white-card contact-card">
+            <h3>
+              <svg><use href="#i-users" /></svg>Your people
+            </h3>
+            <div class="people-row">
+              <span><i class="avatar lilac">M</i>Maya</span
+              ><span><i class="avatar mint">L</i>Leo</span
+              ><span><i class="avatar butter">J</i>Jo</span>
+            </div>
+          </div>
+          <div class="white-card update-card">
+            <h3>
+              <svg><use href="#i-mail" /></svg>Clinic updates
+            </h3>
+            <div class="update-envelope">
+              <svg><use href="#i-mail" /></svg
+              ><span>Sample office<small>Entrance update</small></span
+              ><i class="status-dot"></i>
+            </div>
+            <span class="source-status">Source attached · Ready to review</span>
+          </div>
+          <div class="white-card connected-tasks">
+            <h3>
+              <svg><use href="#i-home" /></svg>One shared place
+            </h3>
+            <div>
+              <span>Original records</span><span>Upcoming visits</span
+              ><span>Waiting for results</span><span>Clinic conversations</span>
+            </div>
+          </div>
+          <div class="white-card connected-bottom">
+            <svg><use href="#i-users" /></svg
+            ><span class="color-dots"><i></i><i></i><i></i><i></i></span
+            ><span
+              ><strong>Maya takes the ride. Leo follows up.</strong
+              ><small>Both accept their part in the plan.</small></span
+            >
+          </div>
+        </div>
+      </section>
+      <section class="principles section-wrap" aria-label="Handoff principles">
+        <div>
+          <span class="principle-icon cobalt"
+            ><svg><use href="#i-check" /></svg
+          ></span>
+          <h3>Clear responsibility</h3>
+          <p>Know who’s got it.</p>
+        </div>
+        <div>
+          <span class="principle-icon silver"
+            ><svg><use href="#i-note" /></svg
+          ></span>
+          <h3>Context that stays</h3>
+          <p>See where an update came from.</p>
+        </div>
+        <div>
+          <span class="principle-icon charcoal"
+            ><svg><use href="#i-lock" /></svg
+          ></span>
+          <h3>A private space</h3>
+          <p>Choose each record’s readers.</p>
+        </div>
+        <div>
+          <span class="principle-icon gold"
+            ><svg><use href="#i-home" /></svg
+          ></span>
+          <h3>Made for the web</h3>
+          <p>Just open your browser.</p>
+        </div>
+      </section>
+      <div class="editorial-note reverse section-wrap">
+        <p>
+          One appointment, two journeys. <br />Know who is taking each one.
+        </p>
+        <span class="note-label"
+          ><i class="avatar mint"
+            ><svg><use href="#i-leaf" /></svg></i
+          >Care, a little lighter<span class="line"></span
+        ></span>
+      </div>
+      <section
+        class="feature-panel yellow-panel section-wrap reveal"
+        id="planning"
+      >
+        <div class="panel-copy">
+          <span class="eyebrow">BEFORE THE NEXT VISIT</span>
+          <h2>Ready for <br />the next <br />appointment.</h2>
+          <p>
+            Bring questions, relevant records and a medicine reference together. Confirm the clinic location, arrange the ride, and keep track of answers after the visit.
+          </p>
+          <button class="button button-glass" data-demo>
+            Explore a sample day
+          </button>
+        </div>
+        <div class="planning-grid">
+          <article class="white-card">
+            <h3>
+              <svg><use href="#i-calendar" /></svg>Visits
+            </h3>
+            <div class="visit-tile">
+              <span>22 Sep</span><strong>Tomorrow</strong
+              ><small>10:30 am · Community clinic</small>
+            </div>
+          </article>
+          <article class="white-card">
+            <h3>
+              <svg><use href="#i-check" /></svg>Responsibilities
+            </h3>
+            <div class="planning-tasks">
+              <label class="task-check"
+                ><input type="checkbox" disabled aria-label="Illustrative appointment-paperwork responsibility" /><span
+                  >Bring the visit pack</span
+                ></label
+              ><label class="task-check"
+                ><input type="checkbox" disabled aria-label="Illustrative return-ride responsibility" /><span
+                  >Arrange the return ride</span
+                ></label
+              ><span class="checkline">Call about the result <small>Leo</small></span>
+            </div>
+            <button class="text-link" data-demo>Try the sample board ↗</button>
+          </article>
+          <article class="white-card">
+            <h3>
+              <svg><use href="#i-note" /></svg>The details
+            </h3>
+            <div class="detail-tile">
+              <strong>Before the visit</strong>
+              <p>West entrance. Parking in Lot A. Bring the blue folder.</p>
+              <span class="source-pill">Reviewed office update</span>
+            </div>
+          </article>
+          <article class="white-card">
+            <h3>
+              <svg><use href="#i-clock" /></svg>Travel arrangements
+            </h3>
+            <div class="times">
+              <p><time>9:45</time><span>Pickup with Maya</span></p>
+              <p><time>12:00</time><span>Return ride with Leo</span></p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="organize section-wrap" id="your-way">
+        <div class="section-title">
+          <span class="eyebrow">A PLACE FOR EVERYTHING</span>
+          <h2>A named person. <br />A clear next step.</h2>
+          <p>
+            Know who is calling the clinic and who is taking Dad home.
+            <br />A request becomes responsibility only when accepted.
+          </p>
+        </div>
+        <img
+          class="cloud organize-cloud"
+          src="/assets/cloud.svg"
+          alt=""
+          loading="lazy"
+          width="720"
+          height="430"
+        />
+        <div class="organize-grid">
+          <article class="organize-card lilac">
+            <h3>Your care circle</h3>
+            <p>Family and helpers, <br />with the access each needs.</p>
+            <div class="floating-list">
+              <strong
+                ><span class="avatar peach">R</span> Riley’s household</strong
+              ><span><i class="avatar lilac">M</i> Maya <small>You</small></span
+              ><span><i class="avatar mint">L</i> Leo</span
+              ><span><i class="avatar butter">J</i> Jo</span>
+            </div>
+          </article>
+          <article class="organize-card sky">
+            <h3>The regular check-in</h3>
+            <p>
+              Schedule recurring check-ins, <br />with someone to take each one.
+            </p>
+            <div class="rhythm-card">
+              <span>CHECK IN WITH DAD</span><strong>How was today?</strong>
+              <div class="week-days">
+                <i>M</i><i>T</i><i>W</i><i>T</i><i>F</i><i>S</i><i>S</i>
+              </div>
+              <small>6:30 pm · Every day</small>
+            </div>
+          </article>
+          <article class="organize-card mint">
+            <h3>Your shared history</h3>
+            <p>What changed, who helped, <br />and what’s been accepted.</p>
+            <div class="history-card">
+              <span
+                ><i class="avatar mint">L</i
+                ><strong>Leo accepted the handover</strong
+                ><small>Just now</small></span
+              ><span
+                ><i class="avatar lilac">M</i
+                ><strong>Maya reviewed the report</strong
+                ><small>10 minutes ago</small></span
+              ><span
+                ><i class="avatar butter">J</i
+                ><strong>Jo accepted the return ride</strong
+                ><small>This morning</small></span
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+      <div class="editorial-note section-wrap">
+        <span class="note-label"
+          ><i class="avatar butter"
+            ><svg><use href="#i-home" /></svg></i
+          >A place for all of you<span class="line"></span
+        ></span>
+        <p>The call, the paperwork and the ride. <br />Give each a clear next step.</p>
+      </div>
+      <section class="care-style" id="small-things">
+        <div class="section-title">
+          <span class="eyebrow">A CLEAR PART FOR EVERY HELPER</span>
+          <h2>Ask for a ride. Share just what’s needed.</h2>
+          <p>A limited helper sees their own requests, accepted responsibilities and travel details. Medical records stay separately controlled.</p>
+        </div>
+        <figure class="product-proof helper-proof" aria-label="Actual Handoff helper screen">
+          <a href="/assets/product-helper.png" target="_blank" rel="noopener" aria-label="View the complete Handoff helper screenshot">
+            <img src="/assets/product-helper.png" width="1920" height="1080" loading="lazy" alt="Handoff’s limited helper view shows an explicitly accepted appointment-pack task, availability and no medical-record navigation." />
+          </a>
+          <figcaption>Actual product · Fictional family · A helper sees their own responsibilities <a href="/demo">Explore the sample family ↗</a></figcaption>
+        </figure>
+      </section>
+      <div class="editorial-note reverse section-wrap">
+        <p>The plans are clearer when everyone<br />can see their part.</p>
+        <span class="note-label"
+          ><i class="avatar lilac"
+            ><svg><use href="#i-users" /></svg></i
+          >A shared understanding<span class="line"></span
+        ></span>
+      </div>
+      <section class="care-trust section-wrap" aria-labelledby="care-trust-title"><div><span class="eyebrow">YOUR FAMILY. YOUR CHOICES.</span><h2 id="care-trust-title">Personal information,<br /><em>shared with care.</em></h2><p>A ride does not require someone to see a medical report. Choose record readers, review AI suggestions against the original, and keep a copy of your information.</p><a class="text-link" href="/consumer-health-privacy">How care data is handled ↗</a></div><div class="care-trust-list"><article><h3>Choose who sees each record</h3><p>Medical records start private. Grant access to the people who need them.</p></article><article><h3>Keep the source in view</h3><p>Original documents and source references stay alongside suggestions. Your review confirms the next step.</p></article><article><h3>Take your information with you</h3><p>Export accessible records and coordination details. Deletion and sharing controls stay within reach.</p></article></div></section>
+      <section class="learn section-wrap" id="questions">
+        <img
+          class="cloud learn-cloud"
+          src="/assets/cloud.svg"
+          alt=""
+          loading="lazy"
+          width="720"
+          height="430"
+        />
+        <div class="section-title">
+          <h2>A little clarity goes a long way.</h2>
+          <p>Clear answers before you create your family’s care space.</p>
+        </div>
+        <div class="care-faq">
+          <details><summary>Who is Handoff for?</summary><p>Adult children and the people helping them coordinate an aging parent’s care. This evaluation release is for fictional care information: explore the sample family or create a care space with sample records and appointments.</p></details>
+          <details><summary>Does everyone need to install an app?</summary><p>No. Handoff works in a web browser. Family members sign in to the care space you invite them to.</p></details>
+          <details><summary>How do medical records get here?</summary><p>Upload a PDF, JPEG or PNG, or import a reviewed attachment from your care inbox. Keep the original and connect it to a visit. Handoff does not automatically connect to your hospital portal.</p></details>
+          <details><summary>What does AI do?</summary><p>It proposes information and next steps from your documents, with references to the source. You review and correct suggestions before they become work. It does not diagnose, prescribe or decide what treatment is appropriate.</p></details>
+          <details><summary>Who can see my parent’s information?</summary><p>Records start private to their uploader. Choose additional readers for each record, and separately choose who can see care essentials. Review the audience before creating a shared responsibility from private information.</p></details>
+          <details><summary>What happens when someone accepts a handover?</summary><p>They choose the responsibilities they can take. Only the accepted work transfers; the saved receipt records that decision. New information remains visible as a later update.</p></details>
+          <details><summary>Can I take my information with me?</summary><p>Yes. Export the information you can access, including original records. You can revoke future sharing and request deletion in Settings. Copies already downloaded or sent outside Handoff cannot be recalled.</p></details>
+          <details><summary>Can I explore before signing up?</summary><p>Open the clearly labeled sample family to try the real workflow with fictional information. The sample uses controlled inboxes. <a href="/demo">Explore the sample family →</a></p></details>
+        </div>
+      </section>
+      <section class="start-section section-wrap" id="start">
+        <img
+          class="cloud start-cloud"
+          src="/assets/cloud.svg"
+          alt=""
+          loading="lazy"
+          width="720"
+          height="430"
+        />
+        <div class="section-title">
+          <span class="eyebrow">A SMALL FIRST STEP</span>
+          <h2>Start with the next thing you need.</h2>
+          <p>
+            Upload a report, add an appointment <br />or name the next responsibility.
+          </p>
+        </div>
+        <div class="start-cards">
+          <article class="start-card white">
+            <h3>Take a look.</h3>
+            <p>A parent’s report, appointment <br />and next steps to explore.</p>
+            <div class="start-bottom">
+              <span>No sign-up<small>Fictional care information.</small></span
+              ><button class="button button-dark" data-demo>
+                Explore the sample
+              </button>
+            </div>
+          </article>
+          <article class="start-card dark">
+            <div class="card-brand wordmark">
+              Handoff<span class="badge">TOGETHER</span>
+            </div>
+            <p>See a thoughtful handover <br />from both sides.</p>
+            <div class="start-bottom">
+              <span
+                >Pass it on<small>Review and accept the next steps.</small></span
+              ><button class="button button-light" data-demo="handover">
+                Try a handover
+              </button>
+            </div>
+          </article>
+        </div>
+        <span class="sample-disclosure"
+          >Fictional people and details. The live sample sends only to controlled sample inboxes.</span
+        >
+      </section>
+      <section class="closing-banner section-wrap">
+        <div>
+          <h2><em>Ready for the next appointment.</em></h2>
+          <p>The paperwork, the questions and the people helping.</p>
+        </div>
+        <button class="button button-glass" data-demo>
+          Try Handoff in your browser <svg><use href="#i-arrow" /></svg>
+        </button>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-top">
+        <a class="wordmark" href="#">Handoff</a>
+        <p>Your parent’s records, appointments and next steps. <br />Connected with the people helping.</p>
+      </div>
+      <div class="footer-columns">
+        <div>
+          <h2>PRODUCT</h2>
+          <a href="#how-it-works">How it works</a
+          ><a href="#planning">Appointments & rides</a
+          ><a href="#handover">Handovers</a
+          ><a href="#connected">Shared updates</a>
+        </div>
+        <div>
+          <h2>YOUR HOUSEHOLD</h2>
+          <a href="#your-way">Your people</a><a href="#everyday">Ways to help</a
+          ><a href="#small-things">Limited helper access</a
+          ><button data-demo>Sample household</button>
+        </div>
+        <div>
+          <h2>LEARN</h2>
+          <button data-info="start">Getting started</button
+          ><button data-info="handover">Accepting a handover</button
+          ><button data-info="updates">Reviewing an update</button
+          ><a href="#questions">Common questions</a>
+        </div>
+        <div>
+          <h2>GOOD TO KNOW</h2>
+          <button data-info="privacy">Privacy & your data</button
+          ><button data-info="about">About Handoff</button
+          ><button data-info="boundaries">Care, with boundaries</button
+          ><button data-info="accessibility">Accessibility</button>
+        </div>
+        <div>
+          <h2>MADE FOR THE WEB</h2>
+          <p>Your browser. <br />Your people. <br />Your own pace.</p>
+          <button class="footer-try" data-demo>
+            Take a look <span>↗</span>
+          </button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Handoff.</span
+        ><span>A little more together.</span
+        ><a href="#" aria-label="Back to top">Back to top ↑</a>
+      </div>
+    </footer>
+    <dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title">
+      <button class="dialog-close" data-close aria-label="Close information">
+        <svg><use href="#i-close" /></svg></button
+      ><span class="eyebrow" id="info-label">A LITTLE CLARITY</span>
+      <h2 id="info-title"></h2>
+      <div id="info-body"></div>
+      <button class="button button-dark" data-close>Got it</button>
+    </dialog>
+    <div class="sr-only" role="status" id="live-status"></div>
+    <noscript
+      ><div class="no-script-note">
+        The full page is available without JavaScript. Enable JavaScript to
+        explore the interactive household sample and guides.
+      </div></noscript
+    >
+  </body>
+</html>
