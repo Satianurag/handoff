@@ -8,28 +8,15 @@ coverage/
 .DS_Store
 dist/
 
-# Local agent instructions and private design/verification evidence
+# Private working notes, agent setup, recordings and verification reports.
+.release-local/
 .agents/
 .claude/
-docs/design-references/
-docs/ui-qa/
-docs/ui-plan-qa/
-docs/onboarding-qa/
-docs/*verification*.json
-docs/waiting-provider-*.json
-docs/auth-mailbox-maintenance.json
-docs/extraction-evaluation-*.json
-docs/live-captures/mail-*.png
-docs/live-captures/waiting-provider*.png
-docs/ui-implementation-checkpoint.md
-docs/implementation-history.md
-# Local production verification resources (never published)
-.release-local/
-
-# Historical local ledgers include application record identifiers
-docs/acceptance-status.md
-docs/goal-final-audit.md
-docs/records-backend-handoff.md
-docs/handover-before-family-care.md
-# Historical screenshots include retired decorative assets; current product captures live in web/assets.
-docs/live-captures/
+AGENTS.md
+CLAUDE.md
+skills-lock.json
+convex/_generated/ai/
+convex/README.md
+scripts/write-function-inventory.mjs
+docs/*
+!docs/setup.md
