@@ -8,7 +8,24 @@ const statusName=value=>({filed:'Filed',extracting:'Reading document',review:'Ne
 const date=(ctx,value)=>value?formatDate(value,ctx.household.timezone,{dateStyle:'medium'}):'Date not provided';
 const fileGlyph='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3h8l4 4v14H6z M14 3v5h4 M9 12h6 M9 16h6"/></svg>';
 function endpoint(params){const configured=window.HANDOFF_CONFIG.convexSiteUrl||window.HANDOFF_CONFIG.convexUrl.replace('.convex.cloud','.convex.site');const url=new URL('/records/file',configured);for(const [key,value] of Object.entries(params))if(value!=null)url.searchParams.set(key,value);return url;}
-export async function privateFetch(ctx,params,options={}){const token=await ctx.auth.fetchToken();if(!token)throw {data:{message:'Sign in again to access this record.'}};const response=await fetch(endpoint(params),{...options,headers:{...options.headers,Authorization:'Bearer '+token},cache:'no-store'});if(!response.ok){let text;try{text=(await response.json()).error;}catch{}throw {data:{message:typeof text==='string'?text:response.status===403?'You no longer have access to this record.':'The file could not be transferred. Try again.'}};}return response;}
+export async function privateFetch(ctx,params,options={}){
+ const signedOut=()=>({data:{code:'UNAUTHENTICATED',status:401,message:'Sign in again to access this record.'}});
+ let token=await ctx.auth.fetchToken();if(!token)throw signedOut();
+ const transfer=()=>fetch(endpoint(params),{...options,headers:{...options.headers,Authorization:'Bearer '+token},cache:'no-store'});
+ let response=await transfer();
+ if(response.status===401){
+  await response.body?.cancel();
+  token=await ctx.auth.fetchToken({forceRefreshToken:true});if(!token)throw signedOut();
+  response=await transfer();
+ }
+ if(!response.ok){
+  const safeMessages=new Set(['Sign in to access records.','Export unavailable.','Version required.','File unavailable.','Upload a PDF, JPEG or PNG.','File required.','Files must be at most 10 MiB.','The file does not match its format.','Record unavailable, access changed, or upload invalid. Refresh and try again.']);
+  const text=await response.text();
+  const fallback=response.status===401?'Sign in again to access this record.':response.status===403?'You no longer have access to this record.':response.status===404?'The original file is unavailable. Refresh the record and try again.':'The file could not be transferred. Try again.';
+  throw {data:{code:'FILE_TRANSFER_FAILED',status:response.status,message:safeMessages.has(text)?text:fallback}};
+ }
+ return response;
+}
 export function uploadRecords(ctx,record){
  const dialog=modal({ctx,title:record?'Add a new version':'Add care records',submit:'Upload records',pendingLabel:'Uploading…',content:`<div class="care-upload-intro">${fileGlyph}<div><strong>Keep the original close to the plan.</strong><p>PDF, JPEG or PNG · Up to 10 MiB per file</p></div></div><label class="ui-field"><span>${record?'Choose the corrected file':'Choose files'}</span><input name="files" type="file" accept="application/pdf,image/jpeg,image/png" ${record?'':'multiple'} required></label>${record?'':select('category','File under',categories,'report')}<p class="ui-hint">Use fictional care documents in this evaluation release. Files are private to you until you share them. AI reading is a separate action after upload.</p><div class="care-upload-progress" aria-live="polite"></div>`,onSubmit:async(data,form)=>{
   const files=data.getAll('files').filter(f=>f.size),progress=$('.care-upload-progress',form);if(!files.length)throw {data:{message:'Choose a file to upload.'}};
@@ -35,7 +52,7 @@ export function previewVersion(ctx,container,version,params={versionId:version._
   const pdfjs=await import('/lib/pdfjs/pdf.mjs');pdfjs.GlobalWorkerOptions.workerSrc='/lib/pdfjs/pdf.worker.mjs';loadingTask=pdfjs.getDocument({data:new Uint8Array(await blob.arrayBuffer()),isEvalSupported:false});pdf=await loadingTask.promise;if(!alive){await loadingTask.destroy();return;}let pageNumber=Math.min(pdf.numPages,Math.max(1,Number(new URLSearchParams(location.search).get('page'))||1));
   async function render(){if(!alive||!container.isConnected)return;const current=pageNumber;container.querySelector('[data-pages]').textContent=`Page ${current} of ${pdf.numPages}`;container.querySelector('[data-action="previous"]').disabled=current===1;container.querySelector('[data-action="next"]').disabled=current===pdf.numPages;const page=await pdf.getPage(current);if(!alive||current!==pageNumber)return;const canvas=container.querySelector('canvas'),base=page.getViewport({scale:1}),scale=Math.min(1.65,Math.max(320,container.clientWidth-40)/base.width),viewport=page.getViewport({scale}),ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.floor(viewport.width*ratio);canvas.height=Math.floor(viewport.height*ratio);canvas.style.width=`${viewport.width}px`;canvas.style.height=`${viewport.height}px`;renderTask?.cancel();renderTask=page.render({canvasContext:canvas.getContext('2d'),viewport,transform:ratio!==1?[ratio,0,0,ratio,0,0]:null});try{await renderTask.promise;}catch(error){if(error.name!=='RenderingCancelledException')throw error;}}
   container.querySelector('[data-action="previous"]').onclick=()=>{pageNumber--;void render().catch(error=>notice(container,message(error)));};container.querySelector('[data-action="next"]').onclick=()=>{pageNumber++;void render().catch(error=>notice(container,message(error)));};await render();
- }catch(error){if(!alive)return;container.innerHTML=empty('Preview could not be displayed.','You can download the original file and open it on your device.',objectUrl?`<a class="ui-button secondary" href="${esc(objectUrl)}" download="${esc(version.filename||'care-record')}">Download original</a>`:button('Try again','retry'));container.querySelector('[data-action="retry"]')?.addEventListener('click',()=>{stop();previewVersion(ctx,container,version,params);});}
+ }catch(error){if(!alive)return;container.innerHTML=empty('Preview could not be displayed.',objectUrl?'You can download the original file and open it on your device.':error?.data?.message||(!navigator.onLine?'You’re offline. Reconnect to load the original.':'The original could not be loaded. Check your connection and try again.'),objectUrl?`<a class="ui-button secondary" href="${esc(objectUrl)}" download="${esc(version.filename||'care-record')}">Download original</a>`:button('Try again','retry'));container.querySelector('[data-action="retry"]')?.addEventListener('click',()=>{stop();previewVersion(ctx,container,version,params);});}
  })();return stop;
 }
 export function recordDetail(ctx,id){

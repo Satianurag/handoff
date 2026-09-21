@@ -117,6 +117,7 @@ import type * as today from "../today.js";
 import type * as uiFixtures from "../uiFixtures.js";
 import type * as upcoming from "../upcoming.js";
 import type * as validators from "../validators.js";
+import type * as videoFixtures from "../videoFixtures.js";
 import type * as visits from "../visits.js";
 import type * as watches from "../watches.js";
 import type * as web from "../web.js";
@@ -239,6 +240,7 @@ declare const fullApi: ApiFromModules<{
   uiFixtures: typeof uiFixtures;
   upcoming: typeof upcoming;
   validators: typeof validators;
+  videoFixtures: typeof videoFixtures;
   visits: typeof visits;
   watches: typeof watches;
   web: typeof web;
