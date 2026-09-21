@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-21T05:20:51.075487+00:00",
+  "updatedAt": "2026-09-21T05:31:41.637Z",
   "publicApp": "https://admired-fish-176.convex.site",
   "productionBackend": "https://admired-fish-176.convex.cloud",
   "publicRepository": "https://github.com/Satianurag/handoff",
@@ -42,7 +42,7 @@
     "social post",
     "Luma registration and entrant eligibility confirmation",
     "actual OpenAI runtime generation or organizer eligibility clarification",
-    "provider capacity for additional real household or full sample mail",
+    "provider capacity for a full two-inbox sample or more than one additional household",
     "submitted entry confirmation"
   ],
   "scope": "Controlled fictional scenarios and a bounded log window; no claim of exhaustive correctness, clinical accuracy, formal compliance or all-browser coverage.",
@@ -128,5 +128,16 @@
     "to": "2026-09-21T05:19:15Z",
     "events": 782,
     "errors": 0
+  },
+  "currentMailboxAllocation": {
+    "completedAt": "2026-09-21T05:31:41.637Z",
+    "developmentSignInInboxDeleted": true,
+    "productionSignInInboxPreserved": true,
+    "existingHouseholdInboxPreserved": true,
+    "inboxCount": 2,
+    "inboxLimit": 3,
+    "freeSlots": 1,
+    "emptyDevelopmentPodRetained": true,
+    "productionUsedForFutureTesting": true
   }
 }

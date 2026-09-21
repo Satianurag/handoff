@@ -224,3 +224,7 @@ Published a 141.567-second, 1920×1080 narrated and captioned walkthrough in the
 
 ### 2026-09-21 - working tree: submission form preparation
 Verified the live VibeApps submission page requires authentication, then inspected its linked public source to prepare actual app/repo/video/screenshot fields without creating an account or submitting. Direct MP4 video is supported by the public source; event-specific overrides and playback inside the live submitted page remain unverified. Documented that AgentMail's free limit counts inbox resources, so deleting messages does not free mailbox slots. Production still has no configured OpenAI key; no new model-use or full submission-completion claim is made.
+
+
+### 2026-09-21 - working tree: retire development sign-in inbox
+At the operator’s explicit request, deleted only the identified development sign-in inbox. Fresh provider listing confirmed 2/3 inbox slots occupied, with the production sign-in sender and existing household intact. One mailbox slot is available; further testing uses production. No provider messages were sent and no runtime code changed.

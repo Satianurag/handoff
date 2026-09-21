@@ -26,3 +26,5 @@ After the current public deployment, the controlled core smoke exited successful
 ## Public video
 
 The [published walkthrough](https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4) is 141.567 seconds at 1920×1080 with narration and captions. It was assembled from actual public-deployment screenshots, not recorded as one continuous interaction. The video illustrates observed product states; the provider receipts and live verification described above establish the operations.
+
+Subsequent operator-authorized maintenance deleted only the development sign-in inbox. The provider list verified 2/3 slots occupied, with the production sign-in sender and existing household inbox preserved. One slot is now free; future testing uses production.
