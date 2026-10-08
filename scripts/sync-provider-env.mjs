@@ -13,5 +13,5 @@ for (const deployment of ["dev", "prod"]) {
     });
     if (result.status !== 0) throw new Error(`Failed to configure ${name} on ${deployment}; raw output withheld.`);
   }
-  console.log(`${deployment}: sponsor credentials configured.`);
+  console.log(`${deployment}: provider credentials configured.`);
 }

@@ -4,7 +4,7 @@
 
 Keep the original paperwork, the next appointment, the ride home and the person responsible in one place. Work changes hands when someone accepts it. A reply brings new information; a person decides when the follow-up is finished.
 
-[Open Handoff](https://admired-fish-176.convex.site) · [Explore a sample family](https://admired-fish-176.convex.site/demo) · [Walkthrough](https://github.com/Satianurag/handoff/releases/download/submission-preview/handoff-walkthrough.mp4) · [Hackathon build log](hackathon.md)
+[Open Handoff](https://admired-fish-176.convex.site) · [Explore a sample family](https://admired-fish-176.convex.site/demo)
 
 ![Handoff showing a fictional family’s original care document alongside review and visit context](web/assets/product-records.png)
 
@@ -22,7 +22,7 @@ Handoff connects those steps. Someone uploads an appointment letter, reviews the
 - **Follow through on replies.** Receive paperwork, approve an outgoing question and connect the reply to its visit or waiting item. New information does not automatically close the item.
 - **Coordinate the people and places.** Share live responsibilities, recurring work and coverage. Give helpers limited access; save destinations with entrance, parking and accessibility notes on a map.
 
-This is a browser-based web app. The public evaluation uses fictional care information. AI helps organize information; it does not diagnose, prescribe or change a confirmed care plan.
+This is a browser-based web app. The sample workspace uses fictional care information. AI helps organize information; it does not diagnose, prescribe or change a confirmed care plan.
 
 ## Architecture
 
@@ -70,7 +70,7 @@ Provider calls run in server actions. Their results return through mutations, an
 | **Google Cloud Gemini** | Reads original documents and source text to propose structured next steps with evidence. Google Cloud is used for model inference only. See [generation adapter](convex/model/responses.ts) and [document extraction](convex/model/documentExtraction.ts). |
 | **MapLibre, OpenFreeMap and Photon** | Display saved care locations and search addresses. Directions open externally. See [places](web/views/places.js) and [place search](convex/placeSearch.ts). |
 
-The model adapter exposes `generationClient.responses.create(...)`, an OpenAI Responses-shaped interface backed by Gemini. This is **not a claim of OpenAI API inference**. Codex and the Convex plugin were used during development. The optional OpenAI text adapter in the source is not the selected runtime.
+The model adapter exposes `generationClient.responses.create(...)`, an OpenAI Responses-shaped interface backed by Gemini. This is **not a claim of OpenAI API inference**. The optional OpenAI text adapter in the source is not the selected runtime.
 
 ## Run locally
 
@@ -110,11 +110,10 @@ web/              Browser app, shared UI, styles and licensed assets
 scripts/          Build, configuration and verification tools; synthetic fixture
 .env.example      Environment variable names and local configuration template
 docs/setup.md     Backend, provider and deployment setup
-hackathon.md      Required submission build log
 ```
 
-## Evaluation boundaries
+## Sample data and service limits
 
 The sample contains fictional people and documents. Provider-backed mail requires available AgentMail inbox capacity; model and crawl operations depend on provider quotas and application allowances. Manual coordination remains available when an integration cannot run. A failed or uncertain send is not presented as delivered.
 
-The linked walkthrough is a narrated sequence of actual app screenshots, not a continuous interaction recording. No real caregiver adoption, clinical outcomes or compliance certification are claimed. Maintained by [Anurag Sati](https://github.com/Satianurag); use [repository issues](https://github.com/Satianurag/handoff/issues) for reproducible problems, without private care information.
+No real caregiver adoption, clinical outcomes or compliance certification are claimed. Maintained by [Anurag Sati](https://github.com/Satianurag); use [repository issues](https://github.com/Satianurag/handoff/issues) for reproducible problems, without private care information.
