@@ -1,8 +1,8 @@
 @import url("/tokens.css");
 /* The care purpose and trust sections use the same shared type and palette. */
 .hero-description{max-width:650px;margin:20px auto 0;font:400 19px/1.55 var(--sans);color:var(--ink);text-wrap:balance}
-.hero-actions{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:28px}.hero-actions .hero-cta{margin:0}.hero-sample-link{font-size:15px;color:var(--ink);text-decoration:none}.hero-sample-link:hover{text-decoration:underline}
-.release-note{margin:16px auto 0;padding-inline:20px;color:var(--muted);font:400 12px/1.5 var(--sans);text-wrap:balance}.release-note a{color:inherit;text-underline-offset:3px}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:28px}.hero-actions .hero-cta{margin:0}.hero-sample-link{display:inline-flex;align-items:center;min-height:44px;font-size:15px;color:var(--ink);text-decoration:none}.hero-sample-link:hover{text-decoration:underline}
+.release-note{margin:16px auto 0;padding-inline:20px;color:var(--muted);font:400 12px/1.5 var(--sans);text-wrap:balance}.release-note a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-underline-offset:3px}
 .care-trust{display:grid;grid-template-columns:1fr 1fr;gap:100px;padding-block:100px;border-top:1px solid var(--line)}.care-trust h2{font:400 clamp(36px,4vw,60px)/1.08 var(--serif);letter-spacing:-1.5px;margin:20px 0 24px}.care-trust h2 em{font-weight:400}.care-trust p{font-size:17px;line-height:1.6;color:var(--muted);max-width:500px}.care-trust-list article{padding:16px 0;border-bottom:1px solid var(--line)}.care-trust-list h3{font:600 18px/1.4 var(--sans);margin:0 0 8px}.care-trust-list p{font-size:15px;margin:0 0 12px}
 @media(max-width:760px){.hero-description{font-size:16px;padding-inline:22px}.hero-actions{gap:18px}.care-trust{grid-template-columns:1fr;gap:24px;padding-block:60px}}
 * {
@@ -164,8 +164,8 @@ svg {
   height: 18px;
 }
 .round-button {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid #dedbd5;
   background: #ffffff8c;
@@ -179,6 +179,10 @@ svg {
   transform: translateY(-2px);
 }
 .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0;
   background: none;
   text-decoration: underline;
@@ -257,6 +261,7 @@ svg {
   box-shadow: 0 12px 18px #30677e24;
 }
 .wordmark {
+  min-height: 44px;
   font-family: var(--serif);
   font-weight: 550;
   font-size: 32px;
@@ -275,6 +280,10 @@ svg {
   flex: 1;
 }
 .navigation nav a {
+  display: flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   font-size: 12px;
   white-space: nowrap;
   position: relative;
@@ -296,14 +305,14 @@ svg {
 }
 .navigation .button {
   font-size: 12px;
-  min-height: 33px;
+  min-height: 44px;
   padding: 9px 17px;
 }
 .menu-button {
   display: none;
   background: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
 }
 .hero-copy {
   position: relative;
@@ -863,6 +872,8 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   gap: 15px;
   font-size: 12px;
 }
@@ -1294,7 +1305,7 @@ svg {
 .front-window .button {
   font-size: 10px;
   padding: 9px 14px;
-  min-height: 34px;
+  min-height: 44px;
 }
 .editorial-note {
   display: flex;
@@ -2021,8 +2032,11 @@ svg {
   display: block;
   font: 11px/1.5 var(--sans);
   letter-spacing: 0;
-  color: #85887c;
+  color: #5c6055;
   margin-top: 10px;
+}
+.start-card.dark .start-bottom small {
+  color: #b3b6ad;
 }
 .start-card.dark {
   border-color: #151815;
@@ -2045,7 +2059,7 @@ svg {
 .sample-disclosure {
   display: block;
   text-align: center;
-  color: #83847d;
+  color: #5e5f59;
   font-size: 11px;
   margin: 35px 0 0;
 }
@@ -2126,7 +2140,17 @@ svg {
   color: #e0e3dc;
 }
 .footer-columns a,
-.footer-columns button,
+.footer-columns button {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font: 12px/1.9 var(--sans);
+  color: #a6aaa0;
+  background: none;
+  padding: 8px 0;
+  text-align: left;
+  margin-bottom: 4px;
+}
 .footer-columns p {
   display: block;
   font: 12px/1.9 var(--sans);
@@ -2158,6 +2182,11 @@ svg {
   margin-top: 70px;
   color: #969b91;
   font-size: 10px;
+}
+.footer-bottom a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 .footer-bottom a:hover {
   color: white;
@@ -3227,7 +3256,7 @@ dialog[open] {
     font-size: 28px;
   }
   .navigation > .button {
-    min-height: 34px;
+    min-height: 44px;
     padding: 10px 15px;
     font-size: 11px;
   }
@@ -3239,8 +3268,8 @@ dialog[open] {
     justify-content: center;
     gap: 5px;
     flex-shrink: 0;
-    width: 33px;
-    height: 33px;
+    width: 44px;
+    height: 44px;
   }
   .menu-button span {
     height: 1px;
@@ -4187,10 +4216,11 @@ dialog[open] {
 }
 
 /* Practical answers share the product typography and neutral borders. */
-.care-faq{max-width:900px;margin:48px auto 0;border-top:1px solid var(--line);text-align:left}.care-faq details{border-bottom:1px solid var(--line);padding:24px 0}.care-faq summary{font:500 19px/1.45 var(--sans);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:24px}.care-faq summary::-webkit-details-marker{display:none}.care-faq summary::after{content:'+';font-size:24px;line-height:1}.care-faq details[open] summary::after{content:'−'}.care-faq p{font-size:16px;line-height:1.75;color:var(--muted);margin:16px 40px 0 0;max-width:760px}.care-faq a{text-decoration:underline;color:var(--ink)}.care-faq summary:focus-visible{outline:2px solid var(--ink);outline-offset:6px}@media(max-width:760px){.care-faq{margin-top:28px}.care-faq summary{font-size:17px}.care-faq p{margin-right:0}}
+.care-faq{max-width:900px;margin:48px auto 0;border-top:1px solid var(--line);text-align:left}.care-faq details{border-bottom:1px solid var(--line);padding:24px 0}.care-faq summary{font:500 19px/1.45 var(--sans);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:24px}.care-faq summary::-webkit-details-marker{display:none}.care-faq summary::after{content:'+';font-size:24px;line-height:1}.care-faq details[open] summary::after{content:'−'}.care-faq p{font-size:16px;line-height:1.75;color:var(--muted);margin:16px 40px 0 0;max-width:760px}.care-faq a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;color:var(--ink)}.care-faq summary:focus-visible{outline:2px solid var(--ink);outline-offset:6px}@media(max-width:760px){.care-faq{margin-top:28px}.care-faq summary{font-size:17px}.care-faq p{margin-right:0}}
 
 /* Keep the entire real desktop screenshot visible, without a fabricated board. */
 .hero{height:auto;max-height:none;padding-bottom:54px}.product-proof{position:relative;z-index:4;width:min(1180px,calc(100% - 96px));margin:64px auto 0;background:var(--surface);border:1px solid #fff9;border-radius:16px;box-shadow:0 24px 80px #183d4933;overflow:hidden}.product-proof>a{display:block}.product-proof img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain}.product-proof figcaption{display:flex;justify-content:space-between;gap:20px;padding:14px 20px;font:400 12px/1.5 var(--sans);color:var(--muted);background:var(--surface)}.product-proof figcaption a{color:var(--ink);text-decoration:underline}@media(max-width:760px){.hero{padding-bottom:28px}.product-proof{width:calc(100% - 28px);margin-top:38px;border-radius:10px}.product-proof figcaption{font-size:10px;padding:10px 12px;gap:12px}}
 
 /* Explain one care journey using the same editorial type and quiet borders. */
 .care-story-intro{max-width:620px;margin:24px auto 0;color:var(--muted);font-size:18px;line-height:1.65}.care-story-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;padding:0;margin:48px 0;list-style:none;text-align:left}.care-story-steps li{border-top:1px solid var(--line);padding-top:22px}.care-story-steps li>span{color:var(--muted);font:500 12px/1.5 var(--sans)}.care-story-steps h3{font:500 19px/1.4 var(--sans);margin:14px 0 10px}.care-story-steps p{font:400 15px/1.7 var(--sans);color:var(--muted);margin:0}.helper-proof{margin-top:48px;border-color:var(--line);box-shadow:0 16px 48px #1719160c}@media(max-width:760px){.care-story-steps{grid-template-columns:1fr 1fr;gap:26px 22px;margin:32px 0}.care-story-steps h3{font-size:17px}.care-story-intro{font-size:16px}.helper-proof{margin-top:28px}}@media(max-width:420px){.care-story-steps{grid-template-columns:1fr}.care-story-steps li{padding-top:16px}.care-story-steps h3{margin-top:8px}}
+.product-proof figcaption a{display:inline-flex;align-items:center;min-height:44px}
