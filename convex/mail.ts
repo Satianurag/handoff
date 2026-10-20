@@ -20,6 +20,7 @@ function operationFailure(error:unknown,code:string,message:string):never{throw 
 
 export async function provisionMailbox(ctx: ActionCtx, householdId: Id<"households">): Promise<void> {
   const state = await ctx.runMutation(internal.mailStore.provisionContext, { householdId });
+  if (state.household.mode === "demo") return;
   const client = mailClient();
   let creatingInbox = false;
   try {
@@ -27,7 +28,7 @@ export async function provisionMailbox(ctx: ActionCtx, householdId: Id<"househol
     const pod = state.account.podId ? await client.pods.get(state.account.podId) : await client.pods.create({ clientId: resourceKey, name: "Handoff household" });
     await ctx.runMutation(internal.mailStore.resourceCheckpoint, { householdId, podId: pod.podId });
     creatingInbox = !state.account.inboxId;
-    const inbox = state.account.inboxId ? await client.inboxes.get(state.account.inboxId) : await client.pods.inboxes.create(pod.podId, { clientId: `${resourceKey}-family`, displayName: state.household.mode === "demo" ? "Handoff synthetic household" : "Handoff" });
+    const inbox = state.account.inboxId ? await client.inboxes.get(state.account.inboxId) : await client.pods.inboxes.create(pod.podId, { clientId: `${resourceKey}-family`, displayName: "Handoff" });
     creatingInbox = false;
     await ctx.runMutation(internal.mailStore.resourceCheckpoint, { householdId, podId: pod.podId, inboxId: inbox.inboxId, address: inbox.email });
     // Close all three directions before exposing a newly provisioned address.
@@ -57,6 +58,11 @@ export async function provisionMailbox(ctx: ActionCtx, householdId: Id<"househol
 export async function syncContacts(ctx: ActionCtx, householdId: Id<"households">): Promise<void> {
   const token = randomUUID();
   const state = await ctx.runMutation(internal.mailStore.beginContactSync, { householdId, token });
+  if (state.local) {
+    const ready = await ctx.runMutation(internal.mailStore.finishContactSync, { householdId, token, version: state.version });
+    if (!ready) fail("CONTACTS_CHANGED", "Contacts changed during synchronization. Sync the current permissions again.");
+    return;
+  }
   try {
     await syncLists(mailClient(), state.inboxId, state);
     const ready = await ctx.runMutation(internal.mailStore.finishContactSync, { householdId, token, version: state.version });
@@ -70,6 +76,11 @@ export async function syncContacts(ctx: ActionCtx, householdId: Id<"households">
 export async function syncProviderDraft(ctx: ActionCtx, draftId: Id<"mailDrafts">): Promise<void> {
   const token = randomUUID();
   const state = await ctx.runMutation(internal.mailStore.beginDraftSync, { draftId, token });
+  if (state.local) {
+    const fresh = await ctx.runMutation(internal.mailStore.finishDraftSync, { draftId, token, version: state.draft.version, success: true });
+    if (!fresh) fail("DRAFT_CHANGED", "A newer draft version needs synchronization.");
+    return;
+  }
   const client = mailClient();
   let providerDraftId = state.draft.providerDraftId;
   try {
@@ -96,7 +107,14 @@ export async function sendApproved(ctx: ActionCtx, sendIntentId: Id<"sendIntents
   if (state.intent.state === "sent" || state.intent.state === "cancelled") return;
   if (["sending", "unknown"].includes(state.intent.state)) { await reconcileSend(ctx, sendIntentId); return; }
   if (state.intent.state !== "approved") return;
+  if (state.local) {
+    if (await ctx.runMutation(internal.mailStore.claimSend, { sendIntentId, providerHash: state.intent.contentHash })) {
+      await ctx.runMutation(internal.mailStore.sent, { sendIntentId, messageId: "demo", threadId: "demo" });
+    }
+    return;
+  }
   const client = mailClient();
+  if (!state.intent.providerDraftId) return;
   let claimed = false;
   try {
     const remote = await client.inboxes.drafts.get(state.inboxId, state.intent.providerDraftId);
@@ -114,8 +132,12 @@ export async function sendApproved(ctx: ActionCtx, sendIntentId: Id<"sendIntents
 }
 
 export async function reconcileSend(ctx: ActionCtx, sendIntentId: Id<"sendIntents">): Promise<void> {
-  const { intent, draft, inboxId } = await ctx.runQuery(internal.mailStore.sendContext, { sendIntentId });
+  const { intent, draft, inboxId, local } = await ctx.runQuery(internal.mailStore.sendContext, { sendIntentId });
   if (intent.state === "sent" || !["sending", "unknown"].includes(intent.state)) return;
+  if (local) {
+    await ctx.runMutation(internal.mailStore.sent, { sendIntentId, messageId: "demo", threadId: "demo" });
+    return;
+  }
   await ctx.runMutation(internal.mailStore.reconciliationChecked,{sendIntentId});
   const client = mailClient();
   try {
@@ -180,18 +202,28 @@ export const demoOfficeMessage = action({
   handler: async (ctx, args): Promise<{ messageId: string; threadId: string }> => {
     const { account, demo } = await ctx.runQuery(internal.mailStore.demoContext, { householdId: args.householdId });
     if (demo.expiresAt <= Date.now()) fail("EXPIRED", "Demo expired.");
-    const client = mailClient();
-    const key = `handoff-demo-${args.householdId}-${args.scenario}`;
-    if (args.scenario === "initial") {await ctx.runMutation(internal.mailStore.demoSendAllowance,{householdId:args.householdId});return client.inboxes.messages.send(demo.officeInboxId!, { to: [account.address!], subject: "Synthetic visit logistics", text: "SYNTHETIC DEMO — Sample office. Please use the east entrance for the sample visit. Parking is in Lot A. This message is scripted and contains no real patient information." }, { idempotencyKey: key });}
-    const received = await client.inboxes.messages.list(demo.officeInboxId!, { labels: ["received"], limit: 1 });
-    if (!received.messages[0]) return fail("NO_QUESTION", "Send the reviewed sample question first.");
-    await ctx.runMutation(internal.mailStore.demoSendAllowance,{householdId:args.householdId});
-    return client.inboxes.messages.reply(demo.officeInboxId!, received.messages[0].messageId, { to: [account.address!], text: "SYNTHETIC DEMO — Scripted office reply: please use the west entrance. Parking remains in Lot A. Please review this update." }, { idempotencyKey: key });
+    if (!account.address || !demo.officeAddress) fail("NOT_READY", "Wait for demo mail provisioning.");
+    if (args.scenario === "initial") {
+      await ctx.runMutation(internal.mailStore.demoSendAllowance, { householdId: args.householdId });
+      const messageId = `demo-message-${args.householdId}-initial`, threadId = `demo-thread-${args.householdId}-initial`;
+      await ctx.runMutation(internal.mailStore.ingest, { householdId: args.householdId, inboxId: account.address, messageId, threadId, from: demo.officeAddress, to: [account.address], subject: "Synthetic visit logistics", plaintext: "SYNTHETIC DEMO — Sample office. Please use the east entrance for the sample visit. Parking is in Lot A. This message is scripted and contains no real patient information.", occurredAt: Date.now(), attachmentOnly: false, isReply: false, routingAmbiguous: false });
+      return { messageId, threadId };
+    }
+    const reply = await ctx.runQuery(internal.mailStore.demoReplyContext, { householdId: args.householdId });
+    if (!reply) return fail("NO_QUESTION", "Send the reviewed sample question first.");
+    await ctx.runMutation(internal.mailStore.demoSendAllowance, { householdId: args.householdId });
+    const messageId = `demo-message-${args.householdId}-reply-${reply.threadId}`;
+    await ctx.runMutation(internal.mailStore.ingest, { householdId: args.householdId, inboxId: reply.accountAddress, messageId, threadId: reply.threadId, from: reply.officeAddress, to: [reply.accountAddress], subject: reply.subject, plaintext: "SYNTHETIC DEMO — Scripted office reply: please use the west entrance. Parking remains in Lot A. Please review this update.", occurredAt: Date.now(), attachmentOnly: false, isReply: true, routingAmbiguous: false });
+    return { messageId, threadId: reply.threadId };
   },
 });
 
 async function removeProviderData(ctx:ActionCtx,args:{privacyJobId:Id<"privacyJobs">}):Promise<null>{
     const state = await ctx.runMutation(internal.mailStore.cleanupContext, args);
+    if (state.demo) {
+      await ctx.runMutation(internal.mailStore.providerCleaned, { ...args, success: true });
+      return null;
+    }
     const client = mailClient();
     const remove = async (operation: () => Promise<unknown>) => { try { await operation(); } catch (error) { if (statusCode(error) !== 404) throw error; } };
     try {

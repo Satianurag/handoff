@@ -30,6 +30,23 @@ export const provisionContext = internalMutation({
   handler: async (ctx, args) => {
     const state = await activeMail(ctx, args.householdId, Date.now());
     const demo = state.household.mode === "demo" ? await ctx.db.query("demoSessions").withIndex("by_householdId", q => q.eq("householdId", args.householdId)).unique() : null;
+    if (state.household.mode === "demo") {
+      const suffix = args.householdId.slice(-10).toLowerCase();
+      const address = email(`family-${suffix}@demo.handoff.invalid`);
+      const officeAddress = email("office@demo.handoff.invalid");
+      await ctx.db.patch(state.account._id, {
+        podId: undefined, inboxId: undefined, address, status: "ready",
+        contactSyncState: "ready", version: state.account.version + 1,
+        lastError: undefined, capacityReached: undefined,
+      });
+      await ctx.db.patch(state.household._id, { provisioning: "ready" });
+      if (demo) {
+        await ctx.db.patch(demo._id, { officeInboxId: undefined, officeAddress });
+        const contact = await ctx.db.query("contacts").withIndex("by_householdId_and_email", q => q.eq("householdId", state.household._id).eq("email", officeAddress)).unique();
+        if (!contact) await ctx.db.insert("contacts", { householdId: state.household._id, label: "Sample office — controlled demo", email: officeAddress, relationship: "Operator-owned synthetic scenario", confirmedBy: state.household.ownerId, allowSend: true, allowReceive: true, allowReply: true, state: "approved", version: 1, updatedAt: Date.now() });
+      }
+      return { household: (await ctx.db.get(state.household._id))!, account: (await ctx.db.get(state.account._id))!, demo: demo ? (await ctx.db.get(demo._id))! : null };
+    }
     await ctx.db.patch(state.account._id, { status: "processing", lastError: undefined, capacityReached: undefined });
     return { ...state, demo };
   },
@@ -77,12 +94,14 @@ export const accountFailed = internalMutation({
 
 export const beginContactSync = internalMutation({
   args: { householdId: v.id("households"), token: v.string() },
-  returns: v.object({ inboxId: v.string(), version: v.number(), send: v.array(v.string()), receive: v.array(v.string()), reply: v.array(v.string()) }),
+  returns: v.object({ inboxId: v.string(), version: v.number(), send: v.array(v.string()), receive: v.array(v.string()), reply: v.array(v.string()), local: v.boolean() }),
   handler: async (ctx, args) => {
     const household=await ctx.db.get(args.householdId);
     const account=await ctx.db.query("mailAccounts").withIndex("by_householdId",q=>q.eq("householdId",args.householdId)).unique();
     if(!household||household.status!=="active"||!account||(household.expiresAt&&household.expiresAt<=Date.now()))return fail("NOT_FOUND","Mailbox unavailable.");
-    if (!account.inboxId || !["ready","paused"].includes(account.status)) return fail("MAILBOX_NOT_READY", "Wait for mailbox provisioning.");
+    const local = household.mode === "demo";
+    const inboxId = account.inboxId ?? (local ? account.address : undefined);
+    if (!inboxId || !["ready","paused"].includes(account.status)) return fail("MAILBOX_NOT_READY", "Wait for mailbox provisioning.");
     if (account.syncToken && (account.syncUntil ?? 0) > Date.now()) return fail("BUSY", "Contact policies are already syncing.");
     const contacts = await ctx.db.query("contacts").withIndex("by_householdId_and_state", q => q.eq("householdId", household._id)).take(201);
     if (contacts.length > 200) return fail("CONTACT_LIMIT", "Use at most 200 contacts per household.");
@@ -99,7 +118,7 @@ export const beginContactSync = internalMutation({
       }
     }
     await ctx.db.patch(account._id, { syncToken: args.token, syncUntil: Date.now() + 120000, contactSyncState: "processing" });
-    return { inboxId: account.inboxId, version: account.version, send: [...new Set(send)], receive: [...new Set(receive)], reply: [...new Set(reply)] };
+    return { inboxId, version: account.version, send: [...new Set(send)], receive: [...new Set(receive)], reply: [...new Set(reply)], local };
   },
 });
 
@@ -115,18 +134,20 @@ export const finishContactSync = internalMutation({
 });
 
 export const beginDraftSync = internalMutation({
-  args: { draftId: v.id("mailDrafts"), token: v.string() }, returns: v.object({ draft: schema.doc("mailDrafts"), inboxId: v.string() }),
+  args: { draftId: v.id("mailDrafts"), token: v.string() }, returns: v.object({ draft: schema.doc("mailDrafts"), inboxId: v.string(), local: v.boolean() }),
   handler: async (ctx, args) => {
     const draft = await ctx.db.get(args.draftId); if (!draft) return fail("NOT_FOUND", "Draft unavailable.");
-    const { account } = await activeMail(ctx, draft.householdId, Date.now());
+    const { account, household } = await activeMail(ctx, draft.householdId, Date.now());
     const membership = await ctx.db.query("memberships").withIndex("by_householdId_and_userId", q => q.eq("householdId", draft.householdId).eq("userId", draft.editorId)).unique();
     if (!membership || membership.status !== "active") return fail("FORBIDDEN", "Draft editor is no longer a member.");
     await permittedRecipient(ctx, draft.householdId, draft.recipient, !!draft.inReplyTo);
-    if (!account.inboxId || account.status !== "ready") return fail("MAILBOX_NOT_READY", "Wait for mailbox provisioning.");
+    const local = household.mode === "demo";
+    const inboxId = account.inboxId ?? (local ? account.address : undefined);
+    if (!inboxId || account.status !== "ready") return fail("MAILBOX_NOT_READY", "Wait for mailbox provisioning.");
     if (draft.correctionDraftId || !["editable", "failed"].includes(draft.state)) return fail("DRAFT_LOCKED", "Only an editable draft can sync.");
     if (draft.syncToken && (draft.syncUntil ?? 0) > Date.now()) return fail("BUSY", "This draft is already syncing.");
     await ctx.db.patch(draft._id, { syncToken: args.token, syncUntil: Date.now() + 120000 });
-    return { draft, inboxId: account.inboxId };
+    return { draft, inboxId, local };
   },
 });
 
@@ -141,13 +162,16 @@ export const finishDraftSync = internalMutation({
 });
 
 export const sendContext = internalQuery({
-  args: { sendIntentId: v.id("sendIntents") }, returns: v.object({ intent: schema.doc("sendIntents"), draft: schema.doc("mailDrafts"), inboxId: v.string() }),
+  args: { sendIntentId: v.id("sendIntents") }, returns: v.object({ intent: schema.doc("sendIntents"), draft: schema.doc("mailDrafts"), inboxId: v.string(), local: v.boolean() }),
   handler: async (ctx, args) => {
     const intent = await ctx.db.get(args.sendIntentId); if (!intent) return fail("NOT_FOUND", "Send unavailable.");
     const draft = await ctx.db.get(intent.draftId);
     const account = await ctx.db.query("mailAccounts").withIndex("by_householdId", q => q.eq("householdId", intent.householdId)).unique();
-    if (!draft || !account?.inboxId) return fail("NOT_FOUND", "Send unavailable.");
-    return { intent, draft, inboxId: account.inboxId };
+    const household = await ctx.db.get(intent.householdId);
+    const local = household?.mode === "demo";
+    const inboxId = account?.inboxId ?? (local ? account?.address : undefined);
+    if (!draft || !inboxId) return fail("NOT_FOUND", "Send unavailable.");
+    return { intent, draft, inboxId, local };
   },
 });
 
@@ -158,7 +182,8 @@ export const claimSend = internalMutation({
     const { household, account } = await activeMail(ctx, intent.householdId, Date.now());
     const membership = await ctx.db.query("memberships").withIndex("by_householdId_and_userId", q => q.eq("householdId", household._id).eq("userId", intent.approvedBy)).unique();
     const draft = await ctx.db.get(intent.draftId);
-    if (!membership || membership.status !== "active" || !await canReadMail(ctx,household._id,intent.approvedBy) || !draft || draft.state !== "approved" || draft.version !== intent.draftVersion || draft.contentHash !== intent.contentHash || args.providerHash !== intent.contentHash || draft.providerDraftId !== intent.providerDraftId || draft.providerSyncedVersion !== draft.version || draft.syncToken || account.status !== "ready" || account.contactSyncState !== "ready" || household.consentVersion !== intent.consentVersion) return fail("STALE_APPROVAL", "Approval or email permissions changed. Review again before sending.");
+    const local = household.mode === "demo";
+    if (!membership || membership.status !== "active" || !await canReadMail(ctx,household._id,intent.approvedBy) || !draft || draft.state !== "approved" || draft.version !== intent.draftVersion || draft.contentHash !== intent.contentHash || args.providerHash !== intent.contentHash || (!local && (draft.providerDraftId !== intent.providerDraftId || draft.providerSyncedVersion !== draft.version)) || draft.syncToken || account.status !== "ready" || account.contactSyncState !== "ready" || household.consentVersion !== intent.consentVersion) return fail("STALE_APPROVAL", "Approval or email permissions changed. Review again before sending.");
     await permittedRecipient(ctx, household._id, intent.recipient, !!draft.inReplyTo);
     if (draft.threadId) {
       const thread = await ctx.db.get(draft.threadId);
@@ -192,18 +217,23 @@ export const sent = internalMutation({
     if (!["sending", "unknown"].includes(intent.state)) return fail("INVALID_SEND_STATE", "No send attempt exists for this receipt.");
     const draft = await ctx.db.get(intent.draftId);
     const account = await ctx.db.query("mailAccounts").withIndex("by_householdId", q => q.eq("householdId", intent.householdId)).unique();
-    if (!account?.inboxId || !account.address || !draft) return fail("NOT_FOUND", "Send projection unavailable.");
-    await ctx.db.patch(intent._id, { state: "sent", delivery: intent.delivery === "unknown" || intent.delivery === "pending" ? "sent" : intent.delivery, providerMessageId: args.messageId, providerThreadId: args.threadId, reconciliation: "confirmed", lastError: undefined });
-    let thread = await ctx.db.query("mailThreads").withIndex("by_inboxId_and_providerThreadId", q => q.eq("inboxId", account.inboxId!).eq("providerThreadId", args.threadId)).unique();
+    const household = await ctx.db.get(intent.householdId);
+    const local = household?.mode === "demo";
+    const inboxId = account?.inboxId ?? (local ? account?.address : undefined);
+    if (!account || !inboxId || !account.address || !draft) return fail("NOT_FOUND", "Send projection unavailable.");
+    const messageId = local ? `demo-message-${intent._id}` : args.messageId;
+    const threadId = local ? `demo-thread-${intent._id}` : args.threadId;
+    await ctx.db.patch(intent._id, { state: "sent", delivery: intent.delivery === "unknown" || intent.delivery === "pending" ? "sent" : intent.delivery, ...(local ? {} : { providerMessageId: args.messageId, providerThreadId: args.threadId }), reconciliation: "confirmed", lastError: undefined });
+    let thread = await ctx.db.query("mailThreads").withIndex("by_inboxId_and_providerThreadId", q => q.eq("inboxId", inboxId!).eq("providerThreadId", threadId)).unique();
     if (!thread) {
-      const id = await ctx.db.insert("mailThreads", { householdId: intent.householdId, inboxId: account.inboxId, providerThreadId: args.threadId, related: draft.related, subject: intent.subject, state: "waiting", archived: false, quarantined: false, deleting: false, lastMessageAt: intent.firstAttemptAt ?? Date.now(), version: 1 });
+      const id = await ctx.db.insert("mailThreads", { householdId: intent.householdId, inboxId, providerThreadId: threadId, related: draft.related, subject: intent.subject, state: "waiting", archived: false, quarantined: false, deleting: false, lastMessageAt: intent.firstAttemptAt ?? Date.now(), version: 1 });
       thread = (await ctx.db.get(id))!;
     } else await ctx.db.patch(thread._id, { state: (thread.lastInboundAt ?? 0) >= (intent.firstAttemptAt ?? 0) ? "replyReceived" : "waiting", version: thread.version + 1, lastMessageAt: Math.max(thread.lastMessageAt, intent.firstAttemptAt ?? Date.now()), archived: false });
-    const exists = await ctx.db.query("mailMessages").withIndex("by_inboxId_and_providerMessageId", q => q.eq("inboxId", account.inboxId!).eq("providerMessageId", args.messageId)).unique();
-    if (!exists) await ctx.db.insert("mailMessages", { householdId: intent.householdId, threadId: thread._id, providerMessageId: args.messageId, inboxId: account.inboxId, direction: "outbound", from: account.address, to: [intent.recipient], plaintext: intent.body, subject: intent.subject, occurredAt: intent.firstAttemptAt ?? Date.now(), delivery: "sent", attachmentOnly: false, truncated: false, retentionUntil: Date.now() + 30 * 86400000, unresolvedReferences: 0 });
+    const exists = await ctx.db.query("mailMessages").withIndex("by_inboxId_and_providerMessageId", q => q.eq("inboxId", inboxId!).eq("providerMessageId", messageId)).unique();
+    if (!exists) await ctx.db.insert("mailMessages", { householdId: intent.householdId, threadId: thread._id, providerMessageId: messageId, inboxId, direction: "outbound", from: account.address, to: [intent.recipient], plaintext: intent.body, subject: intent.subject, occurredAt: intent.firstAttemptAt ?? Date.now(), delivery: "sent", attachmentOnly: false, truncated: false, retentionUntil: Date.now() + 30 * 86400000, unresolvedReferences: 0 });
     await ctx.db.patch(draft._id, { state: "sent", threadId: thread._id, updatedAt: Date.now(), lastError: undefined });
     await record(ctx, { householdId: intent.householdId, actorId: intent.approvedBy, type: "mail.sent", entity: { kind: "thread", id: thread._id }, after: "Approved question sent; awaiting a reply." });
-    await projectDelivery(ctx,intent.householdId,account.inboxId,args.messageId);
+    if (!local) await projectDelivery(ctx,intent.householdId,inboxId,args.messageId);
     return null;
   },
 });
@@ -229,11 +259,14 @@ export const inboundContext = internalQuery({
 });
 
 export const ingest = internalMutation({
-  args: { inboxId: v.string(), messageId: v.string(), threadId: v.string(), from: v.string(), to: v.array(v.string()), subject: v.string(), plaintext: v.string(), occurredAt: v.number(), attachmentOnly: v.boolean(), isReply: v.boolean(), routingAmbiguous: v.boolean() }, returns: v.union(v.id("mailMessages"), v.null()),
+  args: { householdId: v.optional(v.id("households")), inboxId: v.string(), messageId: v.string(), threadId: v.string(), from: v.string(), to: v.array(v.string()), subject: v.string(), plaintext: v.string(), occurredAt: v.number(), attachmentOnly: v.boolean(), isReply: v.boolean(), routingAmbiguous: v.boolean() }, returns: v.union(v.id("mailMessages"), v.null()),
   handler: async (ctx, args) => {
-    const account = await ctx.db.query("mailAccounts").withIndex("by_inboxId", q => q.eq("inboxId", args.inboxId)).unique();
+    const account = args.householdId
+      ? await ctx.db.query("mailAccounts").withIndex("by_householdId", q => q.eq("householdId", args.householdId!)).unique()
+      : await ctx.db.query("mailAccounts").withIndex("by_inboxId", q => q.eq("inboxId", args.inboxId)).unique();
     if (!account) return null;
     const household = await ctx.db.get(account.householdId);
+    if (args.householdId && household?.mode !== "demo") return null;
     if (!household || household.status !== "active" || !household.emailImport || (household.expiresAt && household.expiresAt <= Date.now())) return null;
     const existing = await ctx.db.query("mailMessages").withIndex("by_inboxId_and_providerMessageId", q => q.eq("inboxId", args.inboxId).eq("providerMessageId", args.messageId)).unique();
     if (existing) return existing._id;
@@ -270,6 +303,21 @@ export const ingest = internalMutation({
   },
 });
 
+export const demoReplyContext = internalQuery({
+  args: { householdId: v.id("households") },
+  returns: v.union(v.object({ accountAddress: v.string(), officeAddress: v.string(), threadId: v.string(), subject: v.string() }), v.null()),
+  handler: async (ctx, args) => {
+    const household = await ctx.db.get(args.householdId);
+    const account = await ctx.db.query("mailAccounts").withIndex("by_householdId", q => q.eq("householdId", args.householdId)).unique();
+    const demo = await ctx.db.query("demoSessions").withIndex("by_householdId", q => q.eq("householdId", args.householdId)).unique();
+    const outbound = await ctx.db.query("mailMessages").withIndex("by_householdId", q => q.eq("householdId", args.householdId)).filter(q => q.eq(q.field("direction"), "outbound")).order("desc").first();
+    const thread = outbound ? await ctx.db.get(outbound.threadId) : null;
+    return household?.mode === "demo" && account?.address && demo?.officeAddress && thread
+      ? { accountAddress: account.address, officeAddress: demo.officeAddress, threadId: thread.providerThreadId, subject: thread.subject }
+      : null;
+  },
+});
+
 export const demoContext = internalUserQuery({
   args: { householdId: v.id("households") }, returns: v.object({ account: schema.doc("mailAccounts"), demo: schema.doc("demoSessions") }),
   handler: async (ctx, args) => {
@@ -278,13 +326,13 @@ export const demoContext = internalUserQuery({
     const account = await ctx.db.query("mailAccounts").withIndex("by_householdId", q => q.eq("householdId", household._id)).unique();
     const demo = await ctx.db.query("demoSessions").withIndex("by_householdId", q => q.eq("householdId", household._id)).unique();
     if (account?.status === "failed") return fail(account.capacityReached ? "MAIL_CAPACITY_REACHED" : "MAIL_PROVISION_FAILED", account.lastError ?? "Sample email setup needs attention. Check the email status.");
-    if (!account?.address || !demo?.officeInboxId) return fail("NOT_READY", "Wait for demo mail provisioning.");
+    if (!account?.address || !demo?.officeAddress) return fail("NOT_READY", "Wait for demo mail provisioning.");
     return { account, demo };
   },
 });
 
 export const cleanupContext = internalMutation({
-  args: { privacyJobId: v.id("privacyJobs") }, returns: v.object({ job: schema.doc("privacyJobs"), account: v.union(schema.doc("mailAccounts"), v.null()), draft: v.union(schema.doc("mailDrafts"), v.null()), thread: v.union(schema.doc("mailThreads"), v.null()) }),
+  args: { privacyJobId: v.id("privacyJobs") }, returns: v.object({ job: schema.doc("privacyJobs"), account: v.union(schema.doc("mailAccounts"), v.null()), draft: v.union(schema.doc("mailDrafts"), v.null()), thread: v.union(schema.doc("mailThreads"), v.null()), demo: v.boolean() }),
   handler: async (ctx, args) => {
     const job = await ctx.db.get(args.privacyJobId); if (!job || job.kind === "export") return fail("NOT_FOUND", "Deletion request unavailable.");
     const account = await ctx.db.query("mailAccounts").withIndex("by_householdId", q => q.eq("householdId", job.householdId)).unique();
@@ -295,7 +343,7 @@ export const cleanupContext = internalMutation({
     if (job.kind === "deleteDraft" && draft && draft.state !== "deleted") return fail("DELETE_NOT_REQUESTED", "Draft deletion has not been authorized.");
     if (job.kind === "deleteThread" && thread && !thread.deleting) return fail("DELETE_NOT_REQUESTED", "Thread deletion has not been authorized.");
     await ctx.db.patch(job._id, { stage: "providerCleanup", processors: job.processors.map(p => p.name === "agentmail" && p.state !== "succeeded" ? { name: p.name, state: "running" as const } : p) });
-    return { job, account, draft, thread };
+    return { job, account, draft, thread, demo: household?.mode === "demo" };
   },
 });
 
