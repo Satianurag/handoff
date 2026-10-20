@@ -10,6 +10,7 @@ import { env } from "../_generated/server";
 // standard output_text/status/usage fields regardless of runtime provider.
 export type ResponseRequest = { model: string; input: string; media?: { mimeType: string; data: string }; outputTokenLimit?: number; inputTokenReservation?: number; instructions: string; store: false; text: { format: { type: "json_schema"; name: string; schema: Record<string, unknown>; strict: true } } };
 export type ResponseResult = { id: string; object: "response"; status: "completed" | "incomplete" | "failed"; model: string; provider: "gemini" | "openai"; output_text: string; usage: { input_tokens: number; output_tokens: number; total_tokens: number }; refusal: boolean };
+const supportedGeminiModels = new Set(["gemini-3.8-flash", "gemini-3.5-flash"]);
 const vertexResult = z.object({
   responseId: z.string().optional(), modelVersion: z.string().optional(),
   promptFeedback: z.object({ blockReason: z.string().optional() }).optional(),
@@ -31,7 +32,7 @@ export function generationConfig() {
   const provider = env.GENERATION_PROVIDER ?? "gemini";
   const model = provider === "gemini" ? env.GEMINI_MODEL ?? "gemini-3.8-flash" : env.OPENAI_MODEL;
   if (!model || (provider === "openai" && !env.OPENAI_API_KEY)) throw new GenerationError("MODEL_CONFIGURATION_REQUIRED");
-  if (provider === "gemini" && model !== "gemini-3.8-flash") throw new GenerationError("MODEL_REVALIDATION_REQUIRED");
+  if (provider === "gemini" && !supportedGeminiModels.has(model)) throw new GenerationError("MODEL_REVALIDATION_REQUIRED");
   return { provider, model };
 }
 
