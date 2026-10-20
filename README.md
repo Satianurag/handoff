@@ -115,6 +115,10 @@ The first production run passed 12 of 16 tests. It found three real bugs, each f
 
 Latest PR-triggered run: 16/16 passed on PR #10's own preview ([Run 2](https://www.testsprite.com/dashboard-v3/o/2a412a58-535a-50c7-acd5-60264d0a7740/projects/98d946ba-f237-453f-b6e5-2b1fea4ca0fa/execution/39ec1d57-3b8a-41b2-bc42-e2484e7c84ea); see [LOOP.md](LOOP.md)).
 
+### Stable preview URLs for TestSprite
+
+The preview workflow deploys each pull request to a Convex preview and publishes its URL as the GitHub Deployment `environment_url`. It then registers the PR-to-preview mapping with the stable preview Worker using a GitHub Actions OIDC token; the registration does not use a shared secret. The URL `https://handoff-pr-{pr}.satimon.com` redirects to that Convex preview. Use `https://handoff-pr-{pr}.satimon.com` as the TestSprite GitHub PR Target URL pattern.
+
 ## Repository map
 
 ```text

@@ -1,0 +1,224 @@
+name = "handoff-preview-alias"
+main = "src/worker.js"
+compatibility_date = "2026-10-20"
+workers_dev = false
+
+[[durable_objects.bindings]]
+name = "REGISTRY"
+class_name = "PreviewRegistry"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["PreviewRegistry"]
+
+[[routes]]
+pattern = "handoff-previews.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-9.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-10.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-11.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-12.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-13.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-14.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-15.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-16.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-17.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-18.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-19.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-20.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-21.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-22.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-23.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-24.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-25.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-26.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-27.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-28.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-29.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-30.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-31.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-32.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-33.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-34.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-35.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-36.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-37.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-38.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-39.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-40.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-41.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-42.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-43.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-44.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-45.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-46.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-47.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-48.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-49.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-50.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-51.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-52.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-53.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-54.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-55.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-56.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-57.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-58.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-59.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-60.satimon.com"
+custom_domain = true
