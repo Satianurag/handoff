@@ -20,3 +20,4 @@ convex/README.md
 scripts/write-function-inventory.mjs
 docs/*
 !docs/setup.md
+!docs/testsprite-convex-recipe.md

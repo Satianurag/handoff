@@ -2,17 +2,19 @@
 
 **A shared care workspace for families looking after an aging parent.**
 
-Keep the original paperwork, the next appointment, the ride home and the person responsible in one place. Work changes hands when someone accepts it. A reply brings new information; a person decides when the follow-up is finished.
+Keep the original paperwork, the next appointment, the ride home, and the person responsible in one place. Work changes hands when someone accepts it. A reply brings new information; a person decides when the follow-up is finished.
 
 [Open Handoff](https://admired-fish-176.convex.site) · [Explore a sample family](https://admired-fish-176.convex.site/demo)
 
-![Handoff showing a fictional family’s original care document alongside review and visit context](web/assets/product-records.png)
+Each pull request is tested on its own live preview by [TestSprite](https://www.testsprite.com) before it can merge. The suite has caught four app bugs so far; see [Tested by TestSprite](#tested-by-testsprite) and [LOOP.md](LOOP.md).
+
+![Handoff showing a fictional family's original care document alongside review and visit context](web/assets/product-records.png)
 
 ## Why we built it
 
-Family care gets scattered across messages, appointment letters and promises to “handle it.” A shared task list can record the promise, but it rarely connects the source, the next visit, the return ride and whether another person actually agreed to take over.
+Family care gets scattered across messages, appointment letters, and promises to "handle it." A shared task list can record the promise, but it rarely connects the source, the next visit, the return ride and whether another person actually agreed to take over.
 
-Handoff connects those steps. Someone uploads an appointment letter, reviews the suggested next steps, prepares questions, asks a sibling to drive, and keeps the clinic’s reply attached to the unresolved question. The family can see what is known, what changed and who has accepted the next responsibility.
+Handoff connects those steps. Someone uploads an appointment letter, reviews the suggested next steps, prepares questions, asks a sibling to drive, and keeps the clinic's reply attached to the unresolved question. The family can see what is known, what changed and who has accepted the next responsibility.
 
 ## What you can do
 
@@ -48,7 +50,7 @@ flowchart TB
 ```
 
 
-Provider calls run in server actions. Their results return through mutations, and Convex subscriptions update the connected screens. Originals remain in private storage; record downloads recheck access. Suggestions, accepted responsibilities and handover receipts are distinct records, so new evidence cannot silently rewrite a person’s commitment.
+Provider calls run in server actions. Their results return through mutations, and Convex subscriptions update the connected screens. Originals remain in private storage; record downloads recheck access. Suggestions, accepted responsibilities and handover receipts are distinct records, so new evidence cannot silently rewrite a person's commitment.
 
 ### Why Convex is central
 
@@ -61,7 +63,7 @@ Provider calls run in server actions. Their results return through mutations, an
 | Crons | Source checks, recurring responsibilities, reminders, recovery and retention | [Crons](convex/crons.ts) |
 | Static Hosting component | Frontend assets and app routes on the same Convex site as the HTTP endpoints | [HTTP router](convex/http.ts), [components](convex/convex.config.ts) |
 
-### Integrations that do real work
+### Integrations
 
 | Integration | Product role |
 | --- | --- |
@@ -70,7 +72,7 @@ Provider calls run in server actions. Their results return through mutations, an
 | **Google Cloud Gemini** | Reads original documents and source text to propose structured next steps with evidence. Google Cloud is used for model inference only. See [generation adapter](convex/model/responses.ts) and [document extraction](convex/model/documentExtraction.ts). |
 | **MapLibre, OpenFreeMap and Photon** | Display saved care locations and search addresses. Directions open externally. See [places](web/views/places.js) and [place search](convex/placeSearch.ts). |
 
-The model adapter exposes `generationClient.responses.create(...)`, an OpenAI Responses-shaped interface backed by Gemini. This is **not a claim of OpenAI API inference**. The optional OpenAI text adapter in the source is not the selected runtime.
+The model adapter exposes `generationClient.responses.create(...)`, an OpenAI Responses-shaped interface backed by Gemini. Inference runs on Gemini; the optional OpenAI text adapter in the source is not used at runtime.
 
 ## Run locally
 
@@ -104,22 +106,23 @@ npm run preview:web
 
 ## Tested by TestSprite
 
-A curated [TestSprite](https://www.testsprite.com) suite of 16 browser tests runs against the live sample household. Coverage:
+Each same-repository pull request deploys its own Convex preview. The [TestSprite](https://www.testsprite.com) GitHub App runs the browser suite against that preview, and GitHub blocks the merge until it passes.
 
-- **Sample entry:** isolated sample boot, used one-time role link, unknown route, signed-out deep link that keeps its destination.
-- **Handover and responsibility:** publish → acknowledge → receipt; acknowledgement blocked without the review confirmation; assignment accepted and completed by the recipient with attribution; required title; recurring responsibility.
-- **Access boundaries:** another household's workspace is denied; a care-circle member cannot manage the household.
-- **Visits, places and mail:** complete a visit and see it named in History; return-journey request; visit question after granting care access; place search with fully visible results; scripted office reply in the shared Inbox.
+| | |
+|---|---|
+| App bugs caught | 4, each fixed in its own PR: [#2](https://github.com/Satianurag/handoff/pull/2), [#3](https://github.com/Satianurag/handoff/pull/3), [#4](https://github.com/Satianurag/handoff/pull/4), [#12](https://github.com/Satianurag/handoff/pull/12) |
+| Suite | 17 browser tests: 4 generated by TestSprite, 13 written by hand |
+| Gate | The `main-gate` ruleset requires the `TestSprite V3` status |
+| Proof on a PR | [PR #12](https://github.com/Satianurag/handoff/pull/12): red on its own preview, merge blocked, green after the fix |
 
-The first production run passed 12 of 16 tests. It found three real bugs, each fixed in its own PR, and one wrong test plan, which was replaced. After the fixes, every test in the suite passes. [LOOP.md](LOOP.md) lists each failure, its fix and the TestSprite run IDs. Every same-repository PR also deploys its own Convex preview and publishes it as a GitHub Deployment.
+Coverage:
 
-Latest PR-triggered run: 16/16 passed on PR #10's own preview ([Run 2](https://www.testsprite.com/dashboard-v3/o/2a412a58-535a-50c7-acd5-60264d0a7740/projects/98d946ba-f237-453f-b6e5-2b1fea4ca0fa/execution/39ec1d57-3b8a-41b2-bc42-e2484e7c84ea); see [LOOP.md](LOOP.md)).
+- **Sample entry:** isolated sample start, a used one-time role link, an unknown route, and a signed-out deep link that keeps its destination.
+- **Handovers and responsibilities:** publish, acknowledge, then view the receipt; acknowledgement blocked without the review confirmation; an assignment accepted and completed by the recipient, with attribution; a pending request that can't be bypassed; a required title; a recurring responsibility.
+- **Access boundaries:** another household's workspace is denied; a care-circle member can't manage the household.
+- **Visits, places, and mail:** completing a visit names it in History; a return-journey request; a visit question after granting care access; place-search results that aren't hidden behind the footer; a scripted office reply in the shared Inbox.
 
-Merging is gated: the `main-gate` ruleset requires the `TestSprite V3` status, so a PR cannot merge until TestSprite passes on its preview.
-
-### Stable preview URLs for TestSprite
-
-The preview workflow deploys each pull request to a Convex preview and publishes its URL as the GitHub Deployment `environment_url`. It then registers the PR-to-preview mapping with the stable preview Worker using a GitHub Actions OIDC token; the registration does not use a shared secret. The URL `https://handoff-pr-{pr}.satimon.com` redirects to that Convex preview. Use `https://handoff-pr-{pr}.satimon.com` as the TestSprite GitHub PR Target URL pattern.
+[LOOP.md](LOOP.md) has each failure, its fix, every execution ID, and the known gaps. The plans, run history, and failure bundles are in [`testsprite/`](testsprite/). To set this up on your own Convex app, follow the [recipe](docs/testsprite-convex-recipe.md).
 
 ## Repository map
 
