@@ -3,9 +3,14 @@ const OIDC_ISSUER = "https://token.actions.githubusercontent.com";
 const OIDC_AUDIENCE = "https://handoff-previews.satimon.com";
 const OIDC_JWKS_URL = `${OIDC_ISSUER}/.well-known/jwks`;
 const OIDC_JWKS_CACHE_TTL_MS = 10 * 60 * 1000;
+const OIDC_UNKNOWN_KID_REFRESH_COOLDOWN_MS = 60 * 1000;
+const REPOSITORY = "Satianurag/handoff";
+const REPOSITORY_ID = "1379115807";
+const REPOSITORY_OWNER_ID = "85240125";
 
 let cachedJwks;
 let cachedJwksAt = 0;
+let lastUnknownKidRefreshAt = 0;
 
 export class OidcVerificationError extends Error {
   constructor(status, reason) {
@@ -116,9 +121,12 @@ export async function verifyGithubOidc(token, { jwks, now, expectedPr } = {}) {
   }
 
   if (
-    claims.repository !== "Satianurag/handoff" ||
+    claims.repository !== REPOSITORY ||
+    claims.repository_id !== REPOSITORY_ID ||
+    claims.repository_owner_id !== REPOSITORY_OWNER_ID ||
     claims.event_name !== "pull_request" ||
-    claims.ref !== `refs/pull/${expectedPr}/merge`
+    claims.ref !== `refs/pull/${expectedPr}/merge` ||
+    claims.workflow_ref !== `${REPOSITORY}/.github/workflows/preview.yml@refs/pull/${expectedPr}/merge`
   ) {
     throw verificationError(403, "claims_mismatch");
   }
@@ -145,7 +153,7 @@ async function fetchGithubJwks(forceRefresh = false) {
   return jwks;
 }
 
-async function verifyRegistrationToken(token, expectedPr) {
+export async function verifyRegistrationToken(token, expectedPr) {
   const now = Math.floor(Date.now() / 1000);
   let jwks;
   try {
@@ -161,6 +169,12 @@ async function verifyRegistrationToken(token, expectedPr) {
       throw error;
     }
   }
+
+  const refreshTime = Date.now();
+  if (refreshTime - lastUnknownKidRefreshAt < OIDC_UNKNOWN_KID_REFRESH_COOLDOWN_MS) {
+    throw verificationError(401, "unknown_kid");
+  }
+  lastUnknownKidRefreshAt = refreshTime;
 
   try {
     jwks = await fetchGithubJwks(true);
@@ -186,9 +200,54 @@ function registryStub(env) {
   return env.REGISTRY.get(id);
 }
 
+async function registerPreview(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return textResponse("Invalid registration body.", 400);
+  }
+  if (
+    body === null ||
+    typeof body !== "object" ||
+    !Number.isSafeInteger(body.pr) ||
+    body.pr <= 0 ||
+    !isValidPreviewUrl(body.url) ||
+    typeof body.sha !== "string" ||
+    !/^[a-f0-9]{40}$/.test(body.sha)
+  ) {
+    return textResponse("Invalid registration body.", 400);
+  }
+
+  const authorization = request.headers.get("Authorization") ?? "";
+  const match = authorization.match(/^Bearer\s+(\S+)$/i);
+  if (!match) {
+    return textResponse("Unauthorized.", 401);
+  }
+
+  try {
+    await verifyRegistrationToken(match[1], body.pr);
+  } catch (error) {
+    const status = error instanceof OidcVerificationError ? error.status : 401;
+    return textResponse(status === 403 ? "Forbidden." : status === 502 ? "OIDC verification unavailable." : "Unauthorized.", status);
+  }
+
+  return registryStub(env).fetch(
+    new Request("https://registry.internal/store", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pr: body.pr, url: body.url, sha: body.sha }),
+    }),
+  );
+}
+
 export default {
   async fetch(request, env) {
-    const { hostname } = new URL(request.url);
+    const url = new URL(request.url);
+    const { hostname } = url;
+    if (hostname === REGISTRY_HOST && request.method === "POST" && url.pathname === "/register") {
+      return registerPreview(request, env);
+    }
     if (hostname === REGISTRY_HOST || /^handoff-pr-[1-9]\d*\.satimon\.com$/.test(hostname)) {
       return registryStub(env).fetch(request);
     }
@@ -203,11 +262,17 @@ export class PreviewRegistry {
 
   async fetch(request) {
     const url = new URL(request.url);
-    if (url.hostname === REGISTRY_HOST) {
-      if (request.method === "POST" && url.pathname === "/register") {
-        return this.register(request);
-      }
+    if (url.hostname === "registry.internal" && request.method === "POST" && url.pathname === "/store") {
+      const { pr, url: previewUrl, sha } = await request.json();
+      await this.state.storage.put(`pr:${pr}`, {
+        url: previewUrl,
+        sha,
+        updatedAt: new Date().toISOString(),
+      });
+      return new Response(null, { status: 204 });
+    }
 
+    if (url.hostname === REGISTRY_HOST) {
       const match = url.pathname.match(/^\/pr\/([1-9]\d*)$/);
       if (request.method === "GET" && match) {
         return this.getRegistration(Number(match[1]));
@@ -255,46 +320,5 @@ export class PreviewRegistry {
         "Cache-Control": "no-store",
       },
     });
-  }
-
-  async register(request) {
-    let body;
-    try {
-      body = await request.json();
-    } catch {
-      return textResponse("Invalid registration body.", 400);
-    }
-    if (
-      body === null ||
-      typeof body !== "object" ||
-      !Number.isSafeInteger(body.pr) ||
-      body.pr <= 0 ||
-      !isValidPreviewUrl(body.url) ||
-      typeof body.sha !== "string" ||
-      !/^[a-f0-9]{40}$/.test(body.sha)
-    ) {
-      return textResponse("Invalid registration body.", 400);
-    }
-
-    const authorization = request.headers.get("Authorization") ?? "";
-    const match = authorization.match(/^Bearer\s+(\S+)$/i);
-    if (!match) {
-      return textResponse("Unauthorized.", 401);
-    }
-
-    try {
-      await verifyRegistrationToken(match[1], body.pr);
-    } catch (error) {
-      const status = error instanceof OidcVerificationError ? error.status : 401;
-      return textResponse(status === 403 ? "Forbidden." : status === 502 ? "OIDC verification unavailable." : "Unauthorized.", status);
-    }
-
-    const registration = {
-      url: body.url,
-      sha: body.sha,
-      updatedAt: new Date().toISOString(),
-    };
-    await this.state.storage.put(`pr:${body.pr}`, registration);
-    return new Response(null, { status: 204 });
   }
 }

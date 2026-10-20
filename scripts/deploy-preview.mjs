@@ -14,8 +14,8 @@ const previewName = process.argv[2];
 const dryRun = process.argv.includes("--dry-run");
 const seedPreviewEnvironmentOnly = process.argv.includes("--seed-preview-env");
 const demoLimitSettings = [
-  { key: "demoActiveLimit", numericValue: 500 },
-  { key: "demoDailyLimit", numericValue: 2000 },
+  { key: "demoActiveLimit", numericValue: 100 },
+  { key: "demoDailyLimit", numericValue: 400 },
 ];
 
 if (!previewName || !/^pr-(?:\d+|smoke|fresh-[a-z0-9-]+)$/.test(previewName)) {
