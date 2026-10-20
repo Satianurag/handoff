@@ -13,8 +13,8 @@ const staticHostingCli = resolve(
 const previewName = process.argv[2];
 const dryRun = process.argv.includes("--dry-run");
 
-if (!previewName || !/^pr-\d+$/.test(previewName)) {
-  throw new Error("Usage: node scripts/deploy-preview.mjs pr-<number> [--dry-run]");
+if (!previewName || !/^pr-(?:\d+|smoke)$/.test(previewName)) {
+  throw new Error("Usage: node scripts/deploy-preview.mjs pr-<number>|pr-smoke [--dry-run]");
 }
 
 function deploymentUrlsFromOutput(output) {
@@ -122,7 +122,7 @@ function checkDeploymentUrls(componentUrls, deployedUrls) {
 
 if (dryRun) {
   const deployedUrls = deploymentUrlsFromOutput(
-    `Deploying code to deployment: https://${previewName}.convex.cloud`,
+    "Deploying code to deployment: https://generated-preview-123.convex.cloud",
   );
   const resolved = checkDeploymentUrls(
     {
@@ -154,6 +154,7 @@ if (dryRun) {
           "{}",
         ],
         resolvedSiteUrl: resolved.siteUrl,
+        urlResolution: "Derived from Convex deployment output, not the preview name.",
         environmentVariables: [
           "SITE_URL",
           "JWT_PRIVATE_KEY",
@@ -162,6 +163,7 @@ if (dryRun) {
           "AGENTMAIL_API_KEY",
           "GENERATION_PROVIDER",
           "GEMINI_MODEL",
+          "GEMINI_API_KEY",
           "GOOGLE_CLOUD_LOCATION",
         ],
         build: ["npm", "run", "build:web", "with CONVEX_URL from the preview"],
@@ -184,6 +186,17 @@ if (dryRun) {
 
 if (!process.env.CONVEX_DEPLOY_KEY) {
   throw new Error("CONVEX_DEPLOY_KEY must contain a Convex preview deploy key.");
+}
+
+const previewSeedEnvironment = {
+  FIRECRAWL_API_KEY: "preview-disabled",
+  AGENTMAIL_API_KEY: process.env.AGENTMAIL_API_KEY || "preview-disabled",
+};
+if (process.env.GEMINI_API_KEY) {
+  previewSeedEnvironment.GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+}
+for (const [name, value] of Object.entries(previewSeedEnvironment)) {
+  setPreviewEnv(name, value);
 }
 
 const deployOutput = runConvex([
@@ -228,8 +241,6 @@ const previewEnvironment = {
   SITE_URL: siteUrl,
   JWT_PRIVATE_KEY: jwtPrivateKey,
   JWKS: jwks,
-  FIRECRAWL_API_KEY: "preview-disabled",
-  AGENTMAIL_API_KEY: process.env.AGENTMAIL_API_KEY || "preview-disabled",
   GENERATION_PROVIDER: "gemini",
   GEMINI_MODEL: "gemini-3.8-flash",
   GOOGLE_CLOUD_LOCATION: "global",
