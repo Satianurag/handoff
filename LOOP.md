@@ -15,12 +15,12 @@ Figures as of 2026-10-20.
 | | |
 |---|---|
 | Suite | 17 frontend tests: 4 kept from 53 TestSprite proposals, 13 written by hand |
-| App bugs caught by TestSprite | 4: three in the production baseline, one by the push trigger on `main` |
+| App bugs caught by TestSprite | 4: three in the production baseline, one by the Push trigger on `main` |
 | Test-plan errors caught | 1, replaced |
 | Fix PRs | [#2](https://github.com/Satianurag/handoff/pull/2), [#3](https://github.com/Satianurag/handoff/pull/3), [#4](https://github.com/Satianurag/handoff/pull/4), [#12](https://github.com/Satianurag/handoff/pull/12) |
-| PR-triggered runs on PR previews | PRs #10, #8, #11, and #12; see the [run log](#run-log) |
+| PR-triggered runs on PR previews | PRs #8, #10, #11 and #12; see the [run log](#run-log) |
 | Merge gate | The `main-gate` ruleset requires the `TestSprite V3` status; GitHub showed `blocked` until TestSprite passed on PR #8 and PR #12 |
-| Test runs recorded | 229 as of 16:40 UTC ([`testsprite/run-history.json`](testsprite/run-history.json)) |
+| Test runs recorded | 229 for the current tests, as of 16:40 UTC ([`testsprite/run-history.json`](testsprite/run-history.json)) |
 
 ## Bugs TestSprite caught
 
@@ -52,10 +52,10 @@ All times are UTC on 2026-10-20. "CLI" is `testsprite test run`. "PR" is the Git
 |---|---|---|---|---|---|
 | 11:42 | CLI | production | 12/16: 3 failed, 1 blocked | `56442753` | Baseline. Bugs 1–3 and the wrong plan. |
 | 12:50 | CLI | production at `0c22765` | 15/16: 1 blocked | `e811c248` | After #2–#4. The blocked test was the wrong plan. |
-| 13:01 | CLI | production | Replacement plan passed | run `7fd1465a` | |
+| 13:01 | CLI | production | Replacement plan passed | — | Run `7fd1465a` |
 | 14:11 | Push | `ed74b93` | 16/16 | `4de6aa07` | |
 | 14:26 | PR #10 | `93e9731` | 2/16: 1 failed, 13 blocked | `91e86e74` | Stalled on `/demo`. Not reproduced. |
-| 14:35 | CLI | production, direct preview, and alias | "Demo boots" passed on each | — | Reruns after the stall |
+| 14:35 | CLI | production, direct preview and alias | "Demo boots" passed on each | — | Reruns after the stall |
 | 14:43 | CLI | alias for PR #10 | 16/16 | — | Full suite on the alias |
 | 14:49 | PR #10 | `65d92a4` | 16/16 | `39ec1d57` | |
 | 15:03 | Push | `65d92a4` | 15/16: 1 failed | `32c56fe1` | Bug 4 (run `099f367d`) |
@@ -64,10 +64,10 @@ All times are UTC on 2026-10-20. "CLI" is `testsprite test run`. "PR" is the Git
 | 15:50 | Push | `5bf6aee` | 16/16 | `111bbaaa` | |
 | 16:20 | PR #11 | `779757b` | 16/16 | `53954151` | Pipeline hardening |
 | 16:26 | Push | `779757b` | 16/17: 1 failed | `0e2a6b78` | New test `b59c2a62` fails on production, which still had bug 4 (run `6f8d0eac`) |
-| 16:31 | PR #12 | `67ea994` | 16/17: 1 failed | `8f623eac` | Evidence-only commit. `b59c2a62` fails (run `0c25e3ba`); GitHub reports `blocked` |
+| 16:31 | PR #12 | `67ea994` | 16/17: 1 failed | `8f623eac` | Test added, no app change yet. `b59c2a62` fails (run `0c25e3ba`); GitHub reports `blocked` |
 | 16:37 | PR #12 | `2b84d15` | 17/17 | `ee743e6c` | The fix (run `4116f429`). GitHub reports `clean` |
 
-Execution links open the TestSprite dashboard and need a TestSprite login. For PR runs, the TestSprite comment on the PR shows the same per-test results and screenshots publicly.
+Each execution ID opens in the TestSprite dashboard (login required) at `https://www.testsprite.com/dashboard-v3/o/2a412a58-535a-50c7-acd5-60264d0a7740/projects/98d946ba-f237-453f-b6e5-2b1fea4ca0fa/execution/<id>`. The TestSprite comment on each PR shows that PR's latest run publicly, with per-test screenshots; the commit statuses keep every run's result.
 
 ## Lessons
 
@@ -76,16 +76,16 @@ Execution links open the TestSprite dashboard and need a TestSprite login. For P
 | Generated proposals mostly checked that a page loads. | 49 of 53 proposals discarded | Write plans for stateful flows and negative paths by hand. |
 | A red test can be a wrong plan. | Visit-question plan, run `dbef2b7f` | Walk the flow by hand before writing or blaming a plan. |
 | A one-off failure is not a diagnosis. | PR #10 run at 14:26, not reproduced | Rerun on every target before changing code; record it as unexplained. |
-| Two buttons for one intent confuse people and agents alike. | Bug 4, run `099f367d` | Offer one action per state, and enforce it in the backend. |
+| Two buttons for one intent let one bypass the other. | Bug 4, run `099f367d` | Offer one action per state, and enforce it in the backend. |
 | Sample sessions live in `sessionStorage`. | Early deep-link plans | Start at `/demo` in a fresh context; keep `?sample=1` on deep links ([test guide](testsprite/test-guide.md)). |
 
 ## Known gaps
 
-- The suite is frontend-only. Access rules are tested through the UI; backend rules are covered by Convex unit tests (`npx vitest run`), not by TestSprite API tests.
+- The suite is frontend-only. Access rules are tested through the UI; backend rules are covered by Convex unit tests (`npm test`), not by TestSprite API tests.
 - The PR #10 run at 14:26 stalled on `/demo` (2 passed, 1 failed, 13 blocked). It did not reproduce and its cause is unknown. Convex logs showed anonymous sign-ins but no later `demoTokens:create` call.
 - Fork PRs get no preview, because preview secrets are never exposed to forks, so TestSprite does not run on them.
 - Aliases exist for PRs 1–60. Cloudflare allows 100 Workers custom domains per zone. For a later PR, the `preview` check fails with a message naming the route to add.
-- Only the Pull Request trigger has "Block PR until tests pass" on. Push-trigger runs on `main` post `TestSprite V3` as success even when a test fails (run `32c56fe1`, "15/16 passed · 1 failed"); they are a production monitor, not a gate.
+- Only the Pull Request trigger has "Block PR until tests pass" on. Push trigger runs on `main` post `TestSprite V3` as success even when a test fails (run `32c56fe1`, "15/16 passed · 1 failed"); they are a production monitor, not a gate.
 - Sample households use Convex-local mail, so the suite does not exercise real AgentMail delivery.
 
 ## Evidence in this repository
@@ -93,6 +93,6 @@ Execution links open the TestSprite dashboard and need a TestSprite login. For P
 | Path | Contents |
 |---|---|
 | [`testsprite/plans/`](testsprite/plans/) | Every test plan as stored in TestSprite |
-| [`testsprite/run-history.json`](testsprite/run-history.json) | Every recorded test run: time, trigger, target, status and run ID |
+| [`testsprite/run-history.json`](testsprite/run-history.json) | Every recorded run of the 17 current tests: time, trigger, target, status and run ID. Runs of the retired visit-question plan were deleted with it. |
 | [`testsprite/failures/`](testsprite/failures/) | Failure bundles from `testsprite test artifact get`: the agent's failure analysis, the failed steps and the generated test code. Videos stay in TestSprite. |
 | [`testsprite/test-guide.md`](testsprite/test-guide.md) | The guide every test follows |

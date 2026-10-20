@@ -2,11 +2,11 @@
 
 Handoff is a shared workspace for families looking after an aging parent. Here is one thing it has to get right. Maya asks her brother Leo to pick up a prescription. Until the request is answered, nobody else should quietly take it over, and the record should say that Leo accepted.
 
-TestSprite found that we got this wrong. Leo saw a "Take this" button next to the request. Pressing it recorded "Responsibility taken" and silently dropped Maya's request. That bug, and three before it, are why every pull request to Handoff now gets its own live preview, and a browser test suite has to pass on that preview before GitHub allows the merge.
+TestSprite found that we got this wrong. Leo saw a "Take this" button next to the request. Pressing it recorded "Responsibility taken" and silently dropped Maya's request. It was the fourth app bug the suite caught. Each same-repository pull request to Handoff gets its own live preview, and the browser suite has to pass on that preview before GitHub allows the merge.
 
 This is the setup, with the parts that cost us time. All code is in [Satianurag/handoff](https://github.com/Satianurag/handoff).
 
-**Results up front**
+## Results
 
 - 17 browser tests in the TestSprite 3.0 portal: handovers with receipts, responsibility transfer with attribution, cross-household denial, care-circle permission limits, used one-time links, and required fields.
 - 4 app bugs caught, each fixed in its own PR. The first production run passed 12 of 16.
@@ -68,7 +68,7 @@ npx convex deploy --preview-name pr-<N> \
 
 Convex runs `--cmd` after the preview exists and before it pushes functions, so that is where we set the environment variables the functions need at push time. URL-dependent variables such as `SITE_URL` are set after `deploy` returns.
 
-Gotchas we hit with Convex CLI 1.47.0:
+Gotchas we hit with Convex CLI 1.46.0:
 
 - Running `convex env set --preview-name pr-<N>` before the first deploy returned `PreviewNotFound`, and a preview deploy key could not set project defaults. Seeding inside `--cmd` avoids both.
 - Preview hostnames are random, for example `fortunate-moose-341.convex.site`. Read the URL from the deploy output instead of deriving it from the PR number. We publish it as the GitHub Deployment `environment_url`.
@@ -77,7 +77,7 @@ Gotchas we hit with Convex CLI 1.47.0:
 
 ## Step 2: a stable URL TestSprite can predict
 
-TestSprite's Pull Request trigger builds the target URL from a pattern. The placeholders are `{pr}`, `{branch}`, `{branch-slug}`, `{sha}` and `{short-sha}`. A random Convex hostname can't be written that way, so a small Cloudflare Worker sits in front:
+TestSprite's Pull Request trigger builds the target URL from a pattern. The placeholders are `{pr}`, `{branch}`, `{branch-slug}`, `{sha}`, and `{short-sha}`. A random Convex hostname can't be written that way, so a small Cloudflare Worker sits in front:
 
 - `https://handoff-pr-{pr}.satimon.com` returns a 302 to that PR's preview.
 - The `pr → {url, sha}` mapping lives in a SQLite-backed Durable Object.
@@ -96,14 +96,14 @@ Before it stores anything, the Worker verifies the token:
 
 - the RS256 signature, against GitHub's JWKS (a forced refresh for an unknown key ID at most once a minute);
 - the issuer, the audience, expiry, and `nbf`/`iat`;
-- `repository_id` and `repository_owner_id`, not just the repository name, which can be reused after a rename;
+- `repository_id` and `repository_owner_id`, because a repository name can be reused after a rename;
 - `event_name` is `pull_request`, `ref` is `refs/pull/<pr>/merge`, and `workflow_ref` is `preview.yml` at that ref.
 
 A token for PR 12 can only register PR 12's alias, and only from the preview workflow. The Worker also accepts only `https://<name>.convex.site` targets. [Its tests](https://github.com/Satianurag/handoff/blob/main/infra/preview-alias/test/worker.test.mjs) cover a wrong audience, repository, owner, PR ref or workflow, push events, expired tokens, tampered signatures, unknown key IDs, `alg: none`, and the refresh throttle. They run in CI.
 
 After registering, the job fetches the alias and fails unless it gets the expected 302. A broken alias fails the `preview` check before TestSprite ever starts.
 
-Each alias hostname is a Workers custom domain, and Cloudflare allows 100 per zone. We created PRs 1–60 ahead of time. Our PR #8 got no TestSprite run until its hostname existed.
+Each alias hostname is a Workers custom domain, and Cloudflare allows 100 per zone. We created custom domains for PRs 1–60 ahead of time. Our PR #8 got no TestSprite run until its hostname existed.
 
 ## Step 3: the TestSprite trigger
 
@@ -115,17 +115,17 @@ In the TestSprite portal, open the project, then **GitHub Action → Add Trigger
 | Target URL pattern | `https://handoff-pr-{pr}.satimon.com` | The stable alias from step 2 |
 | Block PR until tests pass | Off for the first few PRs, then on | [TestSprite's docs](https://docs.testsprite.com/web-portal/integrations/github-integration) recommend starting non-blocking |
 
-On PR #10, the `preview` check completed at 14:49:52 UTC, and TestSprite started at 14:49:59. It ran all 16 tests against that PR's own preview, and all passed.
+On PR #10, the `preview` check completed at 14:49:52 UTC, and the TestSprite run started at 14:49:55. It ran all 16 tests against that PR's own preview, and all passed.
 
 ## Step 4: make the gate real
 
-"Block PR until tests pass" makes TestSprite report a failed run through the `TestSprite V3` status. GitHub only blocks a merge on a status that a rule requires. We added a branch ruleset on the default branch: **Require status checks to pass → `TestSprite V3`**, plus blocked force pushes and deletion. Don't also require a pull request if automation fast-forwards `main`.
+"Block PR until tests pass" makes TestSprite report a failed run through the `TestSprite V3` status. GitHub only blocks a merge on a status that a rule requires. We added a branch ruleset on the default branch: **Require status checks to pass → `TestSprite V3`**, plus blocked force pushes and deletion. We left "Require a pull request" off because our merges are fast-forward pushes of the tested PR head; the required `TestSprite V3` status still has to be green on that commit.
 
-On [PR #12](https://github.com/Satianurag/handoff/pull/12), the first commit added a test for the pending-request bug. TestSprite failed on the PR's preview, and GitHub kept the merge blocked. The fix commit turned the run green, and the merge unblocked.
+For the pending-request bug, we first added a TestSprite test, then opened [PR #12](https://github.com/Satianurag/handoff/pull/12) with a commit that changed no app code. TestSprite failed on the PR's preview, and GitHub kept the merge blocked. The fix commit turned the run green, and the merge unblocked.
 
 ## What went wrong, and what we didn't fix
 
-- **A run that didn't reproduce.** Our first PR-triggered run stalled on `/demo` (2 passed, 1 failed, 13 blocked). Fresh browser contexts, single-test reruns on production, the direct preview, and the alias, a full CLI run, and the next PR run were all green. We logged it as unexplained and changed no code.
+- **A run that didn't reproduce.** Our first PR-triggered run stalled on `/demo` (2 passed, 1 failed, 13 blocked). Single-test reruns in fresh browser contexts on production, the direct preview, and the alias all passed, and so did a full CLI run and the next PR run. We logged it as unexplained and changed no code.
 - **A red test that was our fault.** One plan used a role that correctly had no medical access. The app was right; we replaced the plan.
 - **Push runs don't gate.** The Push trigger on `main` posts `TestSprite V3` as success even when a test fails, because only the PR trigger blocks. It still caught bug 4, so we treat it as a production monitor.
 - **Generated plans were shallow.** TestSprite proposed 53 tests from the live app. We kept 4 and wrote 13 by hand for handovers, permissions, and negative paths.

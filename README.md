@@ -2,17 +2,17 @@
 
 **A shared care workspace for families looking after an aging parent.**
 
-Keep the original paperwork, the next appointment, the ride home, and the person responsible in one place. Work changes hands when someone accepts it. A reply brings new information; a person decides when the follow-up is finished.
+Keep the original paperwork, the next appointment, the ride home and the person responsible in one place. Work changes hands when someone accepts it. A reply brings new information; a person decides when the follow-up is finished.
 
 [Open Handoff](https://admired-fish-176.convex.site) · [Explore a sample family](https://admired-fish-176.convex.site/demo)
 
-Each pull request is tested on its own live preview by [TestSprite](https://www.testsprite.com) before it can merge. The suite has caught four app bugs so far; see [Tested by TestSprite](#tested-by-testsprite) and [LOOP.md](LOOP.md).
+Each same-repository pull request is tested on its own live preview by [TestSprite](https://www.testsprite.com) before it can merge. The suite has caught four app bugs; see [Tested by TestSprite](#tested-by-testsprite) and [LOOP.md](LOOP.md).
 
 ![Handoff showing a fictional family's original care document alongside review and visit context](web/assets/product-records.png)
 
 ## Why we built it
 
-Family care gets scattered across messages, appointment letters, and promises to "handle it." A shared task list can record the promise, but it rarely connects the source, the next visit, the return ride and whether another person actually agreed to take over.
+Family care gets scattered across messages, appointment letters and promises to "handle it." A shared task list can record the promise, but it rarely connects the source, the next visit, the return ride and whether another person actually agreed to take over.
 
 Handoff connects those steps. Someone uploads an appointment letter, reviews the suggested next steps, prepares questions, asks a sibling to drive, and keeps the clinic's reply attached to the unresolved question. The family can see what is known, what changed and who has accepted the next responsibility.
 
@@ -48,7 +48,6 @@ flowchart TB
     Jobs <-->|Public source capture| Crawl["Firecrawl component<br/>Appointment logistics"]
     Jobs <-->|Source-backed suggestions| Model["Gemini on Google Cloud<br/>Model inference only"]
 ```
-
 
 Provider calls run in server actions. Their results return through mutations, and Convex subscriptions update the connected screens. Originals remain in private storage; record downloads recheck access. Suggestions, accepted responsibilities and handover receipts are distinct records, so new evidence cannot silently rewrite a person's commitment.
 
@@ -117,12 +116,12 @@ Each same-repository pull request deploys its own Convex preview. The [TestSprit
 
 Coverage:
 
-- **Sample entry:** isolated sample start, a used one-time role link, an unknown route, and a signed-out deep link that keeps its destination.
+- **Sample entry:** isolated sample start, a used one-time role link, an unknown route and a signed-out deep link that keeps its destination.
 - **Handovers and responsibilities:** publish, acknowledge, then view the receipt; acknowledgement blocked without the review confirmation; an assignment accepted and completed by the recipient, with attribution; a pending request that can't be bypassed; a required title; a recurring responsibility.
 - **Access boundaries:** another household's workspace is denied; a care-circle member can't manage the household.
-- **Visits, places, and mail:** completing a visit names it in History; a return-journey request; a visit question after granting care access; place-search results that aren't hidden behind the footer; a scripted office reply in the shared Inbox.
+- **Visits, places and mail:** completing a visit names it in History; a return-journey request; a visit question after granting care access; place-search results that aren't hidden behind the footer; a scripted office reply in the shared Inbox.
 
-[LOOP.md](LOOP.md) has each failure, its fix, every execution ID, and the known gaps. The plans, run history, and failure bundles are in [`testsprite/`](testsprite/). To set this up on your own Convex app, follow the [recipe](docs/testsprite-convex-recipe.md).
+[LOOP.md](LOOP.md) has each failure, its fix, every execution ID and the known gaps. The plans, run history and failure bundles are in [`testsprite/`](testsprite/). To set this up on your own Convex app, follow the [recipe](docs/testsprite-convex-recipe.md).
 
 ## Repository map
 
