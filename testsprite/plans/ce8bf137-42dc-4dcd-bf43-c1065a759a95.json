@@ -1,0 +1,30 @@
+{
+  "id": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+  "name": "Demo boots an isolated sample household",
+  "description": "Public /demo creates a fictional household and lands on Today with full navigation.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the URL path matches /h/<id>/today and contains ?sample=1",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify a banner starting with 'Fictional sample household' is visible",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the navigation contains Today, Care plan, Records, People, Inbox, Care essentials, Care locations, History and Settings",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.352Z"
+}

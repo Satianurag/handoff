@@ -1,0 +1,50 @@
+{
+  "id": "b59c2a62-de94-415c-854b-34b7a4dc40bf",
+  "name": "A pending assignment request cannot be bypassed with Take this",
+  "description": "After the owner requests Leo for a responsibility, neither the owner nor Leo is offered 'Take this'; Leo is offered 'Accept responsibility'.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Add responsibility', type 'TS water the plants' in 'What needs doing?', choose Kind 'Errand' and save",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Request assignment', choose 'Leo (demo)' as the household member and confirm",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the responsibility detail for 'TS water the plants' does not show a 'Take this' button",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Sample controls', click 'Open recipient role' and open the 'Continue as Leo in a separate tab' link",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the responsibility 'TS water the plants'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify an 'Accept responsibility' button is shown",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify no 'Take this' button is shown for 'TS water the plants'",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T16:26:24.177Z"
+}

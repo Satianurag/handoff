@@ -1,0 +1,1952 @@
+[
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "c8b016d9-30cd-43c8-8238-e66854d0fb56"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "ead56a0a-b976-4dbb-bf89-ccf9aa754f3e"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "failed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "e46d51b6-1085-42ee-9d29-4a9a41917828"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "38bbaa00-aca3-411c-89d0-472ce58030b6"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "7554a009-a775-44a8-b2c2-389019bf2bf0"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "9870016e-0df0-4264-8b41-e444f56cd590"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "5b73d478-9921-49d3-9b9a-d5f361d3e787"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "04ca2614-29a3-4840-9d81-7d83d2cb8f8e"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "failed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "cf03f6c1-aad1-4966-b679-d5f05ac8c990"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "16ada9aa-0985-440a-94d0-d76b090c2192"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "8d566609-dcb7-428b-8633-9776ad4d4465"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "a112fb2e-9227-4bbd-9eea-ff43d2527905"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "98b1dcd7-b647-4346-abe5-ef97e2100584"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "81246f90-e410-4705-9c31-3c74f129b1ca"
+  },
+  {
+    "createdAt": "2026-10-20T11:42:27.265Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "failed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "13cc3b7d-f0a5-40a9-be91-d65dfdb7bfbc"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "9031ed14-51ac-498f-ab49-672610b0d60a"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "f9096cce-9b66-420e-b541-efaaf4bf747d"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "76950a6e-1480-4233-aa73-fb9ceaf7e2f8"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "1698dc6a-df60-4dfa-8cf2-e7cc4610238b"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "d9cf5c4c-0edd-40a8-99b3-e1e646fd1284"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "0a31f93c-3f08-4b92-afb2-9da07cc1901a"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "b9aae318-c6f1-4fad-a82c-276a7a3bb0d8"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "2e110cab-177c-4430-a822-a75869a50857"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "0042830c-0bf4-40a4-b3a0-05a9e240c6d7"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "36fe16c5-bdda-4fb4-ad4c-045d6d870330"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "4281785a-c8f4-4c9d-a445-8f68a9832e30"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "73fa95a3-8455-4b38-a2b8-1357fbdbb683"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "014c3850-8b71-48aa-84aa-a617f9b563e7"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "d1b8849a-4ccd-48c5-87ea-e2d9363852c3"
+  },
+  {
+    "createdAt": "2026-10-20T12:50:30.273Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "3732cfa2-896e-4c5d-84e1-3ddf32ed4175"
+  },
+  {
+    "createdAt": "2026-10-20T13:01:28.084Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "7fd1465a-d48b-4a30-8ce8-a34fe438132c"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "af7f4f46-e2d5-453f-bec3-406db2996061"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "57751b60-e270-4a02-a8ab-1d6bf02af4e7"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "798b5e31-a6e5-474f-b525-882581f14559"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "62ae96a4-17f9-47ee-a60d-11289bc9d123"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "fa9d606f-32a5-490f-9421-6c50bfc38ef3"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "82d5aaae-3fc3-41d0-843a-91240f4d3646"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "1fcafe91-8852-4f5d-9b95-97a5d0a90089"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "debeb94a-68e2-447b-8fc5-407b7b401cf1"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "aa437535-f75b-490c-885d-b779fab2f255"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "5fef4799-9e5a-4970-aeca-894b5f664651"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "30bb49c4-0180-4ffa-b2bb-f07eee9458d9"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "9af3fe89-852d-45ad-be22-4462244338ba"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "8d251c94-5673-46ff-8201-b162e8549cfb"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "a9b88abb-b3c5-4174-bd82-ba502df6fee6"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "3fcd0e40-0eaa-4883-8bb0-9753b3bacd8a"
+  },
+  {
+    "createdAt": "2026-10-20T14:11:03.419Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "a24b9743-9f70-4d9a-9e1e-53fbf82eac12"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "2e9404b2-b1c7-47f0-a102-a17a07eea61b"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "ea49d3ad-7fc7-4169-b86c-63cacc45a576"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "d1eb5eb3-8438-47fa-ba3b-79715a24f611"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "c7a1fd4f-d739-431b-a420-16eab43c2842"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "95ff61ee-951f-4b43-9c84-003e0e8dab2f"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "952447d4-80de-44d1-a5d0-fd236ea0edc2"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "777d31eb-8d1a-48a1-b5f2-7f0ee45da1ba"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "593f8379-de47-4f02-a2d6-fa9c3daba436"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "6f9ba6ee-df7f-499a-bae1-6bbe3cbbd6e7"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "0acdc13c-2648-49d5-a231-38fc7637c10f"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "0b3cf3b7-c4e1-4d82-b7a8-427a628ba758"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "951ef8c5-3e56-4db5-9ae2-9f3e2e5db20f"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "failed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "95e11890-4262-4070-8ab8-3dffd7318a5a"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "cff6442b-c0de-48ad-9801-f1662623fd27"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "b70e0ce6-22e7-4177-942a-21101c66de37"
+  },
+  {
+    "createdAt": "2026-10-20T14:26:36.417Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "blocked",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "b877f36d-a984-4519-b449-57c1e8aa65bd"
+  },
+  {
+    "createdAt": "2026-10-20T14:35:14.226Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "b5c37232-4480-4b1a-83a7-efced78363b4"
+  },
+  {
+    "createdAt": "2026-10-20T14:36:00.653Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://fortunate-moose-341.convex.site",
+    "environment": "fortunate-moose-341",
+    "runId": "064a0c89-fb48-4c7a-91ee-b0ecdaaf20ba"
+  },
+  {
+    "createdAt": "2026-10-20T14:36:58.500Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "d492e54e-1b4d-4a9e-a521-d7c88a04242c"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "feb13d9f-ca18-4b0e-b0ad-aec5b4b7a697"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "f017be8b-8eb2-4244-9ecf-de0e12682944"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "acb6286e-27f7-42f4-a5a3-c0f5b701cbff"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "db586b74-6368-4f61-bc16-5d631331e5b9"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "75c00218-d8cd-47b9-8ca2-ddc27143c81f"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "0b52e13e-6b14-4fe5-9511-c7331d3f4563"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "125ab6d8-da83-439f-8275-9e88553d39a2"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "aeb213e1-860d-460a-b375-c8448f00ec5f"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "f5165bda-7682-4364-9fc7-9ddd4f90d869"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "a20eb1ef-b5d0-4520-a1d5-49c30538173c"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "a28fa51d-d895-4152-97b9-ec099a2a9edb"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "0c20338e-5b03-41cc-9a8e-bb4a800112d8"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "90dc4d10-d193-44f2-a1ab-5b0953a45161"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "0bd1df1b-aee8-4990-9996-eca4c9bd55c1"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "fc653b25-ae06-4b06-9674-f6f1d0569f04"
+  },
+  {
+    "createdAt": "2026-10-20T14:43:44.253Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "cli",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "handoff-pr-10",
+    "runId": "a0ddd87d-e5a9-46cb-8b84-25f58ba19ba8"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "40824999-2ba2-4bcb-8b77-b0b20bd1e101"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "3fdc856f-abb6-480a-af87-8d5f7c2c553b"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "2ca15e4c-beb3-4b5c-a509-4f540a9c53a6"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "d3de277c-224c-4f20-a582-dc61c9a79c4e"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "06fbf1ff-2f2d-4be7-a9dd-452f69956b77"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "8a53d96d-a9dc-49ef-a4ee-7622a919c7df"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "12dd94c1-02d0-4679-8a3b-766ca5b322b5"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "01864363-5c74-4623-b462-c46f2d85bbbe"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "3656c69d-d011-4de0-b52b-1c51f72486dc"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "139a3d2a-ac15-4c89-a28c-124ce508b048"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "69ea69bf-5ae7-4b25-9bd6-50fb38eaacd5"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "50fe0a39-4d43-4f19-b416-c7ffe1159029"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "f431ab79-9d89-46b1-80ff-155439ca910d"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "41b05065-2cb2-4358-afbc-14e74eaa8965"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "792ce151-948c-4237-b87f-24bb6502fbbd"
+  },
+  {
+    "createdAt": "2026-10-20T14:49:55.181Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-10.satimon.com",
+    "environment": "github-pr-10",
+    "runId": "4eb5182f-be20-47bc-9ae0-bb1acf66cd75"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "aeec1cb1-1aae-45b3-879c-e4cf49727196"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "c398f1e2-4b3e-4a09-af24-56241547d19a"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "e44f40fd-f85f-446e-a973-740c05e26c62"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "3f3b45d0-91cd-4668-94c2-1c21a0a18713"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "8c754891-e406-49cf-b3b8-1ae49705463a"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "4d2a6519-38df-4b38-b7ea-8f700ca8df63"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "c983b1df-19d0-41b9-8b5f-0705316ebc47"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "failed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "099f367d-efca-4eea-bbdb-2cad176736cf"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "5111f8e7-0090-433a-a723-f20f1892a7d4"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "eac2671b-5c3f-4d4f-a61e-40b72d32026f"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "c8da96b1-04c5-4378-9404-fc672dc6d021"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "0ec32e5a-b63c-41f6-ba9b-3d096df636c8"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "22565564-a4ba-4c16-85f5-2e1d47270718"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "f0836143-9d6d-4494-b898-103065ac7c21"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "c702b4ea-4494-4792-93fa-6e2d8dcb7d1f"
+  },
+  {
+    "createdAt": "2026-10-20T15:03:59.330Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "abe55a6b-75c4-4435-8922-cde5979dc04d"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "ae2def3b-4b59-475f-8cf8-c208466b54dd"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "38447f14-a77e-4762-ab75-ef4145409359"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "88f73a41-4582-499f-845a-b5433de19d3f"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "e41f8d21-acc7-48da-a4a8-bc545a9f224b"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "f3b510d8-4588-4f67-809f-857f6fa72f27"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "a6c0cbc0-0ea5-480a-9fd2-2c6e7a8b53e8"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "914ad859-8296-410a-99c8-7e0fa70479ed"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "a14ed0be-f305-4884-ace8-b608b6116afb"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "9e35d0b7-f520-4db1-8794-b5ae4c609658"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "e91a5ecb-59d0-461c-8669-99768662c167"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "220629ef-0ffe-48eb-944c-98eeda4f8883"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "cb2c1e4d-9493-4e04-b952-0d47721e1f93"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "8c804c35-39a3-4ab9-aa31-e91187a7438f"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "9edf7200-460a-4323-b093-c9f04f22459d"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "6f8e52d7-8f06-46b8-aea4-a10c451df446"
+  },
+  {
+    "createdAt": "2026-10-20T15:11:31.051Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "e9ba3007-83f3-4d61-961f-bd5d685d208a"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "ca139747-d907-4dac-911e-b2924b2294a8"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "2f4bdefc-bbd7-4100-813c-7045308b8f8f"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "f1e12e60-f823-4624-a4bc-0c3ea17bf3ef"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "58bf57ef-75f3-436b-90b1-8f8b97009584"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "065f7e56-81ed-412b-808d-1901866f7641"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "34e3ff90-dd39-493e-ad89-2d0cafc34634"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "e03e9d30-d4ca-4b8a-9a7f-23cfbcf1acb1"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "794fe290-171d-4cea-b6c0-a2885c0dbd08"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "cc9555c0-e709-4e5b-a041-a4153c0cca24"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "cf23d34b-167c-4766-abd4-8394aea38d11"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "01b6430e-193a-4f31-95b4-0407a36f171d"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "73e6dcb2-43f5-4ca0-8cbf-bbd09e9c9d68"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "139420ac-6e5d-4d18-b787-cc874731f3d8"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "6a86cd84-cf18-4423-b4bd-eeebc0a84c73"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "46b161e1-2d1f-480e-acfc-91df4e43eaa0"
+  },
+  {
+    "createdAt": "2026-10-20T15:43:36.712Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-8.satimon.com",
+    "environment": "github-pr-8",
+    "runId": "8af6906c-57cc-45c9-907a-b6256741fae3"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "05d9061c-0b80-4b4b-a1d4-5f1a25700632"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "88fd44c1-5fe1-4d06-97a1-087f6384cd5c"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "60a31407-5441-427b-9a5d-c82e4e391116"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "21a136a8-ac91-4c16-9edc-3c5bf07cb5f0"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "23c67ec4-0768-48ba-8864-09259625bee4"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "9d28d75f-5e08-4044-af3e-1c170d38f38a"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "e23d8de5-2a39-4aa8-8cd2-d2e839df685d"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "132ad993-242e-4642-9357-46bf750bdacb"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "9e29e503-c7c3-48c0-a25e-1ef8e036c592"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "375b7174-0adc-4d92-9671-94f1ed8a1b58"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "8e1d0cdf-8fe9-4a8a-a2ee-7fb721ad0d8e"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "1a1c6e68-24a5-4ee2-9f73-5d0d17c548bb"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "7992e3a9-bf0f-416c-aeb1-683f0c30fae4"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "c455b5cb-a98a-4e58-9b26-85ea36cf2997"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "051e5e54-4965-4adf-897c-d8780930d989"
+  },
+  {
+    "createdAt": "2026-10-20T15:50:38.346Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "41f596d0-4ae5-479f-98b3-04883c03131f"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "a4fd368f-ac65-41ee-8242-a25abe02c8aa"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "a04201f3-77c5-417d-a018-d64d40d088ac"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "68743340-36e6-42e7-985a-5ee4e2862a73"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "effd3c25-ea1e-44c9-bfa7-bafb4c67cb98"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "50294c6c-3a9b-48fc-82a7-59f29df534ff"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "09ea3a59-9e6d-4b00-a34a-20f93813742a"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "f2c93519-53f9-412c-8f4d-1938c2f1d54e"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "6dd37257-2d4c-4948-be78-4dc3ffb3945a"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "a7ad310d-1a9c-4f3e-8a81-b981ba9f5b92"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "a7fd88cf-6f93-4199-94f2-c996fb43d47f"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "33f760ce-d074-4426-9e2d-013c8881ee6f"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "3b829fb7-615c-47a7-bc0d-d3ab1b8f928d"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "1222ebb2-1882-4bb4-9afd-153995ed51e5"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "02cd4f81-7abe-4983-aae4-fb02371b1790"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "ea2a7199-1101-4bf8-8a56-ef20c7819087"
+  },
+  {
+    "createdAt": "2026-10-20T16:20:30.557Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://handoff-pr-11.satimon.com",
+    "environment": "github-pr-11",
+    "runId": "064e463c-b8db-489a-aa2a-e770eb46b847"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "b59c2a62-de94-415c-854b-34b7a4dc40bf",
+    "test": "A pending assignment request cannot be bypassed with Take this",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "6f8d0eac-8f04-498f-966a-186df22c6363"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "17eecef2-485a-46b9-8179-4942f1a280bf",
+    "test": "Add a visit question after granting care access",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "582449af-bb54-4e8c-ad73-1d7d66ffdc59"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+    "test": "Care-circle member cannot manage the household",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "416142f1-bf5b-4cca-a70e-1f1deba94dfd"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+    "test": "Place search returns selectable, fully visible results",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "ea70d64f-6827-48ad-be6d-04a9c18e4d6b"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+    "test": "Sample office message arrives in the shared Inbox",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "2cbd679e-2bf1-4e87-b454-eeab68d328c6"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "f4787787-90e8-4b27-8968-f39d66b0328d",
+    "test": "Unknown route shows a helpful not-found page",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "d1209d56-adf6-40b9-956f-1771e85209e5"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+    "test": "Signed-out deep link redirects to sign-in and keeps the destination",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "421b8064-4559-4cc8-b14d-d6c1c0c137f1"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+    "test": "Another household's workspace is denied",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "681187cd-f65d-4ed3-a798-dc5595b654b1"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+    "test": "Responsibility assignment is accepted and completed by the recipient with attribution",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "da68fb68-5c33-4827-8188-90eb32bce673"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "991855f0-3e42-4d65-b9de-26049722923f",
+    "test": "Responsibility requires a title",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "fe72a623-0b6c-4ab4-8d40-a18a8d1c0b35"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+    "test": "Used role link explains it was already used",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "e6ea077e-4621-494f-9cad-df693e707bc1"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+    "test": "Handover cannot be acknowledged without the review confirmation",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "d6ebb668-1ba4-40eb-a7b7-e91d1d46730c"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "ea32770a-546a-4e65-b019-66160c9a9030",
+    "test": "Handover is published, acknowledged by the recipient and receipted",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "94648b22-2591-48f7-b180-850e1a528998"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+    "test": "Demo boots an isolated sample household",
+    "status": "passed",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "3f4abd3b-5234-4a40-aaf6-4eafc5363e73"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+    "test": "Create a return journey request",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "0a104f46-4b43-4279-8b4d-78f46cc1f547"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "a459915c-a924-45d2-9803-f53d5791073e",
+    "test": "Create a recurring responsibility",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "c2815208-0fb0-45c2-aa50-32957bbee884"
+  },
+  {
+    "createdAt": "2026-10-20T16:26:56.417Z",
+    "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+    "test": "Complete the visit from the details panel",
+    "status": "running",
+    "source": "github_action",
+    "targetUrl": "https://admired-fish-176.convex.site",
+    "environment": "default",
+    "runId": "a40feaf4-2293-4f8b-84d4-41ea18342c98"
+  }
+]

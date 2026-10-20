@@ -1,0 +1,25 @@
+{
+  "id": "43f11454-3e80-4ffe-a12e-8fdf993091a4",
+  "name": "Signed-out deep link redirects to sign-in and keeps the destination",
+  "description": "Unauthenticated access to a workspace URL redirects to sign-in with next=.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "In a fresh browser context, navigate to /h/mh7b7g3c9gk36s0e4g265gf0518gn5ht/today",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the URL is /sign-in with a next parameter containing the original /h/ path",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify an 'Email address' field is shown and no household content is visible",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.427Z"
+}

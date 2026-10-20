@@ -1,0 +1,70 @@
+{
+  "id": "ea32770a-546a-4e65-b019-66160c9a9030",
+  "name": "Handover is published, acknowledged by the recipient and receipted",
+  "description": "Owner publishes a handover to Leo; Leo acknowledges through the one-use role link; both see the receipt.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Prepare handover'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "In 'Who takes over?' choose 'Leo (demo)'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Type 'TS handover: morning medication and Thursday ride' in the handover note field",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Publish for review' and confirm publishing in the dialog if one appears",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the handover status shows 'Awaiting acceptance'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Sample controls' and click 'Open recipient role'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the 'Continue as Leo in a separate tab' link and continue in the page that opens",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the handover that is awaiting Leo's review",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Tick the review confirmation checkbox, then click 'Acknowledge only'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify a receipt starting with 'Accepted' and a date is shown",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the text 'Your accepted handover is saved.' is shown",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.363Z"
+}

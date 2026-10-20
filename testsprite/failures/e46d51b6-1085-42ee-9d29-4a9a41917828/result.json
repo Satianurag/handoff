@@ -1,0 +1,23 @@
+{
+  "testId": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+  "status": "failed",
+  "startedAt": "2026-10-20T11:42:27.265Z",
+  "finishedAt": "2026-10-20T11:44:21.372Z",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_924fb123cf4ab407",
+  "runIdIfAvailable": "e46d51b6-1085-42ee-9d29-4a9a41917828",
+  "codeVersion": null,
+  "targetUrl": "https://admired-fish-176.convex.site",
+  "targetUrlSource": null,
+  "environment": {
+    "id": "8a1625ee-0aea-49ae-b014-15d0521a1be5",
+    "name": "default"
+  },
+  "failedStepIndex": 9,
+  "failureKind": "assertion",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (assertion) on step 9: The hosting-side email/inbox service appears to have hit its storage quota or mailbox limit, causing message creation/delivery to fail. Because the inbox is full, the scripted office conversation is never persisted, so the All view remains empty and the message body cannot be verified. Underlying error: TEST FAILURE\n\nThe Inbox shows a mailbox-capacity warning, and the scripted office conversation did not appear. Its message body could not be verified.\n\nObservations…",
+  "apiOutput": null,
+  "trace": null
+}

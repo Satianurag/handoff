@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 11,
+    "summary": "Step 11 'History identifies the completed visit as “Sample Clinic logistics visit.”' failed. Error: TEST FAILURE\n\nThe visit was successfully marked complete and no longer appears as upcoming, but the completed-history entry does not identify which visit was completed, so its listing as “Sample Clinic logistics visit” could not be verified by name.\n\nObservations:\n- The visit details showed the status “completed.”\n- Today showed “No upcoming visit added.”\n- History showed a “Visit completed” event attributed to Leo (demo), but no visit title was visible.",
+    "path": "steps/11-snapshot.html"
+  }
+]

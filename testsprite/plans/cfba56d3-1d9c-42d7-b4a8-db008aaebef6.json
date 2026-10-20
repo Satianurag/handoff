@@ -1,0 +1,50 @@
+{
+  "id": "cfba56d3-1d9c-42d7-b4a8-db008aaebef6",
+  "name": "Sample office message arrives in the shared Inbox",
+  "description": "Inbox works in the sample household and a scripted office message lands in it.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Inbox'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify no warning about email setup waiting for capacity or a mailbox limit is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Sample controls' and click 'Receive office message'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Inbox' and choose the 'New' or 'All' view",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify a conversation from the sample office is listed",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open that conversation",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the message body contains 'SYNTHETIC DEMO'",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.448Z"
+}

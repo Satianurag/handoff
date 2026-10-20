@@ -1,0 +1,20 @@
+{
+  "rootCauseHypothesis": "The hosting-side link-opening endpoint is likely treating an expired or already-consumed recipient token as a generic fetch/open failure, so the frontend falls back to the default connection-error screen (“We couldn’t open your space”) rather than a specific “already used or expired” explanation. This can happen if token state is not persisted or checked correctly on the server, if the route returns the wrong status/code for invalid invites, or if the host is masking application errors behind a generic network error page. Underlying error: TEST FAILURE\n\nReopening the recipient link did not explain that it had already been used or expired. Instead, the page said, “We couldn’t open your space. Check your connection and try again.”\n\nObservations:\n- The heading was “A small pause.”\n- The page displayed “We couldn’t open your space. Check your connection and try again.”\n- No used-or-expired explanation was shown.",
+  "recommendedFixTarget": {
+    "kind": "code",
+    "reference": null,
+    "rationale": "Update the recipient-link validation flow on the host so that expired/previously-used tokens are detected and mapped to a dedicated “already used or expired” state before the generic network/error fallback. This likely means fixing the backend route or edge function that opens the space link: ensure the invite/recipient token is looked up and its status is checked, return a 4xx response with a specific error code/message for consumed or expired links, and have the frontend render that message instead of the generic “couldn’t open your space” copy. Also verify server-side session/cookie handling and any CDN/rewrites aren’t causing valid-but-invalidated links to be treated as connectivity failures."
+  },
+  "evidence": [
+    {
+      "kind": "snapshot",
+      "stepIndex": 6,
+      "summary": "Step 6 'Navigate to https://admired-fish-176.convex.site/demo/join#lnxM6srZTK_Jh2He7bf6bOBNgmQB_1Q_HdStDylN9Qo' passed (captured at 2026-10-20T11:43:31.713Z)."
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 7,
+      "summary": "Step 7 'The page should explain that the role link was already used or expired and offer a way forward.' failed. Error: TEST FAILURE\n\nReopening the recipient link did not explain that it had already been used or expired. Instead, the page said, “We couldn’t open your space. Check your connection and try again.”\n\nObservations:\n- The heading was “A small pause.”\n- The page displayed “We couldn’t open your space. Check your connection and try again.”\n- No used-or-expired explanation was shown."
+    }
+  ]
+}

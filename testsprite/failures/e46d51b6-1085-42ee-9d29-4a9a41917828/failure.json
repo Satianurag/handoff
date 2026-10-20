@@ -1,0 +1,25 @@
+{
+  "rootCauseHypothesis": "The hosting-side email/inbox service appears to have hit its storage quota or mailbox limit, causing message creation/delivery to fail. Because the inbox is full, the scripted office conversation is never persisted, so the All view remains empty and the message body cannot be verified. Underlying error: TEST FAILURE\n\nThe Inbox shows a mailbox-capacity warning, and the scripted office conversation did not appear. Its message body could not be verified.\n\nObservations:\n- The Inbox displays “Email setup is waiting for capacity” and says the email service has reached its mailbox limit.\n- After “Receive office message” was clicked twice, the Inbox’s All view still showed “No conversations in this view.”",
+  "recommendedFixTarget": {
+    "kind": "unknown",
+    "reference": null,
+    "rationale": "Increase the mailbox/account capacity for the email service used by the Inbox, or clear/expire old messages so new scripted office messages can be delivered. Verify the backend route that creates the office conversation is not blocked by the capacity gate and that clicking “Receive office message” enqueues/persists the message even when the inbox is near limit. If capacity is intentionally enforced, raise the limit or change the UI flow to reserve space for system-generated conversation messages."
+  },
+  "evidence": [
+    {
+      "kind": "snapshot",
+      "stepIndex": 8,
+      "summary": "Step 8 'Click 'Receive office message button'' passed (captured at 2026-10-20T11:43:50.740Z)."
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 9,
+      "summary": "Step 9 'The Inbox should not show an email-capacity or mailbox-limit warning.' failed. Error: TEST FAILURE\n\nThe Inbox shows a mailbox-capacity warning, and the scripted office conversation did not appear. Its message body could not be verified.\n\nObservations:\n- The Inbox displays “Email setup is waiting for capacity” and says the email service has reached its mailbox limit.\n- After “Receive office message” was clicked twice, the Inbox’s All view still showed “No conversations in this view.”"
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 10,
+      "summary": "Step 10 'A conversation from the sample office should be listed in the Inbox.' failed. Error: TEST FAILURE\n\nThe Inbox shows a mailbox-capacity warning, and the scripted office conversation did not appear. Its message body could not be verified.\n\nObservations:\n- The Inbox displays “Email setup is waiting for capacity” and says the email service has reached its mailbox limit.\n- After “Receive office message” was clicked twice, the Inbox’s All view still showed “No conversations in this view.”"
+    }
+  ]
+}

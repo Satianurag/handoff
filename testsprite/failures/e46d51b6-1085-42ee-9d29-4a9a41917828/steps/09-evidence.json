@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 9,
+    "summary": "Step 9 'The Inbox should not show an email-capacity or mailbox-limit warning.' failed. Error: TEST FAILURE\n\nThe Inbox shows a mailbox-capacity warning, and the scripted office conversation did not appear. Its message body could not be verified.\n\nObservations:\n- The Inbox displays “Email setup is waiting for capacity” and says the email service has reached its mailbox limit.\n- After “Receive office message” was clicked twice, the Inbox’s All view still showed “No conversations in this view.”",
+    "path": "steps/09-snapshot.html"
+  }
+]

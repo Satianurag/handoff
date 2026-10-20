@@ -1,0 +1,45 @@
+{
+  "id": "12a8c2a2-12c1-4d41-9d32-e0c0ad015d57",
+  "name": "Place search returns selectable, fully visible results",
+  "description": "Searching a public clinic lists results that are readable and selectable.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Care locations' and click 'Add place'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Type 'Mayo Clinic Rochester' in 'Find a public clinic or pharmacy' and click 'Search places'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify 'Mayo Clinic Saint Marys Campus' appears in the results",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify every listed result, including the last one, is fully visible and not covered by a footer or other fixed element",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Select 'Mayo Clinic Saint Marys Campus'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the text 'Location selected.' is shown and 'Confirmed address' contains '1216 2nd Street Southwest'",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.457Z"
+}

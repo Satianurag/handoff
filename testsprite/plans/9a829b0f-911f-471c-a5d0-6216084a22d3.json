@@ -1,0 +1,45 @@
+{
+  "id": "9a829b0f-911f-471c-a5d0-6216084a22d3",
+  "name": "Care-circle member cannot manage the household",
+  "description": "Leo (care circle) sees no owner-only controls.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Sample controls', click 'Open recipient role' and open the 'Continue as Leo in a separate tab' link",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'People'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify 'Maya (demo)' is shown as 'Household owner' and 'Leo (demo) (you)' as 'Care circle'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify no invite or remove-member control is available to Leo",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Settings'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify Settings shows 'Owner: Maya (demo)' and Leo cannot change owner-only household settings",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.467Z"
+}

@@ -1,0 +1,70 @@
+{
+  "id": "de0c4563-1e4c-410c-b732-87bcb52cb002",
+  "name": "Create a return journey request",
+  "description": "Verify a user can schedule and submit a return journey for a clinic visit.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to the public demo flow in a fresh browser context",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the sample family using the sample controls",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the upcoming clinic visit details",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the return journey creation flow",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Fill in the responsibility field with a synthetic return ride plan",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Select a valid date for the return journey",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Select a valid time for the return journey",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Fill in the practical details field with a synthetic note about confirming pickup details",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Select a person to ask to drive",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Submit the return journey request",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the return journey is shown as created for the visit",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the named driver is associated with the return journey",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:16.754Z"
+}

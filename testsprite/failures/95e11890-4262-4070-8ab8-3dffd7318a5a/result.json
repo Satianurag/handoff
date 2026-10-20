@@ -1,0 +1,23 @@
+{
+  "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+  "status": "failed",
+  "startedAt": "2026-10-20T14:26:36.417Z",
+  "finishedAt": "2026-10-20T14:28:12.717Z",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_9dd6216350204626",
+  "runIdIfAvailable": "95e11890-4262-4070-8ab8-3dffd7318a5a",
+  "codeVersion": null,
+  "targetUrl": "https://handoff-pr-10.satimon.com",
+  "targetUrlSource": null,
+  "environment": {
+    "id": "a8ba8030-d4f6-4682-ae95-fcca74f7e081",
+    "name": "github-pr-10"
+  },
+  "failedStepIndex": 3,
+  "failureKind": "assertion",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (assertion) on step 3: The public sample-family demo is stuck on its loading state because the hosted app is not finishing the startup workflow that should transition /demo into the Today page. The most likely hosting-side issue is a broken or unavailable backend/bootstrap dependency in production (missing env vars, failed API call, redirect loop, auth/session cookie issue, or stale deployment assets), which prevents the client from resolving the demo household and performing the navigat…",
+  "apiOutput": null,
+  "trace": null
+}

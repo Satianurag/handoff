@@ -1,0 +1,23 @@
+{
+  "testId": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+  "status": "failed",
+  "startedAt": "2026-10-20T15:03:59.330Z",
+  "finishedAt": "2026-10-20T15:08:00.632Z",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_5c86ff31e2c9d10b",
+  "runIdIfAvailable": "099f367d-efca-4eea-bbdb-2cad176736cf",
+  "codeVersion": null,
+  "targetUrl": "https://admired-fish-176.convex.site",
+  "targetUrlSource": null,
+  "environment": {
+    "id": "8a1625ee-0aea-49ae-b014-15d0521a1be5",
+    "name": "default"
+  },
+  "failedStepIndex": 21,
+  "failureKind": "assertion",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (assertion): The hosting side appears to be serving a version of the app where the responsibility-acceptance event is misclassified or mislabeled. When Leo (demo) accepts/takes the assigned responsibility, the system records it as “Responsibility taken” rather than emitting/displaying the expected “Responsibility assignment accepted” event. This suggests a regression in event creation, enum-to-label mapping, or history UI rendering, causing the test to fail because the expected acceptanc… Target: environment default (https://admired-fish-176.convex.site).",
+  "apiOutput": null,
+  "trace": null
+}

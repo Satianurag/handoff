@@ -1,0 +1,30 @@
+{
+  "id": "c6f0f64a-5c18-4fa3-b164-5cee8c66dcb0",
+  "name": "Another household's workspace is denied",
+  "description": "A sample session cannot open a household it does not belong to.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Navigate to /h/mh7aaaaaaaaaaaaaaaaaaaaaaaaaaaaa/today?sample=1",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the page states this space is not available to the user",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify no household data such as responsibilities, records or people from another household is shown",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.416Z"
+}

@@ -1,0 +1,60 @@
+{
+  "id": "a459915c-a924-45d2-9803-f53d5791073e",
+  "name": "Create a recurring responsibility",
+  "description": "Validates that a new recurring responsibility can be created from the recurring responsibilities page.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to the public demo flow in a fresh browser context.",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Use Sample controls to open the recipient role.",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Navigate to the Care plan recurring responsibilities view.",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click the add recurring responsibility action.",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Fill a recurring responsibility name into the responsibility field.",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Select a valid recurring kind.",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Select a valid repeat cadence.",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Submit the recurring responsibility form.",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the new recurring responsibility appears in the active rules list.",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the recurring responsibility is shown as active.",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:16.754Z"
+}

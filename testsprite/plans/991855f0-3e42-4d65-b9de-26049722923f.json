@@ -1,0 +1,40 @@
+{
+  "id": "991855f0-3e42-4d65-b9de-26049722923f",
+  "name": "Responsibility requires a title",
+  "description": "Saving a responsibility with an empty title is blocked.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Add responsibility'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Leave 'What needs doing?' empty and submit the form",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the form stays open and the empty 'What needs doing?' field is flagged as required",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Close the form and open 'Care plan'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify no new untitled responsibility was added",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.396Z"
+}

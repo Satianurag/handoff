@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "cli-v1",
+  "snapshotId": "snap_9dd6216350204626",
+  "testId": "ce8bf137-42dc-4dcd-bf43-c1065a759a95",
+  "projectId": "98d946ba-f237-453f-b6e5-2b1fea4ca0fa",
+  "codeVersion": "v12.0",
+  "runIdIfAvailable": "95e11890-4262-4070-8ab8-3dffd7318a5a",
+  "targetUrl": "https://handoff-pr-10.satimon.com",
+  "failedStepIndex": 3,
+  "failureKind": "assertion",
+  "capturedAt": "2026-10-20T14:28:12.717Z",
+  "fetchedAt": "2026-10-20T16:16:35.434Z"
+}

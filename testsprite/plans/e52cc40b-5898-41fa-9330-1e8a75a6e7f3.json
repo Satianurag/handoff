@@ -1,0 +1,40 @@
+{
+  "id": "e52cc40b-5898-41fa-9330-1e8a75a6e7f3",
+  "name": "Handover cannot be acknowledged without the review confirmation",
+  "description": "Recipient must tick the review checkbox before acknowledging.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Prepare handover', choose 'Leo (demo)' in 'Who takes over?', type 'TS negative handover' as the note and click 'Publish for review' (confirm the dialog if shown)",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Sample controls', click 'Open recipient role' and open the 'Continue as Leo in a separate tab' link",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the handover awaiting review and click 'Acknowledge only' WITHOUT ticking the review checkbox",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify a validation message asks to check the box before proceeding",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify no 'Accepted' receipt is shown for this handover",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.374Z"
+}

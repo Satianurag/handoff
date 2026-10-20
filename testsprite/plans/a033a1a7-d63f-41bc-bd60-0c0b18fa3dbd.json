@@ -1,0 +1,40 @@
+{
+  "id": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+  "name": "Used role link explains it was already used",
+  "description": "Reopening a one-use role link must say the link was used or expired, not blame the connection.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Sample controls' and click 'Open recipient role'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Copy the URL of the 'Continue as Leo in a separate tab' link, then open it and wait for Leo's workspace",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Navigate to the same copied link URL again",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the page explains the role link was already used or has expired and offers a way forward",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the page does NOT say 'Check your connection and try again'",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.386Z"
+}

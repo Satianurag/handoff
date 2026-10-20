@@ -1,0 +1,50 @@
+{
+  "id": "17eecef2-485a-46b9-8179-4942f1a280bf",
+  "name": "Add a visit question after granting care access",
+  "description": "Visit preparation is private care information: it stays locked until care essentials name who may see it. As the sample household creator, set up care essentials, then add a question to the upcoming Sample Clinic visit and verify it is listed as still to ask.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown. Stay in this primary role; do not open Sample controls or the recipient role",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Care essentials' from the navigation and click the 'Set up care essentials' button",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "In the 'Set up care essentials' dialog, type 'Sample Parent' into 'Preferred name' and 'Sample Parent asked me to coordinate appointments.' into 'Your permission to coordinate care', leave the other fields as they are, then click 'Save'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the 'Set up care essentials' dialog has closed",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Navigate to the Visits list (the 'Agenda' area, or the /visits path keeping ?sample=1), open 'Sample Clinic logistics visit', then click 'Prepare visit & follow up'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the 'Visit preparation' page shows a 'Questions for the visit' section with an 'Add question' button and does not show 'Set up care essentials first.'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Add question', type 'Should the morning walk continue after the visit?' into the 'Question' field, leave Status as 'Still to ask', and save the dialog",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify 'Should the morning walk continue after the visit?' is listed under 'Questions for the visit' with the badge 'Still to ask'",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T13:01:27.910Z"
+}

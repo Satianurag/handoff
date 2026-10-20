@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 22,
+    "summary": "Step 22 'History attributes the responsibility completion to Leo (demo).' failed. Error: TEST FAILURE\n\nHistory confirms that “TS pick up prescription” was completed by Leo (demo), but the expected “Responsibility assignment accepted” event was not displayed. Instead, History shows “Responsibility taken” attributed to Leo (demo).\n\nObservations:\n- “Responsibility completed · TS pick up prescription” — Leo (demo)\n- “Responsibility taken · TS pick up prescription” — Leo (demo)\n- No “Responsibility assignment accepted” entry was visible.",
+    "path": "steps/22-snapshot.html"
+  }
+]

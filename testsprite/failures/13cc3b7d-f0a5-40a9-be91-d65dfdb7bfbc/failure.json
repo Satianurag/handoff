@@ -1,0 +1,20 @@
+{
+  "rootCauseHypothesis": "The completion workflow is likely recording only a generic “Visit completed” activity without associating or rendering the specific visit title in the history entry. As a result, the visit is marked complete and removed from upcoming, but the audit/history view lacks the identifying name needed for verification. Underlying error: TEST FAILURE\n\nThe visit was successfully marked complete and no longer appears as upcoming, but the completed-history entry does not identify which visit was completed, so its listing as “Sample Clinic logistics visit” could not be verified by name.\n\nObservations:\n- The visit details showed the status “completed.”\n- Today showed “No upcoming visit added.”\n- History showed a “Visit completed” event attributed to Leo (demo), but no visit title was visible.",
+  "recommendedFixTarget": {
+    "kind": "unknown",
+    "reference": null,
+    "rationale": "Update the visit-completion history UI/templating on the hosting side so the completed-history row includes the visit’s title/name (e.g., “Sample Clinic logistics visit”) rather than only the generic event label and user. This likely means passing the visit record/title into the activity feed entry, persisting it in the completion event payload, and rendering it in the history list for completed visits. Also verify the data returned by the API/SSR includes the completed visit name so the client can display it reliably."
+  },
+  "evidence": [
+    {
+      "kind": "snapshot",
+      "stepIndex": 10,
+      "summary": "Step 10 'Click 'History link'' passed (captured at 2026-10-20T11:44:01.401Z)."
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 11,
+      "summary": "Step 11 'History identifies the completed visit as “Sample Clinic logistics visit.”' failed. Error: TEST FAILURE\n\nThe visit was successfully marked complete and no longer appears as upcoming, but the completed-history entry does not identify which visit was completed, so its listing as “Sample Clinic logistics visit” could not be verified by name.\n\nObservations:\n- The visit details showed the status “completed.”\n- Today showed “No upcoming visit added.”\n- History showed a “Visit completed” event attributed to Leo (demo), but no visit title was visible."
+    }
+  ]
+}

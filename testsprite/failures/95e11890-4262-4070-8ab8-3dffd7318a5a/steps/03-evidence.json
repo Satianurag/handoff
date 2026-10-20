@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 3,
+    "summary": "Step 3 'The sample demo opens at the Today URL with the sample query parameter.' failed. Error: TEST FAILURE\n\nThe public sample-family demo remained on its loading screen instead of opening the Today page. The requested Today URL, fictional-household banner, and navigation could not be verified.\n\nObservations:\n- The page displayed “One moment.” and “Opening your space…” after multiple waits.\n- The browser remained at `/demo`; no Today page appeared.",
+    "path": "steps/03-snapshot.html"
+  }
+]

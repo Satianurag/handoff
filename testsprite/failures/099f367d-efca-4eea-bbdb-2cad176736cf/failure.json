@@ -1,0 +1,25 @@
+{
+  "rootCauseHypothesis": "The hosting side appears to be serving a version of the app where the responsibility-acceptance event is misclassified or mislabeled. When Leo (demo) accepts/takes the assigned responsibility, the system records it as “Responsibility taken” rather than emitting/displaying the expected “Responsibility assignment accepted” event. This suggests a regression in event creation, enum-to-label mapping, or history UI rendering, causing the test to fail because the expected acceptance event never appears. Underlying error: TEST FAILURE\n\nHistory confirms that “TS pick up prescription” was completed by Leo (demo), but the expected “Responsibility assignment accepted” event was not displayed. Instead, History shows “Responsibility taken” attributed to Leo (demo).\n\nObservations:\n- “Responsibility completed · TS pick up prescription” — Leo (demo)\n- “Responsibility taken · TS pick up prescription” — Leo (demo)\n- No “Responsibility assignment accepted” entry was visible.",
+  "recommendedFixTarget": {
+    "kind": "unknown",
+    "reference": null,
+    "rationale": "Adjust the hosted app’s responsibility workflow so the action performed by the assignee is recorded and rendered as the canonical event “Responsibility assignment accepted” instead of (or in addition to) “Responsibility taken.” This likely means fixing the backend/event-mapping or frontend history-labeling logic that currently emits the wrong event type/name for accepted assignments. Also ensure any client-side cache or history-rendering code is updated so the accepted-assignment event is displayed in the History timeline after completion."
+  },
+  "evidence": [
+    {
+      "kind": "snapshot",
+      "stepIndex": 20,
+      "summary": "Step 20 'Click 'History link'' passed (captured at 2026-10-20T15:07:20.049Z)."
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 21,
+      "summary": "Step 21 'The completed responsibility lists Leo (demo) as responsible.' failed. Error: TEST FAILURE\n\nHistory confirms that “TS pick up prescription” was completed by Leo (demo), but the expected “Responsibility assignment accepted” event was not displayed. Instead, History shows “Responsibility taken” attributed to Leo (demo).\n\nObservations:\n- “Responsibility completed · TS pick up prescription” — Leo (demo)\n- “Responsibility taken · TS pick up prescription” — Leo (demo)\n- No “Responsibility assignment accepted” entry was visible."
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 22,
+      "summary": "Step 22 'History attributes the responsibility completion to Leo (demo).' failed. Error: TEST FAILURE\n\nHistory confirms that “TS pick up prescription” was completed by Leo (demo), but the expected “Responsibility assignment accepted” event was not displayed. Instead, History shows “Responsibility taken” attributed to Leo (demo).\n\nObservations:\n- “Responsibility completed · TS pick up prescription” — Leo (demo)\n- “Responsibility taken · TS pick up prescription” — Leo (demo)\n- No “Responsibility assignment accepted” entry was visible."
+    }
+  ]
+}

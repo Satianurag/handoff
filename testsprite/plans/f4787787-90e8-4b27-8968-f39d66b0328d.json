@@ -1,0 +1,25 @@
+{
+  "id": "f4787787-90e8-4b27-8968-f39d66b0328d",
+  "name": "Unknown route shows a helpful not-found page",
+  "description": "",
+  "type": "frontend",
+  "priority": "Low",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /does-not-exist",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the heading 'Page not found.' is shown",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify a link 'Open my households' is shown",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.438Z"
+}

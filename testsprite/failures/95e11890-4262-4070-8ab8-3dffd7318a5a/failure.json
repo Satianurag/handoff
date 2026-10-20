@@ -1,0 +1,20 @@
+{
+  "rootCauseHypothesis": "The public sample-family demo is stuck on its loading state because the hosted app is not finishing the startup workflow that should transition /demo into the Today page. The most likely hosting-side issue is a broken or unavailable backend/bootstrap dependency in production (missing env vars, failed API call, redirect loop, auth/session cookie issue, or stale deployment assets), which prevents the client from resolving the demo household and performing the navigation to Today. Underlying error: TEST FAILURE\n\nThe public sample-family demo remained on its loading screen instead of opening the Today page. The requested Today URL, fictional-household banner, and navigation could not be verified.\n\nObservations:\n- The page displayed “One moment.” and “Opening your space…” after multiple waits.\n- The browser remained at `/demo`; no Today page appeared.",
+  "recommendedFixTarget": {
+    "kind": "env",
+    "reference": "/demo",
+    "rationale": "Investigate the /demo route initialization on the hosting side: the client likely never completes the redirect/opening flow to the Today page because a required API/auth/session/bootstrap request is failing, timing out, or being blocked in production. Check serverless/edge logs for errors around demo-space creation or route resolution, verify environment variables and backend endpoints used by the demo flow, and ensure the deployed build includes the latest client bundle and routing logic. If the app depends on a post-load navigation after async setup, add a fallback so the demo route can still render the Today page when the bootstrap response is slow or unavailable, and confirm the host supports the needed cookies/redirects/CORS for the demo domain."
+  },
+  "evidence": [
+    {
+      "kind": "snapshot",
+      "stepIndex": 2,
+      "summary": "Step 2 'Click 'Explore a sample family ↗ link'' passed (captured at 2026-10-20T14:26:50.140Z)."
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 3,
+      "summary": "Step 3 'The sample demo opens at the Today URL with the sample query parameter.' failed. Error: TEST FAILURE\n\nThe public sample-family demo remained on its loading screen instead of opening the Today page. The requested Today URL, fictional-household banner, and navigation could not be verified.\n\nObservations:\n- The page displayed “One moment.” and “Opening your space…” after multiple waits.\n- The browser remained at `/demo`; no Today page appeared."
+    }
+  ]
+}

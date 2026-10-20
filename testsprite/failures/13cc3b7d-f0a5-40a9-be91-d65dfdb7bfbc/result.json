@@ -1,0 +1,23 @@
+{
+  "testId": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+  "status": "failed",
+  "startedAt": "2026-10-20T11:42:27.265Z",
+  "finishedAt": "2026-10-20T11:44:40.637Z",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_44fdf66eba014c8d",
+  "runIdIfAvailable": "13cc3b7d-f0a5-40a9-be91-d65dfdb7bfbc",
+  "codeVersion": null,
+  "targetUrl": "https://admired-fish-176.convex.site",
+  "targetUrlSource": null,
+  "environment": {
+    "id": "8a1625ee-0aea-49ae-b014-15d0521a1be5",
+    "name": "default"
+  },
+  "failedStepIndex": 11,
+  "failureKind": "assertion",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (assertion) on step 11: The completion workflow is likely recording only a generic “Visit completed” activity without associating or rendering the specific visit title in the history entry. As a result, the visit is marked complete and removed from upcoming, but the audit/history view lacks the identifying name needed for verification. Underlying error: TEST FAILURE\n\nThe visit was successfully marked complete and no longer appears as upcoming, but the completed-history entry does not ide…",
+  "apiOutput": null,
+  "trace": null
+}

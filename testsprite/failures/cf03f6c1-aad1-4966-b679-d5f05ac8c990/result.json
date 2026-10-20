@@ -1,0 +1,23 @@
+{
+  "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+  "status": "failed",
+  "startedAt": "2026-10-20T11:42:27.265Z",
+  "finishedAt": "2026-10-20T11:44:14.148Z",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_c74d4ea514a7999f",
+  "runIdIfAvailable": "cf03f6c1-aad1-4966-b679-d5f05ac8c990",
+  "codeVersion": null,
+  "targetUrl": "https://admired-fish-176.convex.site",
+  "targetUrlSource": null,
+  "environment": {
+    "id": "8a1625ee-0aea-49ae-b014-15d0521a1be5",
+    "name": "default"
+  },
+  "failedStepIndex": 7,
+  "failureKind": "assertion",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (assertion) on step 7: The hosting-side link-opening endpoint is likely treating an expired or already-consumed recipient token as a generic fetch/open failure, so the frontend falls back to the default connection-error screen (“We couldn’t open your space”) rather than a specific “already used or expired” explanation. This can happen if token state is not persisted or checked correctly on the server, if the route returns the wrong status/code for invalid invites, or if the host is maski…",
+  "apiOutput": null,
+  "trace": null
+}

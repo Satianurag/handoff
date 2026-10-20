@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "cli-v1",
+  "snapshotId": "snap_c74d4ea514a7999f",
+  "testId": "a033a1a7-d63f-41bc-bd60-0c0b18fa3dbd",
+  "projectId": "98d946ba-f237-453f-b6e5-2b1fea4ca0fa",
+  "codeVersion": "v8.0",
+  "runIdIfAvailable": "cf03f6c1-aad1-4966-b679-d5f05ac8c990",
+  "targetUrl": "https://admired-fish-176.convex.site",
+  "failedStepIndex": 7,
+  "failureKind": "assertion",
+  "capturedAt": "2026-10-20T11:44:14.148Z",
+  "fetchedAt": "2026-10-20T16:16:31.815Z"
+}

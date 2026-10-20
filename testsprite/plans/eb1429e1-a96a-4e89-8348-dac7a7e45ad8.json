@@ -1,0 +1,65 @@
+{
+  "id": "eb1429e1-a96a-4e89-8348-dac7a7e45ad8",
+  "name": "Responsibility assignment is accepted and completed by the recipient with attribution",
+  "description": "Owner requests Leo; Leo accepts and completes; History attributes both events to Leo.",
+  "type": "frontend",
+  "priority": "High",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /demo in a fresh browser context and wait until the page heading 'Today' is shown",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Add responsibility', type 'TS pick up prescription' in 'What needs doing?', choose Kind 'Errand' and save",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the responsibility detail shows status 'Unassigned'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Request assignment', choose 'Leo (demo)' as the household member and confirm",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'Sample controls', click 'Open recipient role' and open the 'Continue as Leo in a separate tab' link",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the responsibility 'TS pick up prescription' and click 'Accept responsibility', then confirm 'Accept responsibility'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the status shows 'Responsible Leo (demo)'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Click 'Mark complete' and confirm 'Mark complete'",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open 'History'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify History shows 'Responsibility completed' attributed to 'Leo (demo)'",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify History shows 'Responsibility assignment accepted' attributed to 'Leo (demo)'",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:17.407Z"
+}

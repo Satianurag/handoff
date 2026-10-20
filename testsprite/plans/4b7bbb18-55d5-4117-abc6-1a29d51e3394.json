@@ -1,0 +1,45 @@
+{
+  "id": "4b7bbb18-55d5-4117-abc6-1a29d51e3394",
+  "name": "Complete the visit from the details panel",
+  "description": "Verify a user can mark an upcoming visit complete from the visit details panel.",
+  "type": "frontend",
+  "priority": "Medium",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to the public demo flow",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Use Sample controls to open the recipient role",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the upcoming visit from the visit preparation page",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Open the visit details view",
+      "structured": false
+    },
+    {
+      "type": "action",
+      "description": "Mark the visit complete",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the visit is no longer shown as upcoming",
+      "structured": false
+    },
+    {
+      "type": "assertion",
+      "description": "Verify the visit appears in the completed visits section",
+      "structured": false
+    }
+  ],
+  "createdAt": "2026-10-20T11:42:16.754Z"
+}

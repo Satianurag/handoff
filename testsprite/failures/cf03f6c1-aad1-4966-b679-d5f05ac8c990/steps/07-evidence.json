@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 7,
+    "summary": "Step 7 'The page should explain that the role link was already used or expired and offer a way forward.' failed. Error: TEST FAILURE\n\nReopening the recipient link did not explain that it had already been used or expired. Instead, the page said, “We couldn’t open your space. Check your connection and try again.”\n\nObservations:\n- The heading was “A small pause.”\n- The page displayed “We couldn’t open your space. Check your connection and try again.”\n- No used-or-expired explanation was shown.",
+    "path": "steps/07-snapshot.html"
+  }
+]
