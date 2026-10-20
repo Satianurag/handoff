@@ -16,6 +16,38 @@ pattern = "handoff-previews.satimon.com"
 custom_domain = true
 
 [[routes]]
+pattern = "handoff-pr-1.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-2.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-3.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-4.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-5.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-6.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-7.satimon.com"
+custom_domain = true
+
+[[routes]]
+pattern = "handoff-pr-8.satimon.com"
+custom_domain = true
+
+[[routes]]
 pattern = "handoff-pr-9.satimon.com"
 custom_domain = true
 
