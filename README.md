@@ -102,6 +102,10 @@ npm run preview:web
 
 `npm run deploy` publishes through the official Static Hosting component. `npm run deploy:backend` deploys backend code only. Confirm the selected project before publishing; [setup](docs/setup.md) explains environment selection and provider prerequisites.
 
+### Stable preview URLs for TestSprite
+
+The preview workflow deploys each pull request to a Convex preview and publishes its URL as the GitHub Deployment `environment_url`. It then registers the PR-to-preview mapping with the stable preview Worker using a GitHub Actions OIDC token; the registration does not use a shared secret. The URL `https://handoff-pr-{pr}.satimon.com` redirects to that Convex preview. Use `https://handoff-pr-{pr}.satimon.com` as the TestSprite GitHub PR Target URL pattern.
+
 ## Repository map
 
 ```text
