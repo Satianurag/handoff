@@ -6,6 +6,12 @@ import { mountPrivacy } from "./views/privacy.js";
 import { mountWorkspace } from "./workspace-app.js";
 import { isAppRoute } from "./routes.js";
 import { householdDayEnd, watchDeadline } from "./time.js";
+import {
+  sampleRoleLinkFailureMessage,
+  sampleRoleLinkRecoveryAction,
+  sampleRoleLinkUnavailableMessage,
+  signInWithSampleRole,
+} from "./ui/demo-role-link.js";
 const $ = (s, root = document) => root.querySelector(s);
 const escape = (value) =>
   String(value ?? "").replace(
@@ -866,8 +872,8 @@ async function route() {
       if (path === "/demo/join") {
         const token = location.hash.slice(1);
         history.replaceState({}, "", location.pathname);
-        if (!token) throw {data:{message:"This sample role link has expired. Open a new role link from the sample household."}};
-        await auth.signInSample(token);
+        if (!token) throw { data: { message: sampleRoleLinkUnavailableMessage } };
+        await signInWithSampleRole(auth, token);
       } else if (!auth.hasSession()) await auth.signInSample();
       viewer = await auth.client.query("onboarding:viewer", {});
       if (version !== routeVersion) return;
@@ -927,10 +933,11 @@ async function route() {
     go("/households", true);
   } catch (error) {
     if (version !== routeVersion) return;
+    const roleLinkMessage = sampleRoleLinkFailureMessage(path, error);
     shell(
-      `<div class="eyebrow">LET’S TRY THAT AGAIN</div><h1>A small pause.</h1><p class="intro">${escape(readable(error, "We couldn’t open your space. Check your connection and try again."))}</p><button class="primary full" id="retry-page">Try again</button><a class="quiet-link" href="/households" data-route>My households</a>`,
+      `<div class="eyebrow">LET’S TRY THAT AGAIN</div><h1>A small pause.</h1><p class="intro">${escape(roleLinkMessage ?? readable(error, "We couldn’t open your space. Check your connection and try again."))}</p>${sampleRoleLinkRecoveryAction(path)}<a class="quiet-link" href="/households" data-route>My households</a>`,
     );
-    $("#retry-page").onclick = route;
+    if (path !== "/demo/join") $("#retry-page").onclick = route;
   } finally {
     if (version === routeVersion) routeLoading = false;
   }

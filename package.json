@@ -11,7 +11,7 @@
     "dev:web": "node scripts/serve-web.mjs",
     "build:web": "node scripts/build-web.mjs",
     "preview:web": "node scripts/serve-web.mjs --dist",
-    "test:web": "node --test scripts/test-auth-client.mjs scripts/test-ui-foundation.mjs scripts/test-pagination.mjs scripts/test-time.mjs scripts/test-invitation-page.mjs",
+    "test:web": "node --test scripts/test-auth-client.mjs scripts/test-ui-foundation.mjs scripts/test-pagination.mjs scripts/test-time.mjs scripts/test-invitation-page.mjs scripts/test-demo-role-link.mjs",
     "deploy:backend": "convex deploy"
   },
   "type": "module",
