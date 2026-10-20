@@ -34,6 +34,7 @@ type Env = {
   readonly AGENTMAIL_WEBHOOK_SECRET: string | undefined;
   readonly FIRECRAWL_API_KEY: string;
   readonly FIRECRAWL_WEBHOOK_SECRET: string | undefined;
+  readonly GEMINI_API_KEY: string | undefined;
   readonly GEMINI_AUTH_AUDIENCE: string | undefined;
   readonly GEMINI_AUTH_ISSUER: string | undefined;
   readonly GEMINI_AUTH_KEY_ID: string | undefined;

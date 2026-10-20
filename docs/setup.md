@@ -19,11 +19,10 @@ Set these in Convex for each deployment you intend to use. Local `.env.local` va
 | `SITE_URL` | Frontend origin: local server for development, public site for production |
 | `AGENTMAIL_WEBHOOK_SECRET` | Verify AgentMail’s signed incoming events |
 | `GENERATION_PROVIDER=gemini`, `GEMINI_MODEL=gemini-3.8-flash` | Selected provider and the model pinned by this implementation |
-| `GOOGLE_CLOUD_PROJECT` | Project authorized for model inference |
-| `GEMINI_AUTH_PRIVATE_KEY`, `GEMINI_AUTH_KEY_ID` | Model-only signing key and key ID |
-| `GEMINI_AUTH_ISSUER`, `GEMINI_AUTH_AUDIENCE`, `GEMINI_AUTH_SUBJECT` | Matching Google workload identity configuration |
+| `GEMINI_API_KEY` | Optional server-only Google AI Studio key; selects AI Studio when the provider is Gemini |
+| `GOOGLE_CLOUD_PROJECT`, `GEMINI_AUTH_PRIVATE_KEY`, `GEMINI_AUTH_KEY_ID`, `GEMINI_AUTH_ISSUER`, `GEMINI_AUTH_AUDIENCE`, `GEMINI_AUTH_SUBJECT` | Vertex workload identity configuration used when `GEMINI_API_KEY` is not set |
 
-Convex supplies `CONVEX_SITE_URL` to the backend. It is the auth issuer origin, distinct from the frontend’s `SITE_URL`. The current Gemini adapter calls the global Vertex endpoint; changing the pinned model requires updating and validating the adapter’s model contract.
+Convex supplies `CONVEX_SITE_URL` to the backend. It is the auth issuer origin, distinct from the frontend’s `SITE_URL`. Changing the pinned Gemini model requires updating and validating the adapter’s model contract.
 
 For a single setting, use `npx convex env set NAME` with the value on standard input, or use the Dashboard. Target production explicitly with `--prod`; do not copy development settings into production by accident.
 
@@ -42,11 +41,13 @@ Store the webhook’s signing secret as `AGENTMAIL_WEBHOOK_SECRET`. The setup to
 
 Each deployment creates a stable sign-in sender on demand. Household mail needs its own inbox; the provider-backed fictional sample uses two controlled inboxes. Available capacity is determined by the AgentMail account. Deleting messages does not free inbox slots.
 
-## 4. Model-only Google Cloud access
+## 4. Gemini inference
 
-The adapter uses Google Workload Identity Federation to exchange a short-lived signed assertion for Vertex access. It does not use Google for user sign-in, the application database or hosting.
+When `GEMINI_API_KEY` is present and `GENERATION_PROVIDER` is unset or `gemini`, the backend calls Google AI Studio’s `generateContent` endpoint and sends the key in the `x-goog-api-key` header. The key stays in Convex’s server environment and must never be added to a frontend build. The implementation keeps the model pinned to `gemini-3.8-flash`; changing it requires model revalidation.
 
-Before using `scripts/configure-gemini-auth.mjs`:
+Without `GEMINI_API_KEY`, the existing Vertex path uses Google Workload Identity Federation to exchange a short-lived signed assertion. It does not use Google for user sign-in, the application database or hosting.
+
+For the Vertex fallback only, before using `scripts/configure-gemini-auth.mjs`:
 
 1. Select your Google Cloud project with `gcloud`, enable Vertex AI and arrange access to the pinned model.
 2. Provide a custom IAM role named `handoffGeminiInference` with the permissions needed for inference. The script binds this existing role; it does not create it.
