@@ -10,6 +10,7 @@ import { env } from "../_generated/server";
 // standard output_text/status/usage fields regardless of runtime provider.
 export type ResponseRequest = { model: string; input: string; media?: { mimeType: string; data: string }; outputTokenLimit?: number; inputTokenReservation?: number; instructions: string; store: false; text: { format: { type: "json_schema"; name: string; schema: Record<string, unknown>; strict: true } } };
 export type ResponseResult = { id: string; object: "response"; status: "completed" | "incomplete" | "failed"; model: string; provider: "gemini" | "openai"; output_text: string; usage: { input_tokens: number; output_tokens: number; total_tokens: number }; refusal: boolean };
+const supportedGeminiModels = new Set(["gemini-3.8-flash", "gemini-3.5-flash", "gemini-3-flash-preview"]);
 const vertexResult = z.object({
   responseId: z.string().optional(), modelVersion: z.string().optional(),
   promptFeedback: z.object({ blockReason: z.string().optional() }).optional(),
@@ -31,8 +32,110 @@ export function generationConfig() {
   const provider = env.GENERATION_PROVIDER ?? "gemini";
   const model = provider === "gemini" ? env.GEMINI_MODEL ?? "gemini-3.8-flash" : env.OPENAI_MODEL;
   if (!model || (provider === "openai" && !env.OPENAI_API_KEY)) throw new GenerationError("MODEL_CONFIGURATION_REQUIRED");
-  if (provider === "gemini" && model !== "gemini-3.8-flash") throw new GenerationError("MODEL_REVALIDATION_REQUIRED");
+  if (provider === "gemini" && !supportedGeminiModels.has(model)) throw new GenerationError("MODEL_REVALIDATION_REQUIRED");
   return { provider, model };
+}
+
+export function buildGeminiRequestBody(request: ResponseRequest) {
+  return {
+    systemInstruction: { parts: [{ text: request.instructions }] },
+    contents: [{
+      role: "user",
+      parts: [
+        { text: request.input },
+        ...(request.media ? [{ inlineData: request.media }] : []),
+      ],
+    }],
+    generationConfig: {
+      ...(request.outputTokenLimit !== undefined ? { maxOutputTokens: request.outputTokenLimit } : {}),
+      responseMimeType: "application/json",
+      responseJsonSchema: request.text.format.schema,
+      thinkingConfig: { thinkingLevel: "HIGH" },
+    },
+  };
+}
+
+const maxGeminiAttempts = 3;
+const retryBackoffMs = [1_000, 3_000];
+const retryAfterLimitMs = 5_000;
+const geminiRequestTimeoutMs = 60_000;
+
+function retryAfterMilliseconds(response: Response) {
+  const value = response.headers.get("retry-after");
+  if (!value) return undefined;
+  const milliseconds = /^\d+$/.test(value)
+    ? Number(value) * 1_000
+    : Date.parse(value) - Date.now();
+  return Number.isFinite(milliseconds) && milliseconds >= 0
+    ? Math.min(milliseconds, retryAfterLimitMs)
+    : undefined;
+}
+
+function unavailablePayload(value: unknown) {
+  if (!value || typeof value !== "object") return false;
+  const error = (value as { error?: unknown }).error;
+  if (!error || typeof error !== "object") return false;
+  const detail = error as { status?: unknown; code?: unknown };
+  return detail.status === "UNAVAILABLE" || detail.code === "UNAVAILABLE";
+}
+
+async function isUnavailableResponse(response: Response) {
+  if (response.status === 429 || response.status === 503) return true;
+  try {
+    return unavailablePayload(await response.clone().json());
+  } catch {
+    return false;
+  }
+}
+
+function retryDelay(attempt: number, retryAfterMs?: number) {
+  if (retryAfterMs !== undefined) return retryAfterMs;
+  const backoff = retryBackoffMs[Math.min(attempt, retryBackoffMs.length - 1)];
+  return Math.round(backoff * (0.8 + Math.random() * 0.4));
+}
+
+function wait(milliseconds: number) {
+  return new Promise<void>(resolve => setTimeout(resolve, milliseconds));
+}
+
+async function fetchGeminiContent(url: string, headers: Record<string, string>, request: ResponseRequest) {
+  const body = JSON.stringify(buildGeminiRequestBody(request));
+  for (let attempt = 0; attempt < maxGeminiAttempts; attempt += 1) {
+    let response: Response;
+    try {
+      response = await fetch(url, {
+        method: "POST",
+        headers,
+        body,
+        signal: AbortSignal.timeout(geminiRequestTimeoutMs),
+      });
+    } catch {
+      if (attempt === maxGeminiAttempts - 1) {
+        throw new GenerationError("MODEL_PROVIDER_UNAVAILABLE", true);
+      }
+      await wait(retryDelay(attempt));
+      continue;
+    }
+
+    if (response.ok) {
+      if (!(await isUnavailableResponse(response))) return response;
+      if (attempt === maxGeminiAttempts - 1) {
+        throw new GenerationError("MODEL_PROVIDER_UNAVAILABLE", true);
+      }
+      await wait(retryDelay(attempt));
+      continue;
+    }
+
+    const unavailable = await isUnavailableResponse(response);
+    const retryable = [408, 429, 500, 502, 503, 504].includes(response.status) || unavailable;
+    const retryAfterMs = retryAfterMilliseconds(response);
+    if ((response.status === 429 || response.status === 503 || unavailable) && attempt < maxGeminiAttempts - 1) {
+      await wait(retryDelay(attempt, retryAfterMs));
+      continue;
+    }
+    throw new GenerationError(`MODEL_HTTP_${response.status}`, retryable, retryAfterMs);
+  }
+  throw new GenerationError("MODEL_PROVIDER_UNAVAILABLE", true);
 }
 
 async function create(request: ResponseRequest): Promise<ResponseResult> {
@@ -55,16 +158,21 @@ async function create(request: ResponseRequest): Promise<ResponseResult> {
   }
   if(request.outputTokenLimit!==undefined&&(!Number.isSafeInteger(request.outputTokenLimit)||request.outputTokenLimit<16384||request.outputTokenLimit>65536))throw new GenerationError("INVALID_DOCUMENT_OUTPUT_LIMIT");
   try {
-    const auth = await vertexAuth(), { token } = await auth.getAccessToken();
-    if (!token) throw new GenerationError("MODEL_AUTH_UNAVAILABLE");
-    const response = await fetch(`https://aiplatform.googleapis.com/v1/projects/${encodeURIComponent(env.GOOGLE_CLOUD_PROJECT!)}/locations/global/publishers/google/models/${encodeURIComponent(model)}:generateContent`, {
-      method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "x-goog-user-project": env.GOOGLE_CLOUD_PROJECT! },
-      body: JSON.stringify({ systemInstruction: { parts: [{ text: request.instructions }] }, contents: [{ role: "user", parts: [{ text: request.input }, ...(request.media ? [{inlineData:request.media}] : [])] }], generationConfig: { ...(request.outputTokenLimit!==undefined?{maxOutputTokens:request.outputTokenLimit}:{}), responseMimeType: "application/json", responseJsonSchema: request.text.format.schema, thinkingConfig: { thinkingLevel: "HIGH" } } }),
-    });
-    if (!response.ok) {
-      const retryAfter = response.headers.get("retry-after");
-      const wait = retryAfter ? /^\d+$/.test(retryAfter) ? Number(retryAfter) * 1000 : Math.max(0, Date.parse(retryAfter) - Date.now()) : undefined;
-      throw new GenerationError(`MODEL_HTTP_${response.status}`, [408, 429, 500, 502, 503, 504].includes(response.status), wait !== undefined && Number.isFinite(wait) ? wait : undefined);
+    let response: Response;
+    if (env.GEMINI_API_KEY) {
+      response = await fetchGeminiContent(
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+        { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
+        request,
+      );
+    } else {
+      const auth = await vertexAuth(), { token } = await auth.getAccessToken();
+      if (!token) throw new GenerationError("MODEL_AUTH_UNAVAILABLE");
+      response = await fetchGeminiContent(
+        `https://aiplatform.googleapis.com/v1/projects/${encodeURIComponent(env.GOOGLE_CLOUD_PROJECT!)}/locations/global/publishers/google/models/${encodeURIComponent(model)}:generateContent`,
+        { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "x-goog-user-project": env.GOOGLE_CLOUD_PROJECT! },
+        request,
+      );
     }
     const parsed = vertexResult.safeParse(await response.json());
     if (!parsed.success) throw new GenerationError("MODEL_RESPONSE_INVALID");
