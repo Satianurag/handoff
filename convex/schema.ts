@@ -202,7 +202,7 @@ export default defineSchema({
   sendIntents: defineTable({
     householdId, draftId: v.id("mailDrafts"), draftVersion: version, contentHash: v.string(),
     correctionDraftId: v.optional(v.id("mailDrafts")), logicalSendId: v.string(), idempotencyKey: v.string(), approvedBy: userId,
-    recipient: v.string(), subject: v.string(), body: v.string(), providerDraftId: v.string(),
+    recipient: v.string(), subject: v.string(), body: v.string(), providerDraftId: v.optional(v.string()),
     approvedThreadVersion: v.optional(version), consentVersion: version,
     state: v.union(v.literal("approved"), v.literal("sending"), v.literal("sent"), v.literal("failed"), v.literal("unknown"), v.literal("cancelled")),
     delivery, providerMessageId: v.optional(v.string()), providerThreadId: v.optional(v.string()),

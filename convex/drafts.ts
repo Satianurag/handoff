@@ -168,14 +168,14 @@ export const approveSend = userMutation({
       return prior._id;
     }
     text(args.logicalSendId, "Send ID", 128); checkVersion(draft, args.expectedVersion);
-    if (draft.correctionDraftId || draft.state !== "editable" || !draft.providerDraftId || draft.providerSyncedVersion !== draft.version || draft.syncToken) fail("DRAFT_NOT_READY", "Wait for the provider draft to be saved before sending.");
+    if (draft.correctionDraftId || draft.state !== "editable" || (household.mode !== "demo" && (!draft.providerDraftId || draft.providerSyncedVersion !== draft.version)) || draft.syncToken) fail("DRAFT_NOT_READY", "Wait for the provider draft to be saved before sending.");
     if (draft.contentHash !== args.expectedHash || draft.contentHash !== contentHash(draft.recipient, draft.subject, draft.body, draft.inReplyTo)) fail("STALE_APPROVAL", "The draft changed. Review its exact content before sending.");
     await permittedRecipient(ctx, household._id, draft.recipient, !!draft.inReplyTo);
     if (draft.threadId) {
       const thread = await ctx.db.get(draft.threadId);
       if (!thread || thread.deleting || thread.quarantined || thread.version !== draft.approvedThreadVersion) fail("STALE_APPROVAL", "The conversation changed. Review and save the draft again.");
     }
-    const id = await ctx.db.insert("sendIntents", { householdId: household._id, draftId: draft._id, draftVersion: draft.version, contentHash: draft.contentHash, logicalSendId: args.logicalSendId, idempotencyKey: `handoff-${digest(`${household._id}:${args.logicalSendId}`)}`, approvedBy: ctx.user._id, recipient: draft.recipient, subject: draft.subject, body: draft.body, providerDraftId: draft.providerDraftId, approvedThreadVersion: draft.approvedThreadVersion, consentVersion: household.consentVersion, state: "approved", delivery: "pending", attempts: 0, createdAt: Date.now(), reconciliation: "none" });
+    const id = await ctx.db.insert("sendIntents", { householdId: household._id, draftId: draft._id, draftVersion: draft.version, contentHash: draft.contentHash, logicalSendId: args.logicalSendId, idempotencyKey: `handoff-${digest(`${household._id}:${args.logicalSendId}`)}`, approvedBy: ctx.user._id, recipient: draft.recipient, subject: draft.subject, body: draft.body, ...(draft.providerDraftId ? { providerDraftId: draft.providerDraftId } : {}), approvedThreadVersion: draft.approvedThreadVersion, consentVersion: household.consentVersion, state: "approved", delivery: "pending", attempts: 0, createdAt: Date.now(), reconciliation: "none" });
     await ctx.db.patch(draft._id, { state: "approved", updatedAt: Date.now() });
     await queueOperation(ctx,{householdId:draft.householdId,kind:"sendApprovedDraft",key:`send:${id}`,sendIntentId:id,draftId:draft._id,actorId:ctx.user._id,target:draft.threadId?{kind:"thread",id:draft.threadId}:draft.related,automatic:true});return id;
   },
