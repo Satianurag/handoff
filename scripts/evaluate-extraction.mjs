@@ -4,6 +4,17 @@ const resultsPath = new URL("../docs/extraction-evaluation.json", import.meta.ur
 const only = process.argv.slice(2).map(Number);
 const indices = only.length ? only : Array.from({length:40},(_,i)=>i);
 const promptVersion="handoff-logistics-v2";
+function convexEnv(name) {
+  try {
+    return execFileSync("npx", ["convex", "env", "get", name], { encoding:"utf8",stdio:["ignore","pipe","pipe"] }).trim();
+  } catch (error) {
+    const diagnostics = String(error.stderr ?? "");
+    if (/not set|not found|no environment variable/i.test(diagnostics)) return "";
+    throw error;
+  }
+}
+const provider=convexEnv("GENERATION_PROVIDER")||"gemini";
+const model=convexEnv(provider==="gemini"?"GEMINI_MODEL":"OPENAI_MODEL")||(provider==="gemini"?"gemini-3.8-flash":"");
 const priorReport=existsSync(resultsPath)?JSON.parse(readFileSync(resultsPath,"utf8")):null;
 const results=only.length&&priorReport?.promptVersion===promptVersion?priorReport.results:[];
 for (const fixtureIndex of indices) {
@@ -23,7 +34,7 @@ for (const fixtureIndex of indices) {
     console.log(JSON.stringify({fixtureIndex,id:result.id,passed:result.passed,accepted:result.accepted,supported:result.supported}));
   } catch (error) { const diagnostics=String(error.stderr ?? error.message ?? ""); const safeCode=diagnostics.match(/MODEL_[A-Z_0-9]+/)?.[0] ?? (/RateLimit|rate.?limit/i.test(diagnostics)?"APPLICATION_BUDGET_LIMIT":"EVALUATION_EXECUTION_FAILED"); console.error(JSON.stringify({fixtureIndex,failed:true,reason:safeCode,detail:diagnostics.replace(/[^\s]{45,}/g,"[REDACTED]").slice(0,1000)})); process.exitCode=1; break; }
   const positives=results.filter(r=>r.positive), negatives=results.filter(r=>!r.positive), accepted=results.reduce((n,r)=>n+r.accepted,0), supported=results.reduce((n,r)=>n+r.supported,0);
-  const report={model:"gemini-3.8-flash",thinking:"HIGH",promptVersion,syntheticFixtures:true,realModelCalls:true,testedAt:new Date().toISOString(),passed:results.filter(r=>r.passed).length,total:results.length,proposalPrecision:accepted?supported/accepted:null,positiveFixtureRecall:positives.length?positives.filter(r=>r.passed).length/positives.length:null,negativeAbstentionRate:negatives.length?negatives.filter(r=>r.passed).length/negatives.length:null,inputTokens:results.reduce((n,r)=>n+r.inputTokens,0),outputTokens:results.reduce((n,r)=>n+r.outputTokens,0),results:results.sort((a,b)=>a.fixtureIndex-b.fixtureIndex)};
+  const report={model,thinking:"HIGH",promptVersion,syntheticFixtures:true,realModelCalls:true,testedAt:new Date().toISOString(),passed:results.filter(r=>r.passed).length,total:results.length,proposalPrecision:accepted?supported/accepted:null,positiveFixtureRecall:positives.length?positives.filter(r=>r.passed).length/positives.length:null,negativeAbstentionRate:negatives.length?negatives.filter(r=>r.passed).length/negatives.length:null,inputTokens:results.reduce((n,r)=>n+r.inputTokens,0),outputTokens:results.reduce((n,r)=>n+r.outputTokens,0),results:results.sort((a,b)=>a.fixtureIndex-b.fixtureIndex)};
   writeFileSync(resultsPath,JSON.stringify(report,null,2)+"\n");
   await new Promise(r=>setTimeout(r,2000));
 }

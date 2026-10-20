@@ -43,7 +43,7 @@ Each deployment creates a stable sign-in sender on demand. Household mail needs 
 
 ## 4. Gemini inference
 
-When `GEMINI_API_KEY` is present and `GENERATION_PROVIDER` is unset or `gemini`, the backend calls Google AI Studio’s `generateContent` endpoint and sends the key in the `x-goog-api-key` header. The key stays in Convex’s server environment and must never be added to a frontend build. The approved models are `gemini-3.8-flash` and `gemini-3.5-flash`; set `GEMINI_MODEL=gemini-3.5-flash` when `gemini-3.8-flash` is overloaded. Other model names require revalidation.
+When `GEMINI_API_KEY` is present and `GENERATION_PROVIDER` is unset or `gemini`, the backend calls Google AI Studio’s `generateContent` endpoint and sends the key in the `x-goog-api-key` header. The key stays in Convex’s server environment and must never be added to a frontend build. The approved models are `gemini-3.8-flash`, `gemini-3.5-flash`, and `gemini-3-flash-preview`; set `GEMINI_MODEL=gemini-3-flash-preview` while 3.x flash models are overloaded. Other model names require revalidation.
 
 Without `GEMINI_API_KEY`, the existing Vertex path uses Google Workload Identity Federation to exchange a short-lived signed assertion. It does not use Google for user sign-in, the application database or hosting.
 

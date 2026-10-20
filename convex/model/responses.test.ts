@@ -71,24 +71,26 @@ test("uses the AI Studio API-key header without Vertex token exchange", async ()
   });
 });
 
-test("allows gemini-3.5-flash and rejects model names outside the allowlist", async () => {
-  process.env.GEMINI_MODEL = "gemini-3.5-flash";
-  const responseBody = { ...successBody, modelVersion: "gemini-3.5-flash" };
-  const fetchMock = vi.fn().mockResolvedValue(
-    new Response(JSON.stringify(responseBody), { status: 200, headers: { "content-type": "application/json" } }),
-  );
+test("allows approved fallback models and rejects model names outside the allowlist", async () => {
+  const fetchMock = vi.fn().mockImplementation(() => new Response(
+    JSON.stringify({ ...successBody, modelVersion: process.env.GEMINI_MODEL }),
+    { status: 200, headers: { "content-type": "application/json" } },
+  ));
   vi.stubGlobal("fetch", fetchMock);
 
-  await expect(generationClient.responses.create({ ...request, model: "gemini-3.5-flash" }))
-    .resolves.toMatchObject({ provider: "gemini", model: "gemini-3.5-flash" });
-  expect(fetchMock.mock.calls[0]?.[0]).toBe(
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent",
-  );
+  for (const model of ["gemini-3.5-flash", "gemini-3-flash-preview"]) {
+    process.env.GEMINI_MODEL = model;
+    await expect(generationClient.responses.create({ ...request, model }))
+      .resolves.toMatchObject({ provider: "gemini", model });
+    expect(fetchMock.mock.calls.at(-1)?.[0]).toBe(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+    );
+  }
 
   process.env.GEMINI_MODEL = "gemini-3.6-flash";
   await expect(generationClient.responses.create({ ...request, model: "gemini-3.6-flash" }))
     .rejects.toMatchObject({ code: "MODEL_REVALIDATION_REQUIRED" });
-  expect(fetchMock).toHaveBeenCalledTimes(1);
+  expect(fetchMock).toHaveBeenCalledTimes(2);
 });
 
 test("retries two transient 503 responses and succeeds on the third request", async () => {

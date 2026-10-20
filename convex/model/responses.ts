@@ -10,7 +10,7 @@ import { env } from "../_generated/server";
 // standard output_text/status/usage fields regardless of runtime provider.
 export type ResponseRequest = { model: string; input: string; media?: { mimeType: string; data: string }; outputTokenLimit?: number; inputTokenReservation?: number; instructions: string; store: false; text: { format: { type: "json_schema"; name: string; schema: Record<string, unknown>; strict: true } } };
 export type ResponseResult = { id: string; object: "response"; status: "completed" | "incomplete" | "failed"; model: string; provider: "gemini" | "openai"; output_text: string; usage: { input_tokens: number; output_tokens: number; total_tokens: number }; refusal: boolean };
-const supportedGeminiModels = new Set(["gemini-3.8-flash", "gemini-3.5-flash"]);
+const supportedGeminiModels = new Set(["gemini-3.8-flash", "gemini-3.5-flash", "gemini-3-flash-preview"]);
 const vertexResult = z.object({
   responseId: z.string().optional(), modelVersion: z.string().optional(),
   promptFeedback: z.object({ blockReason: z.string().optional() }).optional(),
