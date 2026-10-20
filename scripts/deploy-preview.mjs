@@ -13,6 +13,10 @@ const staticHostingCli = resolve(
 const previewName = process.argv[2];
 const dryRun = process.argv.includes("--dry-run");
 const seedPreviewEnvironmentOnly = process.argv.includes("--seed-preview-env");
+const demoLimitSettings = [
+  { key: "demoActiveLimit", numericValue: 500 },
+  { key: "demoDailyLimit", numericValue: 2000 },
+];
 
 if (!previewName || !/^pr-(?:\d+|smoke|fresh-[a-z0-9-]+)$/.test(previewName)) {
   throw new Error("Usage: node scripts/deploy-preview.mjs pr-<number>|pr-smoke|pr-fresh-<suffix> [--dry-run]");
@@ -61,6 +65,18 @@ function runConvex(args, { input, quiet = false, includeStderr = false } = {}) {
     return `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
   }
   return result.stdout ?? "";
+}
+
+function operatorConfigureArgs({ key, numericValue }) {
+  return [
+    "run",
+    "--preview-name",
+    previewName,
+    "operator:configure",
+    JSON.stringify({ key, enabled: true, numericValue }),
+    "--typecheck=disable",
+    "--codegen=disable",
+  ];
 }
 
 function runProcess(command, args, env = process.env) {
@@ -179,6 +195,11 @@ if (dryRun) {
         ],
         resolvedSiteUrl: resolved.siteUrl,
         urlResolution: "Derived from Convex deployment output, not the preview name.",
+        demoLimits: demoLimitSettings.map(setting => ({
+          ...setting,
+          enabled: true,
+          args: operatorConfigureArgs(setting),
+        })),
         environmentVariables: [
           "SITE_URL",
           "JWT_PRIVATE_KEY",
@@ -226,6 +247,10 @@ const deployOutput = runConvex([
 process.stdout.write(deployOutput);
 
 const deployedUrls = deploymentUrlsFromOutput(deployOutput);
+for (const setting of demoLimitSettings) {
+  runConvex(operatorConfigureArgs(setting));
+}
+
 const componentUrls = jsonFromOutput(
   runConvex([
     "run",
