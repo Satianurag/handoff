@@ -58,3 +58,7 @@ Local CDP runs in fresh browser contexts for the preview, production, and alias 
 Run 2 was PR-triggered on commit `65d92a4`; the preview check completed at 14:49:52 UTC and TestSprite started at 14:49:59 UTC ([execution](https://www.testsprite.com/dashboard-v3/o/2a412a58-535a-50c7-acd5-60264d0a7740/projects/98d946ba-f237-453f-b6e5-2b1fea4ca0fa/execution/39ec1d57-3b8a-41b2-bc42-e2484e7c84ea)): 16/16 passed.
 
 The Run 1 stall was not reproduced and its root cause is not confirmed; no code change was made for it. Convex logs for Run 1 showed anonymous sign-ins but no later `demoTokens:create` call.
+
+## Merge gate
+
+The Pull Request trigger has TestSprite's merge gate on: results are reported as the `TestSprite V3` status and a failed run fails that status. The repository ruleset `main-gate` on the default branch requires `TestSprite V3` to pass, and blocks force pushes and branch deletion. A PR cannot merge into `main` until its own preview passes the TestSprite suite.
