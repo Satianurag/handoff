@@ -102,6 +102,17 @@ npm run preview:web
 
 `npm run deploy` publishes through the official Static Hosting component. `npm run deploy:backend` deploys backend code only. Confirm the selected project before publishing; [setup](docs/setup.md) explains environment selection and provider prerequisites.
 
+## Tested by TestSprite
+
+A curated [TestSprite](https://www.testsprite.com) suite of 16 browser tests runs against the live sample household. Coverage:
+
+- **Sample entry:** isolated sample boot, used one-time role link, unknown route, signed-out deep link that keeps its destination.
+- **Handover and responsibility:** publish → acknowledge → receipt; acknowledgement blocked without the review confirmation; assignment accepted and completed by the recipient with attribution; required title; recurring responsibility.
+- **Access boundaries:** another household's workspace is denied; a care-circle member cannot manage the household.
+- **Visits, places and mail:** complete a visit and see it named in History; return-journey request; visit question after granting care access; place search with fully visible results; scripted office reply in the shared Inbox.
+
+The first production run passed 12 of 16 tests. It found three real bugs, each fixed in its own PR, and one wrong test plan, which was replaced. After the fixes, every test in the suite passes. [LOOP.md](LOOP.md) lists each failure, its fix and the TestSprite run IDs. Every same-repository PR also deploys its own Convex preview and publishes it as a GitHub Deployment.
+
 ## Repository map
 
 ```text
