@@ -570,7 +570,7 @@ async function joinScreen(token) {
   }
 }
 function taskMarkup(task) {
-  return `<div class="task-row"><button class="task-complete" data-complete="${task._id}" aria-label="Complete ${escape(task.title)}"></button><div class="task-content"><strong>${escape(task.title)}</strong><small>${task.ownerId === viewer.id ? "You’re taking this" : task.ownerId ? "Assigned to a household member" : "Not yet assigned"}</small></div>${!task.ownerId ? `<button class="secondary" data-claim="${task._id}">I’ll take this</button>` : ""}</div>`;
+  return `<div class="task-row"><button class="task-complete" data-complete="${task._id}" aria-label="Complete ${escape(task.title)}"></button><div class="task-content"><strong>${escape(task.title)}</strong><small>${task.ownerId === viewer.id ? "You’re taking this" : task.ownerId ? "Assigned to a household member" : "Not yet assigned"}</small></div>${task.status === "open" && !task.ownerId && !task.requestedOwnerId ? `<button class="secondary" data-claim="${task._id}">I’ll take this</button>` : ""}</div>`;
 }
 async function todayScreen(id, version) {
   await loadHouseholds();

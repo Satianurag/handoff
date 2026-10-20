@@ -73,6 +73,20 @@ test("assignment requires acceptance, override requires owner reason, reopening 
   expect(events.some(e => e.type === "task.reopen" && e.after.includes("Missing one item"))).toBe(true);
 });
 
+test("claims cannot bypass pending assignment requests", async () => {
+  const { alice, bob, users, householdId } = await setup();
+  const requestedTaskId = await alice.mutation(api.tasks.create, { householdId, title: "Requested responsibility", category: "logistics", dueAt: null, note: "", requestedOwnerId: users.bob, requestId: "requested-responsibility" });
+  const unrequestedTaskId = await alice.mutation(api.tasks.create, { householdId, title: "Unrequested responsibility", category: "logistics", dueAt: null, note: "", requestedOwnerId: null, requestId: "unrequested-responsibility" });
+  await expect(alice.mutation(api.tasks.transition, { taskId: requestedTaskId, expectedVersion: 1, operation: "claim" })).rejects.toMatchObject({ data: { code: "ASSIGNMENT_PENDING" } });
+  await expect(bob.mutation(api.tasks.transition, { taskId: requestedTaskId, expectedVersion: 1, operation: "claim" })).rejects.toMatchObject({ data: { code: "ASSIGNMENT_PENDING" } });
+  await bob.mutation(api.tasks.transition, { taskId: requestedTaskId, expectedVersion: 1, operation: "acceptAssignment" });
+  expect(await bob.query(api.tasks.get, { taskId: requestedTaskId })).toMatchObject({ ownerId: users.bob, requestedOwnerId: null });
+  await bob.mutation(api.tasks.transition, { taskId: requestedTaskId, expectedVersion: 2, operation: "complete" });
+  expect(await bob.query(api.tasks.get, { taskId: requestedTaskId })).toMatchObject({ status: "done", ownerId: users.bob, completedBy: users.bob });
+  await bob.mutation(api.tasks.transition, { taskId: unrequestedTaskId, expectedVersion: 1, operation: "claim" });
+  expect(await bob.query(api.tasks.get, { taskId: unrequestedTaskId })).toMatchObject({ ownerId: users.bob });
+});
+
 test("partial handover acceptance preserves retained and unassigned work and immutable receipts", async () => {
   const { alice, bob, users, taskId, householdId } = await setup();
   await alice.mutation(api.tasks.transition, { taskId, expectedVersion: 1, operation: "claim" });

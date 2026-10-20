@@ -111,6 +111,7 @@ export const transition = userMutation({
     if (["claim", "release", "complete", "cancel", "acceptAssignment", "declineAssignment"].includes(op) && task.status !== "open") fail("INVALID_STATE", "This task is no longer open.");
     if (op === "claim") {
       if (task.ownerId && task.ownerId !== ctx.user._id) fail("ALREADY_CLAIMED", "Another member owns this task.");
+      if (task.requestedOwnerId) fail("ASSIGNMENT_PENDING", "This responsibility has a pending assignment request. Accept or decline the request instead.");
       patch.ownerId = ctx.user._id; patch.requestedOwnerId = null;
     } else if (op === "release") {
       if (task.ownerId !== ctx.user._id) fail("FORBIDDEN", "Only the current owner can release this task. Use an attributed owner override if necessary.");
