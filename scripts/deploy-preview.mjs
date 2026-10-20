@@ -12,9 +12,10 @@ const staticHostingCli = resolve(
 );
 const previewName = process.argv[2];
 const dryRun = process.argv.includes("--dry-run");
+const seedPreviewEnvironmentOnly = process.argv.includes("--seed-preview-env");
 
-if (!previewName || !/^pr-(?:\d+|smoke)$/.test(previewName)) {
-  throw new Error("Usage: node scripts/deploy-preview.mjs pr-<number>|pr-smoke [--dry-run]");
+if (!previewName || !/^pr-(?:\d+|smoke|fresh-[a-z0-9-]+)$/.test(previewName)) {
+  throw new Error("Usage: node scripts/deploy-preview.mjs pr-<number>|pr-smoke|pr-fresh-<suffix> [--dry-run]");
 }
 
 function deploymentUrlsFromOutput(output) {
@@ -104,6 +105,27 @@ function setPreviewEnv(name, value) {
   console.log(`Set preview environment variable ${name}.`);
 }
 
+function seedEnvironment() {
+  const environment = {
+    FIRECRAWL_API_KEY: "preview-disabled",
+    AGENTMAIL_API_KEY: process.env.AGENTMAIL_API_KEY || "preview-disabled",
+  };
+  if (process.env.GEMINI_API_KEY) {
+    environment.GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  }
+  return environment;
+}
+
+if (seedPreviewEnvironmentOnly) {
+  if (!process.env.CONVEX_DEPLOY_KEY) {
+    throw new Error("CONVEX_DEPLOY_KEY must contain a Convex preview deploy key.");
+  }
+  for (const [name, value] of Object.entries(seedEnvironment())) {
+    setPreviewEnv(name, value);
+  }
+  process.exit(0);
+}
+
 function checkDeploymentUrls(componentUrls, deployedUrls) {
   const cloudUrl = new URL(componentUrls.cloudUrl);
   const siteUrl = new URL(componentUrls.siteUrl);
@@ -143,6 +165,8 @@ if (dryRun) {
           "enable",
           "--codegen",
           "disable",
+          "--cmd",
+          `node scripts/deploy-preview.mjs ${previewName} --seed-preview-env`,
         ],
         urlLookup: [
           "run",
@@ -188,17 +212,6 @@ if (!process.env.CONVEX_DEPLOY_KEY) {
   throw new Error("CONVEX_DEPLOY_KEY must contain a Convex preview deploy key.");
 }
 
-const previewSeedEnvironment = {
-  FIRECRAWL_API_KEY: "preview-disabled",
-  AGENTMAIL_API_KEY: process.env.AGENTMAIL_API_KEY || "preview-disabled",
-};
-if (process.env.GEMINI_API_KEY) {
-  previewSeedEnvironment.GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-}
-for (const [name, value] of Object.entries(previewSeedEnvironment)) {
-  setPreviewEnv(name, value);
-}
-
 const deployOutput = runConvex([
   "deploy",
   "--preview-name",
@@ -207,6 +220,8 @@ const deployOutput = runConvex([
   "enable",
   "--codegen",
   "disable",
+  "--cmd",
+  `node scripts/deploy-preview.mjs ${previewName} --seed-preview-env`,
 ], { includeStderr: true });
 process.stdout.write(deployOutput);
 
