@@ -46,3 +46,15 @@ Two Convex details to know if you copy this:
 
 - `convex env set --preview-name X` fails until the preview exists. Run it from inside `convex deploy --preview-name X --cmd "..."`, which runs after the preview is created and before functions deploy (see `scripts/deploy-preview.mjs`).
 - Preview hostnames are random (`charming-pig-95.convex.site`), not derived from the PR number. Read the deployment's `environment_url`; don't build the URL yourself.
+
+## PR trigger on preview deployments (PR #10)
+
+The TestSprite GitHub App Pull Request trigger fires on the `preview` workflow event. Its Target URL pattern is `https://handoff-pr-{pr}.satimon.com`, a Cloudflare Worker alias registered by the preview workflow with a GitHub Actions OIDC token. The alias 302-redirects to that PR's Convex preview.
+
+Run 1 was PR-triggered on 2026-10-20 at about 14:26 UTC ([execution](https://www.testsprite.com/dashboard-v3/o/2a412a58-535a-50c7-acd5-60264d0a7740/projects/98d946ba-f237-453f-b6e5-2b1fea4ca0fa/execution/91e86e74-6adb-4d39-b35a-13670d79628e)): 2 passed, 1 failed, and 13 were blocked. All were stuck on `/demo` showing “One moment. Opening your space…”.
+
+Local CDP runs in fresh browser contexts for the preview, production, and alias (six concurrent tabs) all reached Today in 5–7 seconds. Single “Demo boots” reruns through the TestSprite CLI passed 5/5 steps against production, the direct preview URL, and the alias. A full-suite CLI run against the alias at 14:43–14:48 UTC passed 16/16.
+
+Run 2 was PR-triggered on commit `65d92a4`; the preview check completed at 14:49:52 UTC and TestSprite started at 14:49:59 UTC ([execution](https://www.testsprite.com/dashboard-v3/o/2a412a58-535a-50c7-acd5-60264d0a7740/projects/98d946ba-f237-453f-b6e5-2b1fea4ca0fa/execution/39ec1d57-3b8a-41b2-bc42-e2484e7c84ea)): 16/16 passed.
+
+The Run 1 stall was not reproduced and its root cause is not confirmed; no code change was made for it. Convex logs for Run 1 showed anonymous sign-ins but no later `demoTokens:create` call.

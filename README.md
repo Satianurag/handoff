@@ -113,6 +113,8 @@ A curated [TestSprite](https://www.testsprite.com) suite of 16 browser tests run
 
 The first production run passed 12 of 16 tests. It found three real bugs, each fixed in its own PR, and one wrong test plan, which was replaced. After the fixes, every test in the suite passes. [LOOP.md](LOOP.md) lists each failure, its fix and the TestSprite run IDs. Every same-repository PR also deploys its own Convex preview and publishes it as a GitHub Deployment.
 
+Latest PR-triggered run: 16/16 passed on PR #10's own preview ([Run 2](https://www.testsprite.com/dashboard-v3/o/2a412a58-535a-50c7-acd5-60264d0a7740/projects/98d946ba-f237-453f-b6e5-2b1fea4ca0fa/execution/39ec1d57-3b8a-41b2-bc42-e2484e7c84ea); see [LOOP.md](LOOP.md)).
+
 ## Repository map
 
 ```text
