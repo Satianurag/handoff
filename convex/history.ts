@@ -9,13 +9,16 @@ import { member, range, userQuery, fail, type UserQueryCtx } from "./model/acces
 
 const kind = v.union(v.literal("task"), v.literal("visit"), v.literal("coverage"), v.literal("handover"), v.literal("thread"), v.literal("source"), v.literal("household"));
 const historyEvent = schema.doc("events").extend({
-  targetAvailable: v.boolean(), receiptAvailable: v.boolean(),
+  targetAvailable: v.boolean(), targetLabel: v.optional(v.string()), receiptAvailable: v.boolean(),
   sourceLinks: v.array(v.object({ sourceId: v.id("sources"), available: v.boolean() })),
 });
 async function withLinks(ctx: UserQueryCtx, event: Doc<"events">) {
   const target = await ctx.db.get(event.entity.id);
   const targetAvailable = !!target && (event.entity.kind === "household" ? target._id === event.householdId : "householdId" in target && target.householdId === event.householdId)
     && !("retiring" in target && target.retiring) && !("deleting" in target && target.deleting);
+  const targetLabel = targetAvailable && (event.entity.kind === "visit" || event.entity.kind === "task") && target && "title" in target
+    ? target.title
+    : undefined;
   const handoverId = event.handoverId ?? (event.entity.kind === "handover" ? event.entity.id : null);
   const handover = handoverId ? await ctx.db.get(handoverId) : null;
   const receipt = handover && !handover.retiring && handover.householdId === event.householdId && handover.status === "accepted"
@@ -24,7 +27,7 @@ async function withLinks(ctx: UserQueryCtx, event: Doc<"events">) {
     const source = await ctx.db.get(sourceId);
     return { sourceId, available: !!source && !source.retiring && source.householdId === event.householdId };
   }));
-  return { ...event, targetAvailable, receiptAvailable: !!receipt && receipt.householdId === event.householdId, sourceLinks };
+  return { ...event, targetAvailable, ...(targetLabel === undefined ? {} : { targetLabel }), receiptAvailable: !!receipt && receipt.householdId === event.householdId, sourceLinks };
 }
 
 export const list = userQuery({

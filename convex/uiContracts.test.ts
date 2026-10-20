@@ -403,6 +403,31 @@ test("history links react to removed targets, retired sources and missing accept
   await t.run(ctx=>ctx.db.delete(linked.sourceId));expect((await get()).sourceLinks[0].available).toBe(false);
 });
 
+test("history labels only available visit and task targets",async()=>{
+  const {t,owner,householdId,taskId,ids}=await setup();const from=Date.now()-1000,to=from+86400000;
+  const foreignHouseholdId=await owner.mutation(api.households.create,{nickname:"Other synthetic household",timezone:"America/New_York",firstTask:"Private responsibility",adultConfirmed:true,authorityStatement:"Synthetic test",noticeVersion:"test",emailImport:false,aiProcessing:false,requestId:"history-label-other"});
+  const foreignTaskId=(await owner.query(api.tasks.list,{householdId:foreignHouseholdId,status:"open",paginationOpts})).page[0]._id;
+  await t.run(async ctx=>{
+    await ctx.db.patch(taskId,{title:"Bring keys"});
+    const visitId=await ctx.db.insert("visits",{householdId,title:"Clinic appointment",confirmedStartsAt:from,timezone:"America/New_York",confirmedAddress:"",phone:"",note:"",checklist:[],rideTaskId:null,status:"upcoming",version:1,sourceRefs:[],createdBy:ids.owner,updatedAt:from});
+    const sourceId=await ctx.db.insert("sources",{householdId,kind:"manual",contentHash:"history-record-source",plaintext:"Private record source",capturedAt:from,publishedAt:null,retentionUntil:to,extractionState:"ready",warnings:[],truncated:false,unresolvedReferences:0,version:1});
+    const base={householdId,actorId:ids.owner,before:"",sourceRefs:[],retentionUntil:to};
+    await ctx.db.insert("events",{...base,sequence:101,type:"task.complete",entity:{kind:"task",id:taskId},after:"done",timestamp:from});
+    await ctx.db.insert("events",{...base,sequence:102,type:"visit.completed",entity:{kind:"visit",id:visitId},after:"completed",timestamp:from+1});
+    await ctx.db.insert("events",{...base,sequence:103,type:"source.received",entity:{kind:"source",id:sourceId},after:"Private record source",timestamp:from+2});
+    await ctx.db.insert("events",{...base,sequence:104,type:"task.edited",entity:{kind:"task",id:foreignTaskId},after:"Private responsibility",timestamp:from+3});
+  });
+  const rows=(await owner.query(api.history.list,{householdId,from,to,paginationOpts})).page;
+  expect(rows.find(row=>row.type==="task.complete")).toMatchObject({targetAvailable:true,targetLabel:"Bring keys"});
+  expect(rows.find(row=>row.type==="visit.completed")).toMatchObject({targetAvailable:true,targetLabel:"Clinic appointment"});
+  const recordEvent=rows.find(row=>row.type==="source.received");
+  expect(recordEvent?.targetAvailable).toBe(true);
+  expect(recordEvent).not.toHaveProperty("targetLabel");
+  const unavailableEvent=rows.find(row=>row.type==="task.edited");
+  expect(unavailableEvent?.targetAvailable).toBe(false);
+  expect(unavailableEvent).not.toHaveProperty("targetLabel");
+});
+
 test("personal history cursors survive new events and an acceptance change starts a distinct range",async()=>{
   const {t,recipient,outsider,householdId,membershipId,taskId}=await setup();const now=Date.now();
   await t.run(async ctx=>{

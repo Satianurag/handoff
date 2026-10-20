@@ -23,10 +23,10 @@ export function historyView(ctx){
    if(!rows.length){el.innerHTML=empty('No activity in this view.','Try another category or date range. New changes will appear here automatically.');return;}
    if(!el.querySelector('[data-key]'))el.innerHTML='';
    keyedRows(el,rows,event=>{
-    const title=ctx.eventTitle(event),detail=activityText(ctx,event.type,event.after),handoverId=event.handoverId||(event.entity.kind==='handover'?event.entity.id:null);
+    const title=ctx.eventTitle(event),rowTitle=event.targetAvailable&&event.targetLabel?`${title} · ${event.targetLabel}`:title,detail=activityText(ctx,event.type,event.after),handoverId=event.handoverId||(event.entity.kind==='handover'?event.entity.id:null);
     const links=(event.sourceLinks||[]).map((source,index)=>source.available?link(ctx.path('/sources/'+source.sourceId),`Source${event.sourceLinks.length>1?' '+(index+1):''}`):'<span>Original source unavailable</span>');
     if(event.receiptAvailable&&handoverId)links.push(link(ctx.path('/handovers/'+handoverId),'Accepted receipt'));
-    return `<article class="ui-list-row" tabindex="-1"><span class="ui-avatar small" aria-hidden="true">${esc(event.actorId?ctx.name(event.actorId).slice(0,1):'H')}</span><div class="row-main">${event.targetAvailable?link(entityPath(ctx,event.entity),title,'row-title'):`<span class="row-title">${esc(title)}</span>`}${detail?`<p class="activity-detail">${esc(detail)}</p>`:''}<div class="row-meta">${esc(event.actorId?ctx.name(event.actorId):'Handoff')} · ${esc(formatDate(event.timestamp,ctx.household.timezone))}</div>${!event.targetAvailable?'<p class="ui-hint">Related item unavailable or removed. This retained entry records the earlier change.</p>':''}${links.length?`<div class="row-meta">${links.join(' · ')}</div>`:''}</div></article>`;
+    return `<article class="ui-list-row" tabindex="-1"><span class="ui-avatar small" aria-hidden="true">${esc(event.actorId?ctx.name(event.actorId).slice(0,1):'H')}</span><div class="row-main">${event.targetAvailable?link(entityPath(ctx,event.entity),rowTitle,'row-title'):`<span class="row-title">${esc(rowTitle)}</span>`}${detail?`<p class="activity-detail">${esc(detail)}</p>`:''}<div class="row-meta">${esc(event.actorId?ctx.name(event.actorId):'Handoff')} · ${esc(formatDate(event.timestamp,ctx.household.timezone))}</div>${!event.targetAvailable?'<p class="ui-hint">Related item unavailable or removed. This retained entry records the earlier change.</p>':''}${links.length?`<div class="row-meta">${links.join(' · ')}</div>`:''}</div></article>`;
    });
   });
  };
