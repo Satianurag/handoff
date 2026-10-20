@@ -72,6 +72,9 @@ p {
   color: var(--muted);
 }
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--serif);
   font-size: 32px;
   font-weight: 550;
@@ -168,6 +171,10 @@ p {
 }
 .quiet-link,
 .text-button {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   font-size: 13px;
   font-weight: 550;
   text-decoration: none;
@@ -337,6 +344,11 @@ textarea {
   text-align: center;
   margin-top: 22px;
 }
+.fineprint a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .fineprint a,
 .body-link {
   text-underline-offset: 3px;
@@ -351,6 +363,10 @@ textarea {
   color: var(--muted);
 }
 .auth-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   text-decoration: none;
 }
 .auth-footer a:hover {
@@ -800,7 +816,7 @@ textarea {
   line-height: 1.8;
 }
 .legal .quiet-link {
-  display: inline-block;
+  display: inline-flex;
   margin-bottom: 24px;
 }
 .recovery {

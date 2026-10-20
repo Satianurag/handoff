@@ -20,6 +20,7 @@ const mime = {
   ".png": "image/png",
   ".woff2": "font/woff2",
   ".json": "application/json",
+  ".txt": "text/plain; charset=utf-8",
 };
 http
   .createServer(async (req, res) => {
